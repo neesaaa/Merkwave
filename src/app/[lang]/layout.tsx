@@ -4,6 +4,10 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { getDictionary } from "@/content/dictionary";
 import { Locale, locales, isRTL } from "@/lib/i18n";
+import IntroLoader from "@/components/IntroLoader";
+import MobileLogger from "@/components/MobileLogger";
+import ErrorBoundary from "@/components/ErrorBoundary ";
+
 
 export const dynamicParams = false;
 
@@ -64,19 +68,24 @@ export default async function LocaleLayout({
   const direction = isRTL(locale) ? "rtl" : "ltr";
 
   return (
-    <div
-      lang={locale}
-      dir={direction}
-      className="flex min-h-screen flex-col bg-white"
-      suppressHydrationWarning
-    >
-      <div suppressHydrationWarning>
-        <Navbar lang={locale} />
+    <ErrorBoundary>
+      <div
+        lang={locale}
+        dir={direction}
+        className="flex min-h-screen flex-col bg-white"
+        suppressHydrationWarning
+      >
+        <IntroLoader />
+        <MobileLogger />
+        <div suppressHydrationWarning>
+          <Navbar lang={locale} />
+        </div>
+        <main className="flex-1" id="content" suppressHydrationWarning>
+          {children}
+        </main>
+        <Footer lang={locale} />
       </div>
-      <main className="flex-1" id="content" suppressHydrationWarning>
-        {children}
-      </main>
-      <Footer lang={locale} />
-    </div>
+    </ErrorBoundary>
+    
   );
 }

@@ -146,7 +146,7 @@ export default function SeoClient({ dict, lang }: LocalizedComponentProps) {
           {/* Back Link */}
           <div className={`flex items-center gap-3 mb-8 ${isArabic ? 'flex-row-reverse' : ''}`}>
             <Link 
-              href={`/${lang}/services`}
+              href={`/${lang}/services` as any}
               className={`inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors ${isArabic ? 'flex-row-reverse' : ''}`}
               dir={isArabic ? 'rtl' : 'ltr'}
             >
@@ -188,7 +188,7 @@ export default function SeoClient({ dict, lang }: LocalizedComponentProps) {
                   : 'Unlock your website\'s full potential with our expert SEO strategies, designed to increase visibility, attract qualified leads, and boost your online presence.'}
               </p>
               
-              <Link href={`/${lang}/contact`}>
+              <Link href={`/${lang}/contact` as any}>
                 <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 hover:scale-105">
                   {isArabic ? 'احصل على تدقيق SEO الخاص بك' : 'Get Your SEO Audit'}
                 </button>
@@ -372,7 +372,7 @@ export default function SeoClient({ dict, lang }: LocalizedComponentProps) {
                 : 'Let\'s strategize your path to top search engine results and sustainable online growth.'}
             </p>
             <div className="flex justify-center">
-              <Link href={`/${lang}/contact`}>
+              <Link href={`/${lang}/contact` as any}>
                 <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 hover:scale-105">
                   {isArabic ? 'احصل على تدقيق SEO الخاص بك' : 'Get Your SEO Audit'}
                 </button>

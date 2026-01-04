@@ -17,6 +17,13 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
   useEffect(() => {
     setMounted(true)
   }, [])
+  useEffect(() => {
+  const handleScroll = () => {
+    if (isOpen) setIsOpen(false)
+  }
+  window.addEventListener('scroll', handleScroll)
+  return () => window.removeEventListener('scroll', handleScroll)
+}, [isOpen])
 
   const switchLanguage = (newLang: string) => {
     setIsOpen(false)
@@ -35,11 +42,11 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
   const directionClass = isArabic ? 'rtl' : 'ltr'
 
   return (
-    <nav className={`bg-black/90 backdrop-blur-md border-b border-cyan-500/20 sticky top-0 z-50 ${directionClass}`} dir={directionClass}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <nav className={`bg-black/90 backdrop-blur-md border-b border-[#00D4CD] sticky top-0 z-50 ${directionClass}`} dir={directionClass}>
+      <div className="container mx-auto md:px-2 sm:px-2 lg:px-4">
+        <div className="flex items-center justify-between h-12 md:h-18  gap-2 ">
           {/* Logo */}
-          <div className="flex-shrink-0" suppressHydrationWarning>
+          <div className="flex-shrink-0 px-2 md:px-0" suppressHydrationWarning>
             <Link 
               href={`/${lang}`}
               className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 group"
@@ -56,7 +63,7 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center md:space-x-1 lg:space-x-2">
             {navigation.map((item) => {
               const isActive = mounted && pathname === item.href
 
@@ -64,14 +71,14 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
                 <Link
                   key={item.name}
                   href={item.href as any}
-                  className={`relative text-white hover:text-cyan-400 transition-all duration-300 font-medium text-sm group px-3 py-2 ${
-                    isActive ? 'text-cyan-400' : ''
+                  className={`relative  transition-all text-md md:text-xs lg:text-base duration-300 group px-3 py-2  ${
+                    isActive ? '' : ''
                   }`}
                 >
                   {item.name}
                   <span 
-                    className={`absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full ${
-                      isActive ? 'w-full shadow-[0_0_8px_#00ffff]' : ''
+                    className={`absolute bottom-0 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full ${
+                      isActive ? 'w-full shadow-[0_0_8px_#00ffff] ' : ''
                     }`}
                   />
                 </Link>
@@ -80,13 +87,17 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
           </div>
 
           {/* Right Side: LET'S TALK + Language Switcher + Mobile Menu */}
-          <div className={`flex items-center ${isArabic ? 'space-x-reverse' : ''} space-x-4`}>
+          <div className={`flex items-center ${isArabic ? 'space-x-reverse' : ''} space-x-2 lg:space-x-4`}>
             {/* LET'S TALK button */}
             <Link
               href={`/${lang}/contact`}
-              className="hidden md:inline-flex items-center px-6 py-3 bg-cyan-400 text-black font-semibold rounded-full hover:bg-cyan-300 transition-all duration-200 whitespace-nowrap"
+              className={`hidden md:inline-flex items-center font-semibold px-6 py-3 bg-[#F6FF00] !text-black 
+                 rounded-full 
+                hover:text-white hover:bg-gradient-to-r hover:from-yellow-400 hover:via-yellow-500 hover:to-yellow-700 
+                hover:shadow-lg hover:shadow-yellow-400/50 transition-all duration-200 whitespace-nowrap`}
             >
-              {isArabic ? 'لنتحدث' : "LET'S TALK"}
+              <span className="inline lg:hidden !text-black">{isArabic ? 'لنتحدث' : 'TALK'}</span>
+              <span className="hidden lg:inline !text-black">{isArabic ? 'لنتحدث' : "LET'S TALK"}</span>
             </Link>
 
             {/* Language Switcher */}
@@ -94,7 +105,7 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
               <button
                 onClick={() => switchLanguage('en')}
                 className={`px-2 py-1 rounded transition-all duration-200 ${
-                  currentLang === 'EN' ? 'text-cyan-400 bg-cyan-400/10' : 'hover:text-cyan-400'
+                  currentLang === 'EN' ? 'text-[#F6FF00] bg-[#2A0024]' : 'hover:text-yellow-100'
                 }`}
               >
                 EN
@@ -103,7 +114,7 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
               <button
                 onClick={() => switchLanguage('ar')}
                 className={`px-2 py-1 rounded transition-all duration-200 ${
-                  currentLang === 'AR' ? 'text-cyan-400 bg-cyan-400/10' : 'hover:text-cyan-400'
+                  currentLang === 'AR' ? 'text-[#F6FF00] bg-[#2A0024]' : 'hover:text-yellow-100'
                 }`}
               >
                 AR
@@ -121,7 +132,7 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-400 ease-in-out overflow-hidden ${
+        <div className={`md:hidden absolute ${isArabic ? 'left-0' : 'right-0'} transition-all duration-400 ease-in-out overflow-hidden ${
           isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <div className="border-t border-cyan-500/20 py-6 bg-black/95 backdrop-blur-md rounded-b-2xl shadow-2xl mx-2 mb-2">

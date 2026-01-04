@@ -1,0 +1,126 @@
+import { useMemo, useRef, useState } from "react";
+import { motion, useMotionValue, useTransform, useMotionTemplate } from "framer-motion";
+
+function cn(...classes: (string | boolean | undefined | null)[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export const InteractiveCard = ({
+  children,
+  className,
+  InteractiveColor = "#07eae6ff",
+  // backgroundColor = "#0c0d16",
+  // whiteCardBackgroundColor = "#173eff",
+  borderRadius = "48px",
+  rotationFactor = 0.4,
+  transitionDuration = 0.3,
+  transitionEasing = "easeInOut",
+  // Add a prop to accept Tailwind background classes
+  // Example: "bg-gray-900 dark:bg-gray-800"
+  tailwindBgClass = "bg-transparent backdrop-blur-md",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  InteractiveColor?: string;
+  // If you're using tailwindBgClass, you might not need these anymore,
+  // or you could use them as fallbacks/defaults
+  // backgroundColor?: string;
+  // whiteCardBackgroundColor?: string;
+  borderRadius?: string;
+  rotationFactor?: number;
+  transitionDuration?: number;
+  transitionEasing?: string;
+  tailwindBgClass?: string; // Prop to accept Tailwind background classes
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const x = useMotionValue(10);
+  const y = useMotionValue(10);
+
+  const rotateXTrans = useTransform(y, [0, 1], [rotationFactor * 15, -rotationFactor * 15]);
+  const rotateYTrans = useTransform(x, [0, 1], [-rotationFactor * 15, rotationFactor * 15]);
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    const bounds = cardRef.current?.getBoundingClientRect();
+    if (!bounds) return;
+
+    const px = (e.clientX - bounds.left) / bounds.width;
+    const py = (e.clientY - bounds.top) / bounds.height;
+
+    x.set(px);
+    y.set(py);
+  };
+
+  const xPercentage = useTransform(x, (val) => `${val * 100}%`);
+  const yPercentage = useTransform(y, (val) => `${val * 100}%`);
+
+  const interactiveBackground = useMotionTemplate`radial-gradient(circle at ${xPercentage} ${yPercentage}, ${InteractiveColor} 0%, transparent 80%)`;
+  const floatDuration = useMemo(() => 3 + Math.random() * 3, []);
+  return (
+    <motion.div
+      ref={cardRef}
+      onPointerMove={handlePointerMove}
+      onPointerEnter={() => setIsHovered(true)}
+      onPointerLeave={() => setIsHovered(false)}
+      style={{
+        perspective: 1000,
+        borderRadius,
+      }}
+        initial={{  scale: 0.95, y: 20 }}
+        animate={{
+          scale: [1, 1.02, 1],   
+          y: [0, -5, 0],         
+        }}
+        transition={{
+          duration: floatDuration,           
+          ease: "easeInOut",
+          repeat: Infinity,      
+          repeatType: "loop",   
+        }}
+      whileHover={{scale: 1.03, y:["0%", "-2%", "0%"]}}
+      className="relative w-[320px] aspect-[17/21] isolate"
+    >
+      <motion.div
+        style={{
+          rotateX: rotateXTrans,
+          rotateY: rotateYTrans,
+          transformStyle: "preserve-3d",
+          transition: `transform ${transitionDuration}s ${transitionEasing}`,
+        }}
+        className="w-full h-full rounded-xl overflow-hidden  shadow-xl  hover:shadow-[0_0_20px_rgba(7,234,230,0.6)] transition-shadow duration-300"
+      >
+        {/* Background Interactive Layer */}
+        <motion.div
+          className="absolute inset-0 rounded-xl z-0"
+          style={{
+            background: interactiveBackground,
+            transition: `opacity ${transitionDuration}s ${transitionEasing}`,
+            opacity: isHovered ? 0.6 : 0,
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Content */}
+        <div
+          // Use cn to combine your custom className with the Tailwind background class
+          // You can also add dark mode classes here
+          className={cn(
+            "relative z-10 w-full h-full",
+            tailwindBgClass, // <--- Apply the Tailwind background class here
+            className, // Existing class for outer styling
+            // Example: Add a default text color for contrast
+            "text-foreground"
+          )}
+          style={{
+            borderRadius, // Keep borderRadius from props
+            // Remove the direct backgroundColor style application
+            // as it's now handled by Tailwind classes
+          }}
+        >
+          {children}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};

@@ -14,11 +14,11 @@ export const isRTL = (locale: Locale) => rtlLocales.includes(locale);
 
 export const servicesSlugs = [
   "software",
-  "branding",
+  "Branding",
   "business",
   "commerce",
   "mobile",
-  "seo",
+  "Marketing",
 ] as const;
 
 export type ServiceSlug = (typeof servicesSlugs)[number];

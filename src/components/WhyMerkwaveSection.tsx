@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import { Lightbulb, TrendingUp, Users } from 'lucide-react'
+import { motion } from "framer-motion";
+
 
 interface WhyMerkwaveSectionProps {
   dict: any;
@@ -80,30 +82,40 @@ export default function WhyMerkwaveSection({ dict, lang }: WhyMerkwaveSectionPro
               const isCenter = idx === 1
               
               return (
-                <div
+                <motion.div
                   key={feature.id}
                   className="flex flex-col items-center group cursor-pointer"
+                    animate={{
+                      y: ["0%", "-5%", "0%"], // move up then down
+                    }}
+                    transition={{
+                      duration: 2,          // total animation duration
+                      repeat: Infinity,     // loop forever
+                      repeatType: "loop",
+                      ease: "easeInOut",
+                      delay: idx * 0.2,   // stagger effect if you have multiple cards
+                    }}
                 >
                   {/* Feature Circle - gradient chip with subtle ring and glow */}
                   <div className="relative mb-4">
                     {/* Ambient shadow */}
                     <div className={`absolute -bottom-2 left-1/2 -translate-x-1/2 ${isCenter ? 'w-28 h-5' : 'w-24 h-4'} rounded-full bg-black/40 blur-lg opacity-60`}></div>
                     {/* Gradient ring */}
-                    <div className={`${isCenter ? 'w-32 h-32' : 'w-28 h-28'} rounded-full p-[3px] bg-gradient-to-br ${feature.ringGradient} shadow-[0_10px_30px_rgba(0,0,0,0.35)] group-hover:scale-110 transition-transform duration-300`}> 
+                    <div className={`${isCenter ? 'w-24 h-24 lg:w-32 lg:h-32' : 'w-24 h-24 lg:w-28 lg:h-28'} rounded-full p-[3px] bg-gradient-to-br ${feature.ringGradient} shadow-[0_10px_30px_rgba(0,0,0,0.35)] group-hover:scale-110 transition-transform duration-300`}> 
                       {/* Inner gradient fill */}
                       <div className={`w-full h-full rounded-full bg-gradient-to-br ${feature.gradient} flex items-center justify-center relative`}> 
                         {/* Soft top highlight */}
-                        <div className="absolute inset-0 rounded-full bg-white/10 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 rounded-full bg-black/10 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                         <IconComponent className={`${isCenter ? 'w-14 h-14' : 'w-12 h-12'} text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]`} />
                       </div>
                     </div>
                   </div>
                   
                   {/* Feature Title */}
-                  <h4 className="text-xl font-semibold text-white">
+                  <h4 className="text-2xl font-semibold text-white">
                     {feature.title}
                   </h4>
-                </div>
+                </motion.div>
               )
             })}
           </div>
@@ -111,7 +123,7 @@ export default function WhyMerkwaveSection({ dict, lang }: WhyMerkwaveSectionPro
           {/* CTA Button */}
           <div className="mb-12">
             <Link href={`/${lang}/services`}>
-              <button className="inline-flex items-center px-12 py-4 bg-gradient-to-r from-cyan-400 to-teal-400 text-black font-bold text-xl rounded-full shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 hover:scale-105">
+              <button className="inline-flex items-center px-12 py-4 bg-gradient-to-r from-cyan-400 to-teal-400  font-bold text-xl rounded-full shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 hover:scale-105">
                 {isArabic ? 'استكشف خدماتنا' : 'Explore Our Services'}
               </button>
             </Link>

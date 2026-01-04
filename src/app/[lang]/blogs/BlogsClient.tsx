@@ -28,35 +28,95 @@ interface BlogPost {
   featured: number;
   views: number;
 }
+const FAKE_BLOGS: BlogPost[] = [
+  {
+    id: 1,
+    titleEn: "How Digital Marketing Drives Business Growth",
+    titleAr: "كيف يقود التسويق الرقمي نمو الأعمال",
+    slug: "digital-marketing-business-growth",
+    excerptEn:
+      "Discover how modern digital marketing strategies can help businesses scale, reach new audiences, and increase revenue.",
+    excerptAr:
+      "اكتشف كيف تساعد استراتيجيات التسويق الرقمي الحديثة الشركات على التوسع والوصول إلى عملاء جدد وزيادة الإيرادات.",
+    imageUrl: "/One Chemic.png",
+    readTime: 6,
+    authorEn: "MerkWave Team",
+    authorAr: "فريق ميرك ويف",
+    createdAt: "2025-01-10",
+    publishedAt: "2025-01-10",
+    status: "published",
+    featured: 1,
+    views: 1200,
+  },
+  {
+    id: 2,
+    titleEn: "Why Every Business Needs a Strong Website",
+    titleAr: "لماذا يحتاج كل نشاط تجاري إلى موقع قوي",
+    slug: "strong-business-website",
+    excerptEn:
+      "Your website is more than a digital brochure. Learn why it’s the backbone of your online presence.",
+    excerptAr:
+      "موقعك الإلكتروني هو أكثر من مجرد واجهة رقمية. تعرّف على سبب كونه أساس حضورك على الإنترنت.",
+    imageUrl: "/Saudi-Fit.png",
+    readTime: 5,
+    authorEn: "Ahmed Khaled",
+    authorAr: "أحمد خالد",
+    createdAt: "2025-01-15",
+    publishedAt: "2025-01-15",
+    status: "published",
+    featured: 0,
+    views: 860,
+  },
+  {
+    id: 3,
+    titleEn: "UI/UX Design Trends to Watch in 2025",
+    titleAr: "اتجاهات تصميم واجهات المستخدم في 2025",
+    slug: "ui-ux-trends-2025",
+    excerptEn:
+      "From motion design to accessibility, explore the UI/UX trends shaping digital products in 2025.",
+    excerptAr:
+      "من تصميم الحركة إلى سهولة الوصول، تعرّف على اتجاهات تصميم UI/UX التي تشكل المنتجات الرقمية في 2025.",
+    imageUrl: "/Why.png",
+    readTime: 7,
+    authorEn: "Design Team",
+    authorAr: "فريق التصميم",
+    createdAt: "2025-01-20",
+    publishedAt: "2025-01-20",
+    status: "published",
+    featured: 0,
+    views: 640,
+  },
+]
+
 
 export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
   const isArabic = lang === 'ar';
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<BlogPost[]>(FAKE_BLOGS);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    // Fetch blogs from local API route (which proxies to the external API)
-    console.log('Fetching blogs from API...');
-    fetch(`https://merkwave.com/api/blogs/get_all.php`)
-      .then(res => {
-        console.log('Response status:', res.status);
-        return res.json();
-      })
-      .then(data => {
-        console.log('API Response:', data);
-        if (data.status === 'success' && data.data) {
-          console.log('Setting posts:', data.data.length, 'blogs found');
-          setPosts(data.data);
-        } else {
-          console.error('API returned unsuccessful status or no data:', data);
-        }
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching blogs:', error);
-        setLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   // Fetch blogs from local API route (which proxies to the external API)
+  //   console.log('Fetching blogs from API...');
+  //   fetch(`https://merkwave.com/api/blogs/get_all.php`)
+  //     .then(res => {
+  //       console.log('Response status:', res.status);
+  //       return res.json();
+  //     })
+  //     .then(data => {
+  //       console.log('API Response:', data);
+  //       if (data.status === 'success' && data.data) {
+  //         console.log('Setting posts:', data.data.length, 'blogs found');
+  //         setPosts(data.data);
+  //       } else {
+  //         console.error('API returned unsuccessful status or no data:', data);
+  //       }
+  //       setLoading(false);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching blogs:', error);
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -68,7 +128,7 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
   };
 
   return (
-    <main className={`min-h-screen bg-[#0a1628] ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+    <main className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.jpg')] md:bg-fixed bg-cover bg-center ${isArabic ? 'font-arabic' : 'font-sans'}`}>
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -76,14 +136,14 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="border border-cyan-500/20 rounded-3xl p-12 bg-gradient-to-br from-cyan-900/5 to-blue-900/5"
+            className="rounded-3xl p-12"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 {isArabic ? 'مدونتنا' : 'Our Blog'}
               </span>
             </h1>
-            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+            <p className="text-white text-lg max-w-3xl mx-auto">
               {isArabic 
                 ? 'ابق على اطلاع بأحدث الاتجاهات والرؤى والنصائح في التسويق الرقمي وتطوير الويب ونمو الأعمال.'
                 : "Stay updated with the latest trends, insights, and tips in digital marketing, web development, and business growth."}
@@ -137,7 +197,7 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
                       <span>{formatDate(posts[0].createdAt)}</span>
                     </div>
                     <Link 
-                      href={`/${lang}/blogs/blogdetail?slug=${posts[0].slug}`}
+                      href={`/${lang}/blogs/blogdetail?slug=${posts[0].slug}` as any}
                       className="inline-flex items-center gap-2 text-cyan-400 font-semibold hover:gap-4 transition-all duration-300"
                     >
                       {isArabic ? 'اقرأ المزيد' : 'Read More'} 
@@ -189,7 +249,7 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
                         <span>{formatDate(post.createdAt)}</span>
                       </div>
                       <Link 
-                        href={`/${lang}/blogs/blogdetail?slug=${post.slug}`}
+                        href={`/${lang}/blogs/blogdetail?slug=${post.slug}` as any}
                         className="inline-flex items-center gap-2 text-cyan-400 font-semibold text-sm hover:gap-4 transition-all duration-300"
                       >
                         {isArabic ? 'اقرأ المزيد' : 'Read More'} 
@@ -210,7 +270,7 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="border-2 border-cyan-500/30 rounded-3xl p-12 bg-gradient-to-br from-cyan-900/5 to-blue-900/5 text-center hover:border-cyan-500/50 transition-all duration-500"
+                className=" rounded-3xl p-12 text-center hover:border-cyan-500/50 transition-all duration-500"
               >
                 <h3 className="text-3xl md:text-4xl font-bold mb-4">
                   <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
@@ -222,7 +282,7 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
                     ? 'اشترك في نشرتنا الإخبارية للحصول على أحدث الرؤى والتحديثات.'
                     : 'Subscribe to our newsletter for the latest insights and updates.'}
                 </p>
-                <Link href={`/${lang}/contact`}>
+                <Link href={`/${lang}/contact` as any}>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}

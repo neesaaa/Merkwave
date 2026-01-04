@@ -8,6 +8,7 @@ import WaveServicesSection from "../../components/WaveServicesSection";
 import WhyMerkwaveSection from "../../components/WhyMerkwaveSection";
 import BrandPartnersSection from "../../components/BrandPartnersSection";
 import ClientTestimonials from "../../components/ClientTestimonials";
+import StackCardsSection from "@/components/StackCardsSection";
 
 // --- TYPE DECLARATIONS ---
 interface LocalizedComponentProps {
@@ -34,9 +35,11 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
       {/* Brand Partners Section */}
       <BrandPartnersSection dict={dict} lang={lang} />
 
+      <StackCardsSection isArabic={lang === "ar"} />
+
       {/* CTA Section (Localized) */}
-      <section 
-        className={`py-20 bg-gradient-to-r from-cyan-900/80 via-cyan-800/60 to-cyan-900/80 text-white text-center mx-4 md:mx-8 rounded-3xl backdrop-blur-sm border border-cyan-400/20 shadow-2xl flex items-center justify-center`}
+      {/* <section 
+        className={`py-20 bg-gradient-to-r from-cyan-900/80 w-full via-cyan-800/60 to-cyan-900/80 text-white text-center  backdrop-blur-sm border border-cyan-400/20 shadow-2xl flex items-center justify-center`}
         dir={isArabic ? 'rtl' : 'ltr'}
       >
         <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center gap-4 px-4">
@@ -71,46 +74,38 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
             </motion.div>
           </Link>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials (Localized) */}
       <section 
-        className="py-20 relative overflow-hidden bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/Our clients (1)_page-0001.jpg')" }}
+        className="py-20 relative overflow-hidden bg-cover bg-center bg-[#0B192A]"
       >
-        {/* Light overlay for better text readability while keeping background clear */}
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <div className="absolute -top-10 -left-10 w-60 h-60 bg-cyan-500/40 rounded-full blur-3xl"></div>
+          <div className="absolute top-32 -right-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-1/3 w-64 h-64 bg-teal-400/25 rounded-full blur-3xl"></div>
+        </div>
+              {/* Light overlay for better text readability while keeping background clear */}
+        <div className="absolute inset-0 bg-black/30 z-10" />
         
         <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${textDirClass} relative z-10`} dir={isArabic ? 'rtl' : 'ltr'}>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] [text-shadow:_2px_2px_8px_rgb(0_0_0_/_90%)]">
-              {dict.home.clientExperiencesTitle}
-            </h2>
-            <p className="text-white max-w-2xl mx-auto text-lg font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] [text-shadow:_1px_1px_6px_rgb(0_0_0_/_80%)]">
-              {dict.home.clientExperiencesSubtitle}
-            </p>
-          </motion.div>
-
           <ClientTestimonials lang={lang} dict={dict} />
         </div>
       </section>
 
       {/* Newsletter (Localized) */}
       <section className="py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900">
+        
         <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${textDirClass}`} dir={isArabic ? 'rtl' : 'ltr'}>
+          
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Mail className="h-16 w-16 mx-auto mb-6 text-cyan-400" />
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <Mail className="h-16 w-16 mx-auto mb-6 text-yellow-400" />
+            <h2 className="text-4xl md:text-5xl font-bold text-orange-400 mb-6">
               {dict.home.newsletterTitle}
             </h2>
             <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">
@@ -121,9 +116,9 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
               <input
                 type="email"
                 placeholder={dict.home.emailPlaceholder}
-                className="flex-1 px-6 py-4 rounded-lg bg-gray-800 text-white border border-cyan-400/30 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+                className="flex-1 px-6 py-4 rounded-lg bg-gray-800 text-white border border-cyan-400/30  shadow-[0_0px_26px_0_rgba(0,213,197,0.5)] focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
               />
-              <button className="inline-flex items-center px-6 py-4 bg-gradient-to-r from-cyan-400 to-teal-400 text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300">
+              <button className="inline-flex items-center px-6 py-4 bg-gradient-to-r from-orange-400 to-red-700 text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300">
                 {dict.home.activateButton}
               </button>
             </div>

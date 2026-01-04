@@ -78,7 +78,7 @@ function ProjectDetailContent({ params }: ProjectDetailQueryClientProps) {
             <p className="text-slate-300 text-lg">
               {locale === 'ar' ? 'لم يتم تحديد معرف المشروع' : 'No project slug provided'}
             </p>
-            <Link href={`/${lang}/portfolio`} className="inline-block mt-6 text-cyan-400 hover:text-cyan-300 transition-colors">
+            <Link href={`/${lang}/portfolio` as any} className="inline-block mt-6 text-cyan-400 hover:text-cyan-300 transition-colors">
               {locale === 'ar' ? 'العودة إلى المحفظة' : 'Back to Portfolio'}
             </Link>
           </div>
@@ -161,18 +161,18 @@ function ProjectDetailContent({ params }: ProjectDetailQueryClientProps) {
       {/* Navigation Breadcrumb */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         <div className={`flex items-center space-x-2 text-sm text-gray-400 mb-8 ${isArabic ? 'flex-row-reverse space-x-reverse' : ''}`}>
-          <Link href={`/${lang}`} className="hover:text-cyan-400 transition-colors">
+          <Link href={`/${lang}` as any} className="hover:text-cyan-400 transition-colors">
             {dict.navigation.home}
           </Link>
           <span>/</span>
-          <Link href={`/${lang}/portfolio`} className="hover:text-cyan-400 transition-colors">
+          <Link href={`/${lang}/portfolio` as any} className="hover:text-cyan-400 transition-colors">
             {dict.navigation.portfolio}
           </Link>
           <span>/</span>
           <span className="text-cyan-400">{title}</span>
         </div>
 
-        <Link href={`/${lang}/portfolio`} className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors duration-300 mb-8">
+        <Link href={`/${lang}/portfolio` as any} className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors duration-300 mb-8">
           <ArrowLeft className={`w-5 h-5 ${isArabic ? 'ml-2 rotate-180' : 'mr-2'}`} />
           {locale === 'ar' ? 'العودة إلى المحفظة' : 'Back to Portfolio'}
         </Link>
@@ -434,7 +434,7 @@ function ProjectDetailContent({ params }: ProjectDetailQueryClientProps) {
                 ? 'دعنا نناقش كيف يمكننا مساعدتك في تحقيق أهدافك الرقمية' 
                 : "Ready to bring your vision to life? Let's discuss your project."}
             </p>
-            <Link href={`/${lang}/contact`}>
+            <Link href={`/${lang}/contact` as any}>
               <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 hover:scale-105">
                 {locale === 'ar' ? 'تواصل معنا' : 'Get In Touch'}
                 <ExternalLink className={`${isArabic ? 'mr-2' : 'ml-2'} w-5 h-5`} />

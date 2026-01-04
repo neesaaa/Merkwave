@@ -27,12 +27,9 @@ export default function Footer({ lang }: { lang: string }) {
 
   // Services
   const services = [
-    { name: isArabic ? 'التسويق الرقمي' : 'Digital Marketing', href: `/${lang}/services/business` as const },
     { name: isArabic ? 'إدارة وسائل التواصل الاجتماعي' : 'Social Media Management', href: `/${lang}/services/business` as const },
-    { name: isArabic ? 'تحسين محركات البحث' : 'SEO', href: `/${lang}/services/seo` as const },
     { name: isArabic ? 'التجارة الإلكترونية' : 'Ecommerce', href: `/${lang}/services/commerce` as const },
     { name: isArabic ? 'تطوير تطبيقات الويب' : 'Web App Development', href: `/${lang}/services/software` as const },
-    { name: isArabic ? 'تطوير تطبيقات الجوال' : 'Mobile App Development', href: `/${lang}/services/mobile` as const },
     { name: isArabic ? 'العلامة التجارية' : 'Branding', href: `/${lang}/services/branding` as const },
   ]
 
@@ -49,13 +46,21 @@ export default function Footer({ lang }: { lang: string }) {
     email: 'info@merkwave.com'
   }
 
-  const socialLinks: SocialLink[] = [
-    { icon: Facebook, href: 'https://facebook.com/merkwave', color: 'hover:text-blue-500', label: 'Facebook' },
-    { icon: Instagram, href: 'https://instagram.com/merkwave', color: 'hover:text-pink-500', label: 'Instagram' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/merkwave', color: 'hover:text-blue-600', label: 'LinkedIn' },
-    { icon: MessageCircle, href: 'https://wa.me/201023318036', color: 'hover:text-green-500', label: 'WhatsApp' },
-    { icon: Youtube, href: 'https://youtube.com/@merkwave', color: 'hover:text-red-500', label: 'YouTube' }
-  ]
+interface SocialLink {
+  icon: React.FC<React.SVGProps<SVGSVGElement>>
+  href: string
+  color: string
+  label: string
+}
+
+const socialLinks: SocialLink[] = [
+  { icon: Facebook, href: 'https://facebook.com/merkwave', color: 'hover:text-blue-500', label: 'Facebook' },
+  { icon: Instagram, href: 'https://instagram.com/merkwave', color: 'hover:text-pink-500', label: 'Instagram' },
+  { icon: Linkedin, href: 'https://linkedin.com/company/merkwave', color: 'hover:text-blue-500', label: 'LinkedIn' },
+  { icon: MessageCircle, href: 'https://wa.me/201023318036', color: 'hover:text-green-500', label: 'WhatsApp' },
+  { icon: Youtube, href: 'https://youtube.com/@merkwave', color: 'hover:text-red-500', label: 'YouTube' }
+]
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -104,7 +109,7 @@ export default function Footer({ lang }: { lang: string }) {
                   ? 'ميرك ويف وكالة تسويق رقمي ديناميكية مقرها مصر، مكرسة لتمكين الشركات الصغيرة والمتوسطة بحلول ويب مبتكرة وتطبيقات جوال جذابة واستراتيجيات تسويق تحقق النتائج. نصنع تجارب رقمية تتفاعل وتحول.'
                   : 'MerkWave is a dynamic digital marketing agency based in Egypt, dedicated to empowering SMBs with innovative web solutions, captivating mobile apps, and result-driven marketing strategies. We craft digital experiences that resonate and convert.'}
               </p>
-              <div className={`flex ${isRTL ? 'space-x-reverse' : ''} space-x-3`}>
+              <div className={`flex  ${isRTL ? 'flex-row-reverse justify-end' : 'flex-row'} gap-4 flex-wrap`}>
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon
                   return (
@@ -133,7 +138,7 @@ export default function Footer({ lang }: { lang: string }) {
                 {services.map((service, index) => (
                   <li key={`service-${index}`}>
                     <Link 
-                      href={service.href}
+                      href={service.href as any}
                       className="inline-flex items-center gap-2 text-gray-300 hover:text-emerald-300 transition-colors duration-300 text-sm"
                     >
                       <ChevronRight className="w-4 h-4 text-emerald-300/80" />
@@ -166,15 +171,15 @@ export default function Footer({ lang }: { lang: string }) {
                 {isArabic ? 'القانوني' : 'Legal'}
               </h4>
               <ul className="space-y-3 text-sm text-gray-400">
-                <li className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <li className={`flex items-center gap-2 ${isRTL ? 'flex-row' : ''}`}>
                   <ChevronRight className="w-4 h-4 text-rose-300/80" />
                   <span>{isArabic ? 'سياسة الخصوصية' : 'Privacy Policy'}</span>
                 </li>
-                <li className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <li className={`flex items-center gap-2 ${isRTL ? 'flex-row' : ''}`}>
                   <ChevronRight className="w-4 h-4 text-rose-300/80" />
                   <span>{isArabic ? 'شروط الخدمة' : 'Terms of Service'}</span>
                 </li>
-                <li className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <li className={`flex items-center gap-2 ${isRTL ? 'flex-row' : ''}`}>
                   <ChevronRight className="w-4 h-4 text-rose-300/80" />
                   <span>{isArabic ? 'خريطة الموقع' : 'Sitemap'}</span>
                 </li>
@@ -187,20 +192,22 @@ export default function Footer({ lang }: { lang: string }) {
                 {isArabic ? 'اتصل بنا' : 'Contact Us'}
               </h3>
               <address className="space-y-4 text-sm mb-6 not-italic">
-                <p className={`text-gray-300 flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <p className={`text-gray-300 flex items-start gap-3 ${isRTL ? 'flex-row ' : ''}`}>
                   <MapPin className="w-4 h-4 mt-0.5 text-cyan-400" />
                   <span>{contactInfo.address}</span>
                 </p>
-                <p className={`text-gray-300 flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <Phone className="w-4 h-4 mt-0.5 text-cyan-400" />
-                  <a 
+                <p className={`text-gray-300 flex items-start gap-3 ${isRTL ? 'flex-row' : ''}`}>
+                  <Phone className={`w-4 h-4 mt-0.5 text-cyan-400 `} />
+                  <a
+                    dir="ltr"
                     href={`tel:${contactInfo.phone.replace(/\s+/g, '')}`}
                     className="hover:text-cyan-400 transition-colors duration-300"
                   >
                     {contactInfo.phone}
                   </a>
+
                 </p>
-                <p className={`text-gray-300 flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <p className={`text-gray-300 flex items-start gap-3 ${isRTL ? 'flex-row ' : ''}`}>
                   <Mail className="w-4 h-4 mt-0.5 text-cyan-400" />
                   <a 
                     href={`mailto:${contactInfo.email}`}
@@ -230,7 +237,7 @@ export default function Footer({ lang }: { lang: string }) {
                   />
                   <button
                     type="submit"
-                    className="px-5 py-3 rounded-md bg-yellow-400 text-black font-semibold hover:brightness-95"
+                    className="px-5 py-3 rounded-md bg-gradient-to-r from-orange-400 to-red-700 text-black font-semibold hover:brightness-95"
                   >
                     {isArabic ? 'اشترك' : 'Subscribe'}
                   </button>

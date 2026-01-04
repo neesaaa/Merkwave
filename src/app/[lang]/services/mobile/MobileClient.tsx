@@ -140,7 +140,7 @@ export default function MobileClient({ dict, lang }: LocalizedComponentProps) {
           {/* Back Link with NEW UI Badge */}
           <div className={`flex items-center gap-3 mb-8 ${isArabic ? 'flex-row-reverse' : ''}`}>
             <Link 
-              href={`/${lang}/services`}
+              href={`/${lang}/services` as any}
               className={`inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors ${isArabic ? 'flex-row-reverse' : ''}`}
               dir={isArabic ? 'rtl' : 'ltr'}
             >
@@ -185,7 +185,7 @@ export default function MobileClient({ dict, lang }: LocalizedComponentProps) {
                   : 'Mobile-first solutions and media strategies that connect with users through seamless interactions.'}
               </p>
               
-              <Link href={`/${lang}/contact`}>
+              <Link href={`/${lang}/contact` as any}>
                 <button className="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 hover:scale-105">
                   {isArabic ? 'ابدأ مشروع الويب الخاص بك' : 'Start Your Web Project'} →
                 </button>
@@ -299,7 +299,7 @@ export default function MobileClient({ dict, lang }: LocalizedComponentProps) {
                 ? 'دعنا نحول فكرتك إلى تطبيق موبايل قوي يحبه المستخدمون.'
                 : 'Let\'s transform your idea into a powerful mobile app that users love.'}
             </p>
-            <Link href={`/${lang}/contact`}>
+            <Link href={`/${lang}/contact` as any}>
               <button className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-purple-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
                 {isArabic ? 'ابدأ الآن' : 'Get Started Now'} →
               </button>

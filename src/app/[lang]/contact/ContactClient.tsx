@@ -11,6 +11,7 @@ import {
   Send,
   CheckCircle
 } from 'lucide-react'
+import BlackHole from '@/components/BlackHole'
 
 interface LocalizedComponentProps {
   dict: any;
@@ -110,76 +111,75 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
   }
 
   return (
-    <div className={`bg-gradient-to-b from-[#0a1628] via-[#0f1f2e] to-[#0a1628] min-h-screen ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+    <div className={`bg-[#0B192A] min-h-screen ${isArabic ? 'font-arabic' : 'font-sans'}`}>
       {/* Back to Home Button */}
-      <div className="absolute top-8 left-8 z-20">
-        <Link 
-          href={`/${lang}`}
-          className="inline-flex items-center gap-2 text-white hover:text-cyan-400 transition-colors duration-300"
-        >
-          <ArrowLeft className={isArabic ? 'rotate-180' : ''} size={20} />
-          <span>{isArabic ? 'العودة إلى الرئيسية' : 'Back to Home'}</span>
-        </Link>
-      </div>
 
       {/* Hero Section */}
       <section
-        className="relative flex min-h-[65vh] items-center justify-center py-20 text-center"
         dir={isArabic ? 'rtl' : 'ltr'}
+        className="
+          relative
+          flex flex-col
+          min-h-[35vh]
+          items-center
+          justify-center
+          text-center
+          overflow-hidden
+          bg-[#0B162C]
+        "
       >
-        {/* Background gradient effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#0f1f2e] to-[#0a1628]"></div>
-        
-        {/* Animated background orbs */}
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div 
-            className="absolute top-1/4 right-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gradient-to-br from-cyan-400/10 via-teal-500/5 to-transparent rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3]
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div 
-            className="absolute bottom-1/4 left-1/4 w-[350px] md:w-[600px] h-[350px] md:h-[600px] bg-gradient-to-tr from-purple-500/10 via-pink-500/5 to-transparent rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.3, 0.5, 0.3]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center">
-          <motion.h1 
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 20 }}
+            <div className="py-4 lg:py-8 px-4 lg:px-[20%] max-w-7xl  self-start ">
+              <Link 
+                href={`/${lang}` as any}
+                className="inline-flex items-center gap-2 text-white hover:text-cyan-400 transition-colors duration-300"
+              >
+                <ArrowLeft className={isArabic ? 'rotate-180' : ''} size={20} />
+                <span>{isArabic ? 'العودة إلى الرئيسية' : 'Back to Home'}</span>
+              </Link>
+            </div>
+        {/* Soft gradient glow */}
+        <div className="absolute -top-32 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-cyan-500/20 blur-3xl" />
+
+        {/* Subtle noise / depth overlay */}
+
+        {/* Content */}
+        <div className=" relative z-10 flex flex-col items-center justify-center">
+          <motion.h1
+            className="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9 }}
           >
-            <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(34,211,238,0.35)]">
               {dict.contact.heroTitle}
             </span>
           </motion.h1>
-          
-          <motion.p 
-            className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+
+          <motion.p
+            className="text-gray-300 text-lg md:text-xl max-w-3xl leading-relaxed text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {dict.contact.heroSubtitle}
           </motion.p>
+
+          {/* Accent line */}
+          <div className="mt-10 h-px w-48 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
         </div>
       </section>
 
+
+      <BlackHole lang={lang} />
+
       {/* Contact Form and Details Section */}
-      <section className="py-20 relative">
+      <section className="py-20 relative bg-[#0B192A] ">
         <div className="container mx-auto px-4 max-w-7xl" dir={isArabic ? 'rtl' : 'ltr'}>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* Contact Form - Left Column */}
             <motion.div 
-              className="lg:col-span-1 bg-[#0d1b2a]/80 backdrop-blur-sm rounded-2xl p-8 border border-cyan-500/30"
+              className="lg:col-span-1  backdrop-blur-sm rounded-2xl p-8 border border-cyan-500/30"
               initial={{ opacity: 0, x: isArabic ? 50 : -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -216,7 +216,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder={dict.contact.namePlaceholder}
-                      className="w-full px-4 py-3 bg-[#0a1628] border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300"
+                      className="w-full px-4 py-3  border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300"
                       required
                       disabled={isSubmitting}
                     />
@@ -236,7 +236,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder={dict.contact.emailPlaceholder}
-                      className="w-full px-4 py-3 bg-[#0a1628] border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300"
+                      className="w-full px-4 py-3  border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300"
                       required
                       disabled={isSubmitting}
                     />
@@ -256,7 +256,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder={dict.contact.phonePlaceholder}
-                      className="w-full px-4 py-3 bg-[#0a1628] border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300"
+                      className="w-full px-4 py-3  border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300"
                       required
                       disabled={isSubmitting}
                     />
@@ -276,7 +276,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                       value={formData.subject}
                       onChange={handleInputChange}
                       placeholder={dict.contact.subjectPlaceholder}
-                      className="w-full px-4 py-3 bg-[#0a1628] border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300"
+                      className="w-full px-4 py-3 bg-[#0B162C] border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300"
                       required
                       disabled={isSubmitting}
                     />
@@ -296,7 +296,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                       onChange={handleInputChange}
                       placeholder={dict.contact.messagePlaceholder}
                       rows={5}
-                      className="w-full px-4 py-3 bg-[#0a1628] border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300 resize-none"
+                      className="w-full px-4 py-3 bg-[#0B192A] border border-gray-700/50 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/60 focus:ring-1 focus:ring-cyan-400/30 transition-all duration-300 resize-none"
                       required
                       disabled={isSubmitting}
                     />
@@ -308,7 +308,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-[#F6FF00] to-yellow-500 text-black font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   >
@@ -328,24 +328,24 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <div className="bg-[#0d1b2a]/80 backdrop-blur-sm rounded-2xl p-8 border border-yellow-500/30">
-                  <h2 className="text-2xl font-bold text-yellow-400 mb-6">
+                <div className="bg-[#0B192A]/80 backdrop-blur-sm rounded-2xl p-8 border border-yellow-500/30">
+                  <h2 className="text-2xl font-bold text-[#F6FF00] mb-6">
                     {dict.contact.directContactTitle}
                   </h2>
                   
                   <div className="space-y-4">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-[#F6FF00] rounded-lg flex items-center justify-center flex-shrink-0">
                         <Phone className="text-black" size={20} />
                       </div>
                       <div>
-                        <p className="text-gray-400 text-sm">{dict.contact.phoneLabel}</p>
-                        <p className="text-white font-semibold">{dict.contact.phone}</p>
+                        <p className="text-gray-400 text-sm ">{dict.contact.phoneLabel}</p>
+                        <p className="text-white font-semibold " dir='ltr'>{dict.contact.phone}</p>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-[#F6FF00] rounded-lg flex items-center justify-center flex-shrink-0">
                         <Mail className="text-black" size={20} />
                       </div>
                       <div>
@@ -357,7 +357,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                     </div>
 
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-[#F6FF00] rounded-lg flex items-center justify-center flex-shrink-0">
                         <MapPin className="text-black" size={20} />
                       </div>
                       <div>
@@ -375,7 +375,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                <div className="bg-[#0d1b2a]/80 backdrop-blur-sm rounded-2xl p-8 border border-red-500/30">
+                <div className="bg-[#0B192A]/80 backdrop-blur-sm rounded-2xl p-8 border border-red-500/30">
                   <h2 className="text-2xl font-bold text-red-400 mb-6">
                     {dict.contact.locationTitle}
                   </h2>
@@ -383,9 +383,9 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
                   {/* Map Container */}
                   <div className="relative h-80 rounded-lg overflow-hidden">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.1234567890!2d55.2708!3d25.2048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDEyJzE3LjMiTiA1NcKwMTYnMTQuOSJF!5e0!3m2!1sen!2sae!4v1234567890"
-                      width="100%"
+                      src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3451.795381203831!2d31.342198999999997!3d30.100046000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzDCsDA2JzAwLjIiTiAzMcKwMjAnMzEuOSJF!5e0!3m2!1sen!2seg!4v1766535600332!5m2!1sen!2seg"                  
                       height="100%"
+                      width='100%'
                       style={{ border: 0 }}
                       allowFullScreen
                       loading="lazy"

@@ -167,16 +167,10 @@ const dictionaries: Record<Locale, Dictionary> = {
             "Custom software and apps engineered for performance, security, and usability.",
         },
         {
-          slug: "branding",
+          slug: "Branding",
           name: "Social Media",
           description:
             "Audience-first storytelling, community management, and data-led campaign optimization.",
-        },
-        {
-          slug: "seo",
-          name: "SEO & Performance",
-          description:
-            "Technical audits, content strategy, and conversion-focused growth experiments.",
         },
         {
           slug: "commerce",
@@ -210,9 +204,9 @@ const dictionaries: Record<Locale, Dictionary> = {
       sendButton: "Send Message",
       phoneLabel: "Phone:",
       addressLabel: "Address:",
-      phone: "+971 50 123 4567",
-      email: "hello@merkwave.com",
-      address: "Dubai, United Arab Emirates",
+      phone: "+02 010233 18036",
+      email: "info@merkwave.com",
+      address: "Cairo, Egypt",
       getDirectionsButton: "Get Directions",
     },
     footer: {
@@ -327,7 +321,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       items: [
         {
           slug: "business",
-          name: "الحلول الرقمية",
+          name: "البزنس",
           description:
             "مواقع إلكترونية، ومتاجر إلكترونية، وأتمتة متكاملة تنمو مع عملك.",
         },
@@ -338,22 +332,16 @@ const dictionaries: Record<Locale, Dictionary> = {
             "برمجيات وتطبيقات مخصصة بآداء عالٍ وأمان وتجربة مستخدم مريحة.",
         },
         {
-          slug: "branding",
+          slug: "Marketing",
           name: "إدارة وسائل التواصل",
           description:
             "سرد قصصي يركز على الجمهور، وإدارة المجتمعات، وتحسين الحملات بالبيانات.",
         },
         {
-          slug: "seo",
-          name: "تحسين محركات البحث والأداء",
+          slug: "Branding",
+          name: "العلامة التجارية",
           description:
-            "مراجعات تقنية، واستراتيجيات محتوى، وتجارب نمو موجهة للتحويل.",
-        },
-        {
-          slug: "commerce",
-          name: "الإنتاج الإعلامي",
-          description:
-            "إنتاج فيديو وصور ورسوم متحركة تجعل علامتك لافتة للأنظار.",
+            "بناء وتطوير الهوية التجارية للشركة أو المنتج لجذب العملاء وتعزيز الثقة",
         },
       ],
     },
@@ -381,9 +369,9 @@ const dictionaries: Record<Locale, Dictionary> = {
       sendButton: "إرسال الرسالة",
       phoneLabel: "الهاتف:",
       addressLabel: "العنوان:",
-      phone: "+971 50 123 4567",
-      email: "hello@merkwave.com",
-      address: "دبي، الإمارات العربية المتحدة",
+      phone: "+02 010233 18036",
+      email: "info@merkwave.com",
+      address: "القاهرة, جمهورية مصر العربية",
       getDirectionsButton: "احصل على الاتجاهات",
     },
     footer: {
