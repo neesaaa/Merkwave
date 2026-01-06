@@ -49,7 +49,7 @@ export const Timeline = ({
   const opacityTransform = useTransform(offsetScroll, [0, 0.1], [0, 1]);
 
   return (
-    <div className="w-full z-30  md:px-10" ref={containerRef}>
+    <div className="max-w-screen z-30 px-2 md:px-10 " ref={containerRef}>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ export const Timeline = ({
           return (
             <div
               key={index}
-              className="flex justify-start pt-10 md:pt-40 md:gap-10"
+              className="flex justify-start pt-10 md:pt-40 gap-1 md:gap-10"
             >
               <div className="md:sticky flex flex-col  md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
                 <motion.div
@@ -144,14 +144,14 @@ export const Timeline = ({
                 </motion.h3>
               </div>
 
-              <div className="relative pl-20   md:pl-4 w-full">
+              <div className="relative md:pl-4 w-full">
                 <motion.h3
                   style={{ color: headerColor }}
-                  className={`md:hidden block text-4xl mb-4  font-bold ${isArabic ? 'text-right' : 'text-left'}  max-w-sm pr-20  `}
+                  className={`md:hidden block text-2xl mb-4  font-bold ${isArabic ? 'text-right' : 'text-left'}   pr-20  `}
                 >
                   {item.title}
                 </motion.h3>
-                <motion.div style={{ color: textColor }}>
+                <motion.div className="text-sm sm:text-lg" style={{ color: textColor }}>
                   {item.content}
                 </motion.div>
               </div>

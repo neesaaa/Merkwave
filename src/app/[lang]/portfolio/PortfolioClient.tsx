@@ -282,7 +282,7 @@ export default function PortfolioClient({ dict, lang }: LocalizedComponentProps)
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-gray-200 text-xl z-50 max-w-3xl mx-auto"
+                className="text-gray-200 text-base sm:text-xl z-50 max-w-3xl mx-auto"
                 >
                 {isArabic
                   ? 'مشاريعنا المختارة ودراسات الحالة.'
@@ -399,12 +399,12 @@ export default function PortfolioClient({ dict, lang }: LocalizedComponentProps)
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className=" rounded-3xl p-12 md:p-16   text-center"
+                className=" rounded-3xl p-1 sm:p-3 md:p-16   text-center"
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-cyan-400 mb-6 z-20">
+                <h2 className="text-3xl md:text-5xl font-bold text-cyan-400 mb-6 z-20">
                   {isArabic ? 'هل أنت مستعد لبدء مشروع؟' : 'Ready To Start A Project?'}
                 </h2>
-                <p className="text-gray-200 text-xl mb-10 max-w-3xl mx-auto z-10">
+                <p className="text-gray-200 text-md sm:text-xl mb-10 max-w-3xl mx-auto z-10">
                   {isArabic
                     ? 'رؤيتك، خبرتنا. دعنا نصنع شيئًا رائعًا معًا.'
                     : "Your vision, our expertise. Let's create something remarkable together."}
@@ -413,7 +413,7 @@ export default function PortfolioClient({ dict, lang }: LocalizedComponentProps)
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-orange-400 to-red-700 text-black font-bold text-lg rounded-full transition-all duration-300 shadow-2xl shadow-yellow-500/40 hover:shadow-yellow-500/60"
+                    className="inline-flex items-center px-2 py-3 gap-1 md:gap-3 md:px-10 md:py-5 bg-gradient-to-r from-orange-400 to-red-700 text-black font-bold text-sm sm:text-lg rounded-full transition-all duration-300 shadow-2xl shadow-yellow-500/40 hover:shadow-yellow-500/60"
                   >
                     {isArabic ? 'احصل على عرض أسعار' : 'Get a Quote'}
                     <ExternalLink size={20} />

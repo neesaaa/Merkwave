@@ -130,20 +130,20 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
   return (
     <main className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.webp')] md:bg-fixed bg-cover bg-center ${isArabic ? 'font-arabic' : 'font-sans'}`}>
       {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-20 px-1 sm:px-4">
+        <div className=" felx flex-col text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="rounded-3xl p-12"
+            className="rounded-3xl p-3 md:p-12"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 {isArabic ? 'مدونتنا' : 'Our Blog'}
               </span>
             </h1>
-            <p className="text-white text-lg max-w-3xl mx-auto">
+            <p className="text-white text-lg  mx-auto">
               {isArabic 
                 ? 'ابق على اطلاع بأحدث الاتجاهات والرؤى والنصائح في التسويق الرقمي وتطوير الويب ونمو الأعمال.'
                 : "Stay updated with the latest trends, insights, and tips in digital marketing, web development, and business growth."}
@@ -184,8 +184,8 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-8 flex flex-col justify-center" dir={isArabic ? 'rtl' : 'ltr'}>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <div className="p-4 sm:p-8 flex flex-col justify-center" dir={isArabic ? 'rtl' : 'ltr'}>
+                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
                       {isArabic ? posts[0].titleAr : posts[0].titleEn}
                     </h2>
                     <p className="text-gray-400 mb-6 leading-relaxed">

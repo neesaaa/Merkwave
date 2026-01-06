@@ -255,7 +255,7 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
 
       {/* CTA Section */}
       <section className="py-20 px-4">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-screen mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -263,12 +263,12 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
             viewport={{ once: true }}
             className=" p-12 md:p-16  text-center hover:border-cyan-500/50 transition-all duration-500"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
               {isArabic
                 ? "هل أنت مستعد للارتقاء بعملك إلى المستوى التالي؟"
                 : "Ready to take your business to the next level?"}
             </h2>
-            <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-400 text-sm sm:text-lg mb-8 max-w-2xl mx-auto">
               {isArabic
                 ? "دعنا نناقش كيف يمكن لخدماتنا أن تساعد في تحقيق أهدافك."
                 : "Let's discuss how our services can help achieve your goals."}
@@ -277,7 +277,7 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg rounded-full transition-all duration-300 shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50"
+                className="inline-flex items-center gap-3 px-5 py-2 md:px-10 md:py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg rounded-full transition-all duration-300 shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50"
               >
                 {isArabic ? "ابدأ اليوم" : "Get Started Today"}
                 <ArrowRight

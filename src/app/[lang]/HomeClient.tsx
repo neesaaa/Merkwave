@@ -57,15 +57,15 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
       </section>
 
       {/* Newsletter (Localized) */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900">
+      <section className="py-20 bg-gradient-to-r max-w-screen from-gray-900 via-black to-gray-900">
         
-        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${textDirClass}`} dir={isArabic ? 'rtl' : 'ltr'}>
+        <div className={`container mx-auto  px-4 sm:px-6 lg:px-8 ${textDirClass}`} dir={isArabic ? 'rtl' : 'ltr'}>
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
+            className="text-center flex flex-col items-center justify-center w-full"
           >
             <Mail className="h-16 w-16 mx-auto mb-6 text-yellow-400" />
             <h2 className="text-4xl md:text-5xl font-bold text-orange-400 mb-6">
@@ -75,16 +75,19 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
               {dict.home.newsletterSubtitle}
             </p>
 
-            <div className={`max-w-md mx-auto flex gap-4 ${isArabic ? 'flex-row-reverse' : 'flex-row'}`}>
+            <div
+              className={`w-full max-w-md sm:max-w-lg mx-auto flex flex-col sm:flex-row gap-2 sm:gap-4`}
+            >
               <input
                 type="email"
                 placeholder={dict.home.emailPlaceholder}
-                className="flex-1 px-6 py-4 rounded-lg bg-gray-800 text-white border border-cyan-400/30  shadow-[0_0px_26px_0_rgba(0,213,197,0.5)] focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+                className="flex-1 px-4 py-4 rounded-lg bg-gray-800 text-white border border-cyan-400/30 shadow-[0_0px_26px_0_rgba(0,213,197,0.5)] focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
               />
-              <button className="inline-flex items-center px-6 py-4 bg-gradient-to-r from-orange-400 to-red-700 text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300">
+              <button className="px-4 py-4 bg-gradient-to-r from-orange-400 to-red-700 text-black font-semibold rounded-lg hover:scale-105 transition-all duration-300">
                 {dict.home.activateButton}
               </button>
             </div>
+
           </motion.div>
         </div>
       </section>

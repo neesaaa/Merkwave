@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Timeline } from "@/components/Timeline";
 import Globe from "@/components/Globe";
+import { useEffect, useState } from "react";
 
 interface LocalizedComponentProps {
   dict: any;
@@ -457,6 +458,18 @@ export default function SoftwareClient({
     return colors[color] || colors.purple;
   };
 
+        const [isMobile, setIsMobile] = useState(false);
+
+      useEffect(() => {
+        // Check initial value
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+
+        // Listen for resize
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+      }, []);
+
   const timelineData: TimelineEntry[] = services.map((service, index) => {
     const Icon = service.icon;
     const colors = getColorClasses(service.color);
@@ -514,7 +527,7 @@ export default function SoftwareClient({
 
   return (
     <main
-      className={`min-h-screen relative flex flex-col bg-[#0d2342] md:bg-[url('/bg-dots.webp')] bg-scroll md:bg-fixed bg-no-repeat bg-cover bg-center `}
+      className={`min-h-screen max-w-screen overflow-x-hidden relative flex flex-col bg-[#0d2342] md:bg-[url('/bg-dots.webp')] bg-scroll md:bg-fixed bg-no-repeat bg-cover bg-center `}
     >
       <div className="absolute inset-0 z-1 backdrop-blur-lg md:backdrop-blur-md  bg-black/40"></div>
 
@@ -538,7 +551,7 @@ export default function SoftwareClient({
             {isArabic ? "العودة إلى الخدمات" : "Back to Services"}
           </Link>
           <div
-            className={`flex flex-row  gap-12  self-center items-center justify-center mb-24`}
+            className={`flex self-center items-center justify-center mb-24`}
           >
             {/* Left Content */}
                   {/* Back Link */}
@@ -548,13 +561,14 @@ export default function SoftwareClient({
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               dir={isArabic ? "rtl" : "ltr"}
+              className="flex flex-col items-center justify-center  text-center"
             >
               <div className="mb-8 flex h-full w-full pt-16 justify-center">
                 <motion.div className=" w-full">
                   <Globe
                     theta={0.2}
                     dark={1}
-                    scale={1.2}
+                    scale={isMobile?0.7:1.2}
                     diffuse={1.5}
                     baseColor="#009999"
                     markerColor="#ff0000"
@@ -575,7 +589,7 @@ export default function SoftwareClient({
                 </span>
               </h1>
 
-              <p className="text-gray-300 text-lg leading-relaxed mb-8 text-center">
+              <p className="text-gray-300  max-w-[280px] sm:max-w-screen text-sm  mb-8 text-center break-words ">
                 {isArabic
                   ? "نحن نهندس تطبيقات ويب مبتكرة وقابلة للتوسع وآمنة مصممة خصيصًا لاحتياجات عملك، مع التركيز على تجارب مستخدم استثنائية ووظائف قوية."
                   : "We engineer innovative, scalable, and secure web applications tailored to your business needs, focusing on exceptional user experiences and robust functionality."}

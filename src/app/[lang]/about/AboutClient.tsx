@@ -161,7 +161,7 @@ const team = [
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="
-              text-5xl md:text-6xl font-bold mb-2 leading-tight tracking-tight
+              text-3xl md:text-6xl font-bold mb-2 leading-tight tracking-tight
               text-[#F6FF00]
               drop-shadow-[0_0_20px_rgba(250,204,21,0.45)]
             "
@@ -172,7 +172,7 @@ const team = [
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-yellow-  max-w-4xl mx-auto leading-relaxed"
+            className="text-sm sm:text-xl max-w-4xl mx-auto leading-relaxed"
           >
             {isArabic 
               ? 'نساعد الشركات الصغيرة والمتوسطة على النمو من خلال التسويق الرقمي الإبداعي وتطوير البرمجيات المخصصة والاستشارات الاستراتيجية.'
@@ -185,8 +185,8 @@ const team = [
 
 
       {/* Why Merkwave Section */}
-      <section className="py-12 px-4 ">
-        <div className="max-w-7xl mx-auto ">
+      <section className="py-12 px-1 md:px-4  ">
+        <div className="max-w-8xl mx-auto ">
           {/* Section with border */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -196,7 +196,7 @@ const team = [
             className="border-2 border-cyan-500/40 shadow-[0_0_20px_rgba(7,234,230,0.6)] bg-black/60 bg-blur-lg  rounded-3xl p-10 md:p-16"
           >
             
-            <h2 className="text-3xl md:text-5xl font-bold text-center text-[#00FFFF]  mb-8 ">
+            <h2 className="text-xl md:text-5xl font-bold text-center text-[#00FFFF]  mb-8 ">
               {isArabic ? 'لماذا ميرك ويف؟' : 'WHY MERKWAVE ?'}
             </h2>
 
@@ -204,12 +204,12 @@ const team = [
             <div className="space-y-8">
               <div>
                 
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
                   {isArabic ? 'لماذا ميرك ويف؟' : 'WHY MERKWAVE ?'}
                 </h3>
-                <div className="h-px w-1/4 bg-gradient-to-r from-cyan-400 to-transparent mb-6" />
+                <div className=" w-1/4 bg-gradient-to-r from-cyan-400 to-transparent mb-6" />
 
-                <p className="text-gray-200 text-lg leading-relaxed mb-8">
+                <p className="text-gray-200 text-xs sm:text-lg leading-relaxed mb-8">
                   {isArabic 
                     ? 'في ميرك ويف، نؤمن بقوة الابتكار لتحويل الشركات وتشكيل المشهد الرقمي للغد. يجمع نهجنا بين التكنولوجيا المتطورة والتصميم الذي يركز على الإنسان، مما يخلق حلولاً لا تلبي الاحتياجات الحالية فحسب، بل تتوقع الفرص المستقبلية أيضاً.'
                     : "At MerkWave, we believe in the power of innovation to transform businesses and shape tomorrow's digital landscape. Our approach combines cutting-edge technology with human-centered design, creating solutions that don't just meet current needs but anticipate future opportunities."}
@@ -221,16 +221,16 @@ const team = [
                 <div className="absolute -top-6 left-6 w-48 h-24 bg-cyan-400/20 blur-3xl rounded-full" />
 
                 {/* Content */}
-                <h3 className="relative z-10 text-xl md:text-2xl font-bold text-white mb-4">
+                <h3 className="relative z-10 text-xl  md:text-2xl font-bold text-white mb-4">
                   {isArabic 
                     ? 'لأننا لا نتكيف مع التيار فحسب؛ بل نصنع المستقبل.'
                     : "Because we don't just adapt to the current; we create the future."}
                 </h3>
 
                 {/* Gradient divider */}
-                <div className="h-px w-1/4 bg-gradient-to-r from-cyan-400 to-transparent mb-6" />
+                <div className=" w-1/4 bg-gradient-to-r from-cyan-400 to-transparent mb-6" />
 
-                <p className="relative z-10 text-gray-200 text-lg leading-relaxed">
+                <p className="relative z-10 text-gray-200 text-xs sm:text-lg leading-relaxed">
                   {isArabic 
                     ? 'تجسد ميرك ويف فلسفة الاستمرارية والتأثير. نحن لا نقدم المشاريع فقط؛ بل نبني شراكات دائمة تتطور مع عملك، مما يضمن النمو المستدام والابتكار في عالم رقمي دائم التغير.'
                     : "MERKWAVE embodies the philosophy of continuity and impact. We don't just deliver projects; we build lasting partnerships that evolve with your business, ensuring sustained growth and innovation in an ever-changing digital world."}
@@ -362,14 +362,14 @@ const team = [
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative rounded-3xl p-12 md:p-16  text-center"
+            className="relative rounded-4xl p-3 md:p-16  text-center flex flex-col"
           >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#F6FF00] mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-5xl font-bold text-[#F6FF00] mb-6">
                 {isArabic ? (
                   <>
                     لنصنع{" "}
                     <motion.span
-                      className="inline-block"
+                      className="inline-block text-4xl"
                       animate={{
                         y: [0, -10, 10, 0],
                         x: [0, 5, -5, 0],
@@ -392,7 +392,7 @@ const team = [
                   <>
                     LET'S MAKE{" "}
                     <motion.span
-                      className="inline-block"
+                      className="inline-block text-4xl"
                       animate={{
                         y: [0, -10, 10, 0],
                         x: [0, 5, -5, 0],
@@ -415,7 +415,7 @@ const team = [
                 </h2>
                   <p
 
-                    className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed relative z-10"
+                    className="text-sm sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed relative z-10"
                   >
                     {isArabic
                       ? "نساعد الشركات الصغيرة والمتوسطة على النمو من خلال التسويق الرقمي الإبداعي وتطوير البرمجيات المخصصة والاستشارات الاستراتيجية."
@@ -426,7 +426,7 @@ const team = [
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="  inline-flex items-center gap-3 px-10 py-5 bg-[#F6FF00] text-black font-bold text-lg rounded-full transition-all duration-300 shadow-2xl shadow-yellow-500/40 hover:shadow-yellow-500/60"
+                  className="  inline-flex items-center gap-3 px-3 md:px-10 py-5 bg-[#F6FF00] text-black font-bold text-sm sm:text-lg rounded-full transition-all duration-300 shadow-2xl shadow-yellow-500/40 hover:shadow-yellow-500/60"
                   >
                   <span>{isArabic ? 'لنصنع الموجات.' : "LET'S MAKE WAVES."}</span>
                 </motion.button>

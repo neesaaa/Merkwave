@@ -219,7 +219,7 @@ const socialLinks: SocialLink[] = [
               </address>
 
               {/* Stay Updated */}
-              <div className="mt-10">
+              <div className="mt-10 ">
                 <h4 className="text-white text-sm font-bold mb-4">
                   {isArabic ? 'ابق على اطلاع' : 'Stay Updated'}
                 </h4>
@@ -228,7 +228,7 @@ const socialLinks: SocialLink[] = [
                     ? 'اشترك في نشرتنا الإخبارية للحصول على أحدث الرؤى والتحديثات.'
                     : 'Subscribe to our newsletter for the latest insights and updates.'}
                 </p>
-                <form className={`flex ${isRTL ? 'flex-row-reverse' : ''} gap-3`} onSubmit={(e) => e.preventDefault()}>
+                <form className={`flex flex-col  ${isRTL ? 'sm:flex-row-reverse' : 'sm:flex-row'} gap-3`} onSubmit={(e) => e.preventDefault()}>
                   <input
                     type="email"
                     required
