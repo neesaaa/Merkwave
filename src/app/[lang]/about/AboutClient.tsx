@@ -4,6 +4,7 @@ import {  motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Zap, Users, Target, Shield, Heart, Eye } from "lucide-react";
 import ElectroBorder from "@/components/ElectroBorder";
+import { Fragment, useEffect, useState } from "react";
 
 
 
@@ -122,9 +123,16 @@ const team = [
 ];
 
 
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    setIsDesktop(window.innerWidth >= 1024);
 
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
-    <div className={`relative  min-h-screen bg-[#020617] bg-[url('/mawgatna.jpg')] md:bg-fixed bg-cover bg-center  `}>
+    <div className={`relative  min-h-screen bg-[#020617] bg-[url('/mawgatna.webp')] md:bg-fixed bg-cover bg-center  `}>
       <div
         className="absolute inset-0 "
       />
@@ -272,7 +280,7 @@ const team = [
                     className="group relative"
                   >
                     {/* dark cyan 155E75 */}
-                    <ElectroBorder  borderColor={'#155E75'} animationSpeed={animationSpeed}>
+                    {isDesktop && <ElectroBorder  borderColor={'#155E75'} animationSpeed={animationSpeed}>
                       <div  className={`h-full p-8 rounded-2xl shadow-[0_0_20px_rgba(7,234,230,0.6)]  border-2 border-[#00FFFF]  transition-all duration-500  hover:scale-105 hover:shadow-[0_0px_50px_rgba(2,247,255,0.6)]`}>
                         {/* Icon with gradient background */}
                         <div className={`inline-flex p-4 rounded-2xl  mb-6`} style={{ backgroundColor: borderColorBright }}>
@@ -285,7 +293,20 @@ const team = [
                           {value.description}
                         </p>
                       </div>
-                    </ElectroBorder>
+                    </ElectroBorder>}
+                    {!isDesktop && <div  className={`h-full p-8 rounded-2xl shadow-[0_0_20px_rgba(7,234,230,0.6)]  border-2 border-[#00FFFF]  transition-all duration-500  hover:scale-105 hover:shadow-[0_0px_50px_rgba(2,247,255,0.6)]`}>
+                        {/* Icon with gradient background */}
+                        <div className={`inline-flex p-4 rounded-2xl  mb-6`} style={{ backgroundColor: borderColorBright }}>
+                          <IconComponent className="w-10 h-10 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-4 text-white">
+                          {value.title}
+                        </h3>
+                        <p className="text-gray-300 leading-relaxed">
+                          {value.description}
+                        </p>
+                      </div>
+                      }
                   </motion.div>
               );
             })}

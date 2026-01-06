@@ -187,7 +187,7 @@ export default function BrandingClient({
 
   return (
     <main
-      className={`min-h-screen relative bg-[#07111D] bg-[url('/bg-dots.jpg')] md:bg-fixed bg-no-repeat bg-cover bg-center   ${
+      className={`min-h-screen relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center   ${
         isArabic ? "font-arabic" : "font-sans"
       }`}
     >

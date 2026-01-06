@@ -28,7 +28,7 @@ export default function IntroLoader() {
     >
       <div className="fixed inset-0 overflow-hidden z-0">
         <motion.img
-          src={isMobile ? "/mobile-01.png" : "/circled-01.png"}
+          src={isMobile ? "/mobile-01.webp" : "/circled-01.webp"}
           alt="Loading"
           initial={{ rotate: 0 }}
           animate={{ rotate: 360 * 2 }}

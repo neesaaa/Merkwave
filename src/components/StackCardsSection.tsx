@@ -105,7 +105,7 @@ const cards: Card[] = [
               className="absolute inset-0 rounded-3xl overflow-hidden bg-gradient-to-br from-cyan-400/30 to-blue-600/30 backdrop-blur-xl border border-white/10 shadow-2xl"
             >
               <Image
-                src={`/Why merk! (${i + 1}).png`}
+                src={`/Why merk! (${i + 1}).webp`}
                 alt={`Why merk ${i + 1}`}
                 fill
                 className="object-cover"

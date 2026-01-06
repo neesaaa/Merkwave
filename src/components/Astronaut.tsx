@@ -59,7 +59,7 @@ export default function Astronaut({
   useEffect(() => {
     if (animations.length > 0) {
       const animationName = animations[0].name;
-      if (animationName && actions[animationName]) {
+      if (animationName && actions[animationName]) {  
         actions[animationName].play();
       }
     }

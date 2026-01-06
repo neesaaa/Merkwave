@@ -25,7 +25,13 @@ export const Timeline = ({
   const ref = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth < 768); // you can change breakpoint
+    }
+  }, []);
   useEffect(() => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
@@ -96,12 +102,12 @@ export const Timeline = ({
               key={index}
               className="flex justify-start pt-10 md:pt-40 md:gap-10"
             >
-              <div className="sticky flex flex-col  md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+              <div className="md:sticky flex flex-col  md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
                 <motion.div
                   style={{ backgroundColor: circleColor }}
-                  className={`w-8 h-8 md:h-12 md:w-12   absolute ${
+                  className={`w-6 h-6 md:h-8 md:w-8    absolute ${
                     isArabic ? "right-3 md:right-2" : "left-3 md:left-2"
-                  } flex items-center justify-center shadow-lg rounded-full`}
+                  } flex items-center justify-center mt-4 md:mt-0 shadow-lg rounded-full`}
                 >
                   {item.icon && (
                     <motion.div
@@ -109,7 +115,7 @@ export const Timeline = ({
                         scale: useTransform(
                           scrollYProgress,
                           [circleStart, circleEnd],
-                          [0.5, 1]
+                          isMobile ? [0.9, 1.4] : [0.4, 0.9]
                         ),
                         boxShadow: `0 0 40px ${accentColor || "#00FFFF"}`,
 
@@ -157,7 +163,7 @@ export const Timeline = ({
         <div
           style={{ height: height + "px" }}
           className={`absolute ${
-            isArabic ? "right-8" : "left-8"
+            isArabic ? "right-7" : "left-7"
           } top-0 hidden md:block overflow-hidden z-30 w-[2px]`}
         >
           <motion.div

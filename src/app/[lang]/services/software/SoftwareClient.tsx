@@ -514,9 +514,9 @@ export default function SoftwareClient({
 
   return (
     <main
-      className={`min-h-screen relative flex flex-col bg-[#07111D] bg-[url('/bg-dots.jpg')] md:bg-fixed bg-no-repeat bg-cover bg-center `}
+      className={`min-h-screen relative flex flex-col bg-[#0d2342] md:bg-[url('/bg-dots.webp')] bg-scroll md:bg-fixed bg-no-repeat bg-cover bg-center `}
     >
-      <div className="absolute inset-0 z-1 backdrop-blur-lg md:backdrop-blur-md  bg-black/60"></div>
+      <div className="absolute inset-0 z-1 backdrop-blur-lg md:backdrop-blur-md  bg-black/40"></div>
 
       {/* Hero Section */}
 

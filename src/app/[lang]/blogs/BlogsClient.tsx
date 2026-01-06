@@ -76,7 +76,7 @@ const FAKE_BLOGS: BlogPost[] = [
       "From motion design to accessibility, explore the UI/UX trends shaping digital products in 2025.",
     excerptAr:
       "من تصميم الحركة إلى سهولة الوصول، تعرّف على اتجاهات تصميم UI/UX التي تشكل المنتجات الرقمية في 2025.",
-    imageUrl: "/Why.png",
+    imageUrl: "/Why.webp",
     readTime: 7,
     authorEn: "Design Team",
     authorAr: "فريق التصميم",
@@ -128,7 +128,7 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
   };
 
   return (
-    <main className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.jpg')] md:bg-fixed bg-cover bg-center ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+    <main className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.webp')] md:bg-fixed bg-cover bg-center ${isArabic ? 'font-arabic' : 'font-sans'}`}>
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">

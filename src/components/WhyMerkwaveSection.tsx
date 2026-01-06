@@ -41,7 +41,7 @@ export default function WhyMerkwaveSection({ dict, lang }: WhyMerkwaveSectionPro
     <section 
       className="relative py-20 overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/Why.png')"
+        backgroundImage: "url('/Why.webp')"
       }}
     >
       {/* Dark Semi-transparent Overlay */}

@@ -232,7 +232,7 @@ export default function PortfolioClient({ dict, lang }: LocalizedComponentProps)
   }
 
   return (
-    <div className={`min-h-screen relative bg-[url(/mawgatna.jpg)] md:bg-fixed bg-cover bg-center ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+    <div className={`min-h-screen relative bg-[url(/mawgatna.webp)] md:bg-fixed bg-cover bg-center`}>
 
 
 

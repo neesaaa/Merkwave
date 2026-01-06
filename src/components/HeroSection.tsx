@@ -1,17 +1,12 @@
-  'use client'
-
   import Link from 'next/link'
-  import { useState, useEffect } from 'react'
+  import { useState, useEffect, use } from 'react'
   import { ArrowRight } from 'lucide-react'
   import { motion } from 'framer-motion'
   import Image from 'next/image'
-  import AnimatedTextReveal from './AnimatedTextReveal'
   import dynamic from 'next/dynamic'
 
-  const HeroCanvas = dynamic(() => import('./HeroCanvas'), {
-    ssr: false,
-    loading: () => <div className="w-full h-full" />,
-  })
+  const HeroCanvas = dynamic(() => import('./HeroCanvas'), { ssr: false })
+
 
   interface HeroSectionProps {
     dict: any; 
@@ -21,9 +16,12 @@
   export default function HeroSection({ dict, lang }: HeroSectionProps) {
     const [mounted, setMounted] = useState(false)
     const isArabic = lang === 'ar';
-    const [hovered,setHovered]=useState(false)
+    const [isMobile, setIsMobile] = useState(false);
+    const [show3D, setShow3D] = useState(false);
 
-    const [show3D, setShow3D] = useState(false)
+    useEffect(() => {
+      setIsMobile(window.innerWidth < 768);
+    }, []);
 
     useEffect(() => {
       const ric = window.requestIdleCallback ?? function (cb: FrameRequestCallback) {
@@ -46,7 +44,6 @@
     
     const textDirClass = isArabic ? 'text-right' : 'text-left';
     const lgTextDirClass = isArabic ? 'lg:text-right' : 'lg:text-left';
-
     
 
     return (
@@ -63,34 +60,14 @@
           transition={{ duration: 35, repeat: Infinity, ease: "easeInOut" }}
         >
           <Image
-            src="/starsHero.png"
+            src="/starsHero.webp"
             alt="Star Background"
             fill
             className="object-cover"
+            decoding="async"
           />
         </motion.div >
-        {/* Background gradient effects */}
-         {/* <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-yellow-500 to-yellow-700"></div>  */}
-        
-        {/* Animated background orbs */}
-        {/* <div className="absolute inset-0 pointer-events-none">
-          <motion.div 
-            className="absolute top-1/4 right-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-gradient-to-br from-[#6E00B8] via-[#5D0050] to-transparent rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.2]
-            }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div 
-            className="absolute bottom-1/4 left-1/4 w-[350px] md:w-[600px] h-[350px] md:h-[600px] bg-gradient-to-tr from-[#6E00B8] via-[#5D0050] to-transparent rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.3, 0.5, 0.3]
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div> */}
+      
 
         <div className="absolute inset-0 pointer-events-none">
           {/* left light */}
@@ -142,19 +119,7 @@
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Badge
-              <motion.div 
-                className={`inline-flex items-center px-5 py-2.5 rounded-full bg-cyan-400/10 border border-cyan-400/30 backdrop-blur-sm mb-8 ${isArabic ? 'flex-row-reverse' : ''}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <Sparkles className={`w-4 h-4 text-cyan-400 ${isArabic ? 'ml-2' : 'mr-2'}`} />
-                <span className="text-cyan-400 text-sm font-semibold tracking-wide">
-                  {isArabic ? 'حلول رقمية ذكية' : 'Smart Digital Solutions'}
-                </span>
-              </motion.div> */}
-
+             
               {/* Main headline with gradient */}
               <motion.h1 
                 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl  font-bold mb-6 leading-tight "
@@ -234,7 +199,8 @@
 
           {/* Left side: Canvas */}
           <div className="h-1/2 w-full lg:h-full ">
-            {show3D && <HeroCanvas isArabic={isArabic} />}
+            {mounted && show3D && <HeroCanvas isArabic={isArabic} />}
+
           </div>
         </div>
 

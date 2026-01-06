@@ -37,44 +37,7 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
 
       <StackCardsSection isArabic={lang === "ar"} />
 
-      {/* CTA Section (Localized) */}
-      {/* <section 
-        className={`py-20 bg-gradient-to-r from-cyan-900/80 w-full via-cyan-800/60 to-cyan-900/80 text-white text-center  backdrop-blur-sm border border-cyan-400/20 shadow-2xl flex items-center justify-center`}
-        dir={isArabic ? 'rtl' : 'ltr'}
-      >
-        <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center gap-4 px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-0">
-            {dict.home.heroTitle}
-          </h2>
-          <p className="mb-0 max-w-2xl text-center">
-            {dict.home.heroSubtitle}
-          </p>
-          <Link href={`/${lang}/contact`} className="inline-block mt-4">
-            <motion.div 
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full cursor-pointer mx-auto"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-            <div className={`w-12 h-12 bg-white/20 rounded-full flex items-center justify-center p-2 ${isArabic ? 'ml-4 mr-0' : 'mr-4'}`}>
-              <svg
-                viewBox="0 0 100 100"
-                className="w-8 h-8"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="25" cy="25" r="20" fill="#1B4F72" opacity="0.9" />
-                <circle cx="75" cy="25" r="20" fill="#E74C3C" opacity="0.9" />
-                <circle cx="25" cy="75" r="20" fill="#F1C40F" opacity="0.9" />
-                <circle cx="75" cy="75" r="20" fill="#16A085" opacity="0.9" />
-              </svg>
-            </div>
-            <span className="text-white font-bold text-xl tracking-wide">
-              {dict.home.ctaButton}
-            </span>
-            </motion.div>
-          </Link>
-        </div>
-      </section> */}
+
 
       {/* Testimonials (Localized) */}
       <section 

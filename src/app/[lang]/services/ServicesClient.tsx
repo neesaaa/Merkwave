@@ -101,7 +101,7 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
 
   return (
     <div
-      className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.jpg')] bg-cover bg-center bg-no-repeat ${
+      className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.webp')] bg-cover bg-center bg-no-repeat ${
         isArabic ? "font-arabic" : "font-sans"
       }`}
     >

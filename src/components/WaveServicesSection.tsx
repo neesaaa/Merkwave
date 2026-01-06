@@ -58,18 +58,13 @@ export default function WaveServicesSection({
       {
         src: "/Media.gif",
         classes:
-          "w-32 h-32 lg:w-48 lg:h-48 shadow-[0_0_30px_10px_rgba(0,213,197,0.4)] object-cover rounded-full",
+          "w-32 h-32 lg:w-48 lg:h-48 shadow-[0_0_30px_10px_rgba(0,213,197,0.4)] object-contain rounded-full",
       },
       {
         src: "/branding.gif",
         classes:
           "w-32 h-32  object-contain rounded-full shadow-[0_0_30px_10px_rgba(0,213,197,0.4)]",
       },
-      {
-        src: "/mediaproduction.gif",
-        classes: "w-32 h-32   object-contain ",
-      },
-      { src: "/solutions.gif", classes: "w-64 md:w-128  object-contain" },
     ],
     []
   );
@@ -121,25 +116,20 @@ const handleDragEnd = useCallback(
     setIsDragging(false);
 
     const swipeThreshold = 50;
-    const swipeVelocity = 500;
+    if (Math.abs(info.offset.x) < swipeThreshold) return;
 
-    const swipe =
-      Math.abs(info.offset.x) > swipeThreshold ||
-      Math.abs(info.velocity.x) > swipeVelocity;
-
-    if (!swipe) return;
-
-    const swipeRight =
-      info.offset.x > 0 || info.velocity.x > 0;
+    const isSwipeRight = info.offset.x > 0;
 
     if (isArabic) {
-      swipeRight ? nextSlide() : prevSlide();
+            isSwipeRight ? prevSlide() : nextSlide();
+
     } else {
-      swipeRight ? prevSlide() : nextSlide();
+      isSwipeRight ? prevSlide() : nextSlide();
     }
   },
   [isArabic, nextSlide, prevSlide]
 );
+
 
 
   const isTouchDevice =
@@ -153,7 +143,7 @@ useEffect(() => {
   const interval = setInterval(() => {
     setDirection(1);
     setActiveIndex((prev) => (prev + 1) % services.length);
-  }, 3000);
+  }, 6000);
 
   return () => clearInterval(interval);
 }, [services.length, activeIndex]);
@@ -249,12 +239,11 @@ useEffect(() => {
         aria-hidden="true"
       >
         <Image
-          src="/Ellipse12.png"
+          src="/Ellipse12.webp"
           alt=""
           width={400}
           height={400}
           className=" object-contain w-[1920px]  h-[auto]"
-          priority
         />
       </div>
 
@@ -403,7 +392,6 @@ useEffect(() => {
                                   width={100}
                                   height={100}
                                   className={service.logo.classes}
-                                  priority
                                 />
                               </div>
                             </div>
