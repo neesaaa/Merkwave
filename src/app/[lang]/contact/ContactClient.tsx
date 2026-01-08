@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import BlackHoleMobile from '@/components/BlackHoleMobile'
 import Link from 'next/link'
 import { 
   ArrowLeft,
@@ -30,6 +31,14 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -170,7 +179,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
       </section>
 
 
-      <BlackHole lang={lang} />
+      {isMobile ? <BlackHoleMobile lang={lang} /> : <BlackHole lang={lang} />}
 
       {/* Contact Form and Details Section */}
       <section className="py-20 relative bg-[#0B192A] ">

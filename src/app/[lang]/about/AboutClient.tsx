@@ -204,7 +204,7 @@ const team = [
             <div className="space-y-8">
               <div>
                 
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
+                <h3 className="text-xl md:text-4xl font-bold text-white mb-4 md:mt-16 ">
                   {isArabic ? 'لماذا ميرك ويف؟' : 'WHY MERKWAVE ?'}
                 </h3>
                 <div className=" w-1/4 bg-gradient-to-r from-cyan-400 to-transparent mb-6" />
@@ -221,7 +221,7 @@ const team = [
                 <div className="absolute -top-6 left-6 w-48 h-24 bg-cyan-400/20 blur-3xl rounded-full" />
 
                 {/* Content */}
-                <h3 className="relative z-10 text-xl  md:text-2xl font-bold text-white mb-4">
+                <h3 className="relative z-10 text-xl  md:text-4xl font-bold text-white mb-4 md:mb-8 md:mt-16 ">
                   {isArabic 
                     ? 'لأننا لا نتكيف مع التيار فحسب؛ بل نصنع المستقبل.'
                     : "Because we don't just adapt to the current; we create the future."}

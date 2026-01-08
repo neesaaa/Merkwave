@@ -281,7 +281,7 @@ export default function BusinessClient({
 
   return (
     <main
-      className={`min-h-screen relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center ${isArabic ? "font-arabic" : "font-sans"
+      className={`min-h-screen overflow-x-hidden relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center ${isArabic ? "font-arabic" : "font-sans"
         }`}
     >
       <div className="absolute inset-0 z-1 backdrop-blur-md bg-black/60"></div>
@@ -298,8 +298,7 @@ export default function BusinessClient({
           <div className="flex self-start justify-center mb-8">
             <Link
               href={`/${lang}`}
-              className={`inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors ${isArabic ? "" : ""
-                }`}
+              className={`inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors `}
               dir={isArabic ? "rtl" : "ltr"}
             >
               <ArrowLeft
@@ -326,7 +325,7 @@ export default function BusinessClient({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-6 h-full  w-full text-center"
+              className="text-4xl md:text-5xl font-bold mb-6 h-full  w-full text-center"
             >
               <span className="text-white block text-center">
                 {isArabic ? "موجة الأعمال" : "BUSINESS WAVE"}
@@ -337,7 +336,7 @@ export default function BusinessClient({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-300 max-w-4xl mb-8 text-center"
+              className="max-w-[280px] sm:max-w-screen text-sm md:text-lg text-gray-300  mb-8 text-center"
             >
               {isArabic
                 ? "نهندس تطبيقات ويب مبتكرة وقابلة للتوسع وآمنة مصممة خصيصًا لاحتياجات عملك، مع التركيز على تجارب مستخدم استثنائية ووظائف قوية."
@@ -352,10 +351,10 @@ export default function BusinessClient({
             >
               <Link href={`/${lang}/contact`}>
                 <button
-                  className="px-8 py-4 font-bold rounded-full 
+                  className="px-2 md:px-8 py-4 font-bold rounded-full 
                             text-white 
                             bg-gradient-to-r from-red-500 via-red-600 to-red-700
-                            hover:scale-105 
+                            hover:scale-105 hover:shadow-xl hover:shadow-red-500/70
                             transition-all duration-300"
                 >
                   {isArabic
@@ -371,7 +370,7 @@ export default function BusinessClient({
       {/* Digital Marketing Solutions Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-[96%]">
-          <div className="flex gap-6">
+          <div className="flex items-center justify-center  gap-6">
             <Timeline
               titleText={
                 isArabic ? "حلول التسويق الرقمي" : "Digital Marketing Solutions"
@@ -393,7 +392,7 @@ export default function BusinessClient({
       <section className="py-16 px-4 bg-gradient-to-b from-transparent z-20 via-[#0a0f1e]/50 to-transparent">
         <div className="container mx-auto max-w-[96%]">
           {/* Tools Grid */}
-          <section className="relative py-20 px-4 z-20">
+          <section className="relative py-8 md:py-20 px-4 z-20">
             {/* Background glow */}
             <div className="absolute inset-0 -z-10">
               <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px]" />
@@ -422,7 +421,7 @@ export default function BusinessClient({
               </motion.div>
 
               {/* Grid */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {marketingTools.map((tool, index) => {
                   const colors = getColorClasses(tool.color);
 
@@ -510,11 +509,11 @@ export default function BusinessClient({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative p-12 rounded-2xl z-20 backdrop-blur-sm flex flex-col items-center justify-center text-center"
+            className="relative px-2 py-12 md:p-12 rounded-2xl z-20 backdrop-blur-sm flex flex-col items-center justify-center text-center"
             dir={isArabic ? "rtl" : "ltr"}
           >
             <h2
-              className="text-4xl md:text-5xl font-bold mb-1 text-center"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 text-center"
               dir={isArabic ? "rtl" : "ltr"}
             >
               <span className="text-transparent p-4 bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 block text-center">
@@ -525,7 +524,7 @@ export default function BusinessClient({
             </h2>
 
             <p
-              className="text-gray-300 text-lg mb-8 max-w-2xl text-center"
+              className="text-gray-300 text-md sm:text-lg mb-8 max-w-2xl !text-center"
               dir={isArabic ? "rtl" : "ltr"}
             >
               {isArabic
@@ -535,7 +534,7 @@ export default function BusinessClient({
 
 
             <Link href={`/${lang}/contact` as any}>
-              <button className="px-8 py-4 bg-gradient-to-r from-yellow-600 via-orange-500 to-red-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-red-400/30 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+              <button className="px-1 py-2 md:px-8 md:py-4 bg-gradient-to-r text-md md:text-2xl from-yellow-600 via-orange-500 to-red-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-red-400/30 transition-all duration-300 hover:scale-105 flex items-center gap-2">
                 {isArabic
                   ? "ابدأ مشروع الويب الخاص بك"
                   : "Start Your Web Project"}

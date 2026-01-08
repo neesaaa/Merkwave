@@ -335,7 +335,7 @@ const dictionaries: Record<Locale, Dictionary> = {
           slug: "Marketing",
           name: "إدارة وسائل التواصل",
           description:
-            "سرد قصصي يركز على الجمهور، وإدارة المجتمعات، وتحسين الحملات بالبيانات.",
+            "سرد قصصي يركز على الجمهور، وإدارة المجتمعات، وتحسين الحملات.",
         },
         {
           slug: "Branding",

@@ -191,12 +191,12 @@ useEffect(() => {
         rotateY: 0,
         rotateZ: 0,
         transition: {
-          duration: 0.6,
+          duration: 0.4,
           ease: "easeOut" as Easing,
         },
       },
       side: {
-        opacity: 0.6,
+        opacity: 0.4,
         x: 0,
         scale: 0.75,
         rotateY: 0,
@@ -247,7 +247,7 @@ useEffect(() => {
         />
       </div>
 
-      <div className="container  mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+      <div className="container  mx-auto px-2 sm:px-6 md:px-8 lg:px-12 relative z-10">
         <motion.div
           className="text-center mb-12 md:mb-16 lg:mb-24"
           initial={{ opacity: 0, y: 30 }}
@@ -257,14 +257,14 @@ useEffect(() => {
         >
           <h2
             id="services-heading"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 tracking-tight px-4"
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 md:mb-6 tracking-tight px-4"
           >
             <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent uppercase">
               {isArabic ? "موجاتنا من الخدمات" : "Our Waves of Service"}
             </span>
           </h2>
 
-          <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-gray-300 text-m sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-4">
             {isArabic
               ? "في ميركويف، نحن لا نركب الموجة فقط، نحن نصنعها. استكشف خدماتنا المتخصصة المصممة لدفع عملك إلى الأمام."
               : "At MERKWAVE, we don't just ride the currents; we create them. Explore our specialized services designed to propel your business forward."}
@@ -349,7 +349,7 @@ useEffect(() => {
                           opacity: 1,
                           x: 0,
                           transition: {
-                            duration: 1.5,
+                            duration: 1,
                             ease: "easeOut",
                           },
                         }}
@@ -401,7 +401,7 @@ useEffect(() => {
                             {service.title}
                           </h3>
 
-                          <p className="text-gray-300 mb-12 md:mb-4 text-xs sm:text-sm leading-relaxed text-center flex-grow line-clamp-3 sm:line-clamp-none  ">
+                          <p className="text-gray-300 mb-2 md:mb-4 text-xs sm:text-sm leading-relaxed text-center flex-grow line-clamp-3 sm:line-clamp-none  ">
                             {service.description}
                           </p>
                           

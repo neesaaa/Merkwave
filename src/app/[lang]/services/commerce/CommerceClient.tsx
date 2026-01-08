@@ -217,7 +217,7 @@ const marketingTools = [
     });
 
   return (
-    <main className={`min-h-screen relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+    <main className={`min-h-screen overflow-x-hidden relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center ${isArabic ? 'font-arabic' : 'font-sans'}`}>
       {/* Hero Section */}
             <div className="absolute inset-0 z-1 backdrop-blur-md bg-black/60"></div>
 
@@ -231,7 +231,7 @@ const marketingTools = [
           {/* Back Link */}
           <Link 
             href={`/${lang}` as any}
-            className={`inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-8 ${isArabic ? 'flex-row-reverse' : ''}`}
+            className={`inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-8 `}
             dir={isArabic ? 'rtl' : 'ltr'}
           >
             <ArrowLeft className={`w-5 h-5 ${isArabic ? 'ml-2 rotate-180' : 'mr-2'}`} />
@@ -252,7 +252,7 @@ const marketingTools = [
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-bold mb-6"
+              className="text-4xl md:text-5xl  font-bold mb-6"
             >
               <span className="text-white ">
                 {isArabic ? 'موجة التجارة' : 'COMMERCE WAVE'}
@@ -263,7 +263,7 @@ const marketingTools = [
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8"
+              className="max-w-[280px] sm:max-w-screen text-sm md:text-lg text-gray-300  mx-auto mb-8"
             >
               {isArabic 
                 ? 'حوّل عملك بحلول تجارة إلكترونية قوية تحول الزوار إلى عملاء مخلصين وتدفع نمو الإيرادات المستدامة.'
@@ -276,7 +276,7 @@ const marketingTools = [
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Link href={`/${lang}/contact` as any}>
-                <button className="px-8 py-4 bg-gradient-to-r from-green-200 to-green-300 text-black font-bold rounded-full hover:shadow-lg hover:shadow-green-400/30 transition-all duration-300 hover:scale-105">
+                <button className="px-4 md:px-8 py-4 bg-gradient-to-r from-green-200 to-green-300 text-black font-bold rounded-full hover:shadow-lg hover:shadow-green-400/30 transition-all duration-300 hover:scale-105">
                   {isArabic ? 'أطلق متجرك' : 'Launch Your Store'} 
                 </button>
               </Link>
@@ -286,7 +286,7 @@ const marketingTools = [
       </section>
 
       {/* E-commerce Solutions Section */}
-      <section className="py-16 px-4">
+      <section className="py-4 md:py-16 px-4">
         <div className="container mx-auto max-w-[96%]">
 
           <div className="flex items-center justify-center ">
@@ -304,10 +304,28 @@ const marketingTools = [
       </section>
 
       {/* Digital Marketing Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-[#0a0f1e]/50 to-transparent">
-
+      <section className="py-16 px-4 bg-gradient-to-b z-30 from-transparent via-[#0a0f1e]/50 to-transparent">
+                        <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="flex flex-col items-center justify-center text-center mb-12 z-20"
+                dir={isArabic ? "rtl" : "ltr"}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center z-20">
+                  <span className="text-white block text-center">
+                    {isArabic ? "حلولنا " : "Our Advanced "}
+                  </span>
+                  <span className="text-[#34D399] block text-center">
+                    {isArabic
+                      ? "للتسويق الرقمي المتقدمة"
+                      : "Digital Marketing Solutions"}
+                  </span>
+                </h2>
+              </motion.div>
           {/* Marketing Tools Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {marketingTools.map((tool, index) => {
                   const colors = getColorClasses(tool.color);
 
@@ -386,16 +404,16 @@ const marketingTools = [
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4 z-30">
         <div className="container mx-auto max-w-[96%]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative p-12 rounded-2xl backdrop-blur-sm text-center z-20 flex flex-col items-center justify-center "
+            className="relative px-2 py-12 md:px-12 rounded-2xl backdrop-blur-sm text-center z-20 flex flex-col items-center justify-center "
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-green-400 via-green-500 to-green-700 bg-clip-text text-transparent">
                 {isArabic ? 'ابدأ البيع عبر الإنترنت اليوم' : 'Start Selling Online Today'}
               </span>

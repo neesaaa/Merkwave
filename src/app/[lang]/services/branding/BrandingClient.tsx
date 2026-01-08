@@ -213,7 +213,7 @@ export default function BrandingClient({
           </Link>
 
           <div
-            className={`flex justify-center items-center gap-12 pt-24 ${
+            className={`flex justify-center items-center gap-12 pt-2 md:pt-24 ${
               isArabic ? "lg:grid-flow-dense" : ""
             }`}
           >
@@ -235,7 +235,7 @@ export default function BrandingClient({
                 />
               </div>
 
-              <h1 className="text-4xl md:text-5xl text-center font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl  text-center font-bold mb-6">
                 <span className="text-white">
                   {isArabic
                     ? "هوية العلامة التجارية واستراتيجيتها"
@@ -243,14 +243,14 @@ export default function BrandingClient({
                 </span>
               </h1>
 
-              <p className="text-gray-300 text-lg leading-relaxed mb-12 text-center">
+              <p className="text-gray-300 max-w-[280px] sm:max-w-screen text-sm md:text-lg leading-relaxed mb-12 text-center">
                 {isArabic
                   ? "تطوير هوية علامة تجارية قوية ومتماسكة تتردد مع جمهورك وتتميز في السوق."
                   : "Develop a strong, cohesive brand identity that resonates with your audience and stands out in the market."}
               </p>
 
               <Link href={`/${lang}/contact` as any}>
-                <button className="px-8 py-4 bg-gradient-to-r from-amber-400 via-yellow-400 to-yellow-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 hover:scale-105">
+                <button className="px-2 md:px-8 py-4 bg-gradient-to-r text-sm sm:text-lg from-amber-400 via-yellow-400 to-yellow-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 hover:scale-105">
                   {isArabic
                     ? "احصل على استشارة العلامة التجارية"
                     : "Get a Brand Consultation"}
@@ -262,10 +262,10 @@ export default function BrandingClient({
       </section>
 
       {/* Branding Expertise Section */}
-      <section className="py-16 px-4">
+      <section className=" py-8 px-4">
         <div className="container mx-auto max-w-[96%]">
 
-          <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center  ">
             <Timeline
               titleText={
                 isArabic
@@ -309,7 +309,7 @@ export default function BrandingClient({
       <div className="max-w-3xl mx-auto mb-20 flex flex-col items-center justify-center">
         <h2
           className="
-            text-4xl md:text-5xl font-bold h-full py-4
+            text-2xl sm:text-3xl md:text-4xl font-bold h-full py-4
             bg-clip-text text-transparent
             bg-gradient-to-r from-amber-400 via-yellow-400 to-yellow-500
             mb-6 text-center
@@ -322,7 +322,7 @@ export default function BrandingClient({
         </h2>
 
         <p
-          className="text-gray-400 text-lg leading-relaxed text-center"
+          className="text-gray-400 text-md sm:text-lg leading-relaxed text-center"
           
         >
           {isArabic
@@ -436,20 +436,20 @@ export default function BrandingClient({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative z-20 p-12 rounded-2xl to-transparent backdrop-blur-sm text-center"
+            className="relative z-20 px-2 py-12 md:p-12 rounded-2xl to-transparent backdrop-blur-sm text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
               {isArabic
                 ? "هل أنت مستعد لبناء علامة تجارية لا تُنسى؟"
                 : "Ready to Build a Memorable Brand?"}
             </h2>
-            <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-300 text-md sm:text-lg mb-8 max-w-2xl mx-auto">
               {isArabic
                 ? "دعنا نعمل معًا لإنشاء هوية علامة تجارية تحكي قصتك وتتواصل مع جمهورك."
                 : "Let's work together to create a brand identity that tells your story and connects with your audience."}
             </p>
             <Link href={`/${lang}/contact` as any}>
-              <button className="px-8 py-4 bg-gradient-to-r from-amber-400 via-yellow-400 to-yellow-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
+              <button className="px-2 md:px-8 py-4 bg-gradient-to-r from-amber-400 via-yellow-400 to-yellow-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
                 {isArabic
                   ? "ابدأ رحلة علامتك التجارية"
                   : "Start Your Brand Journey"}

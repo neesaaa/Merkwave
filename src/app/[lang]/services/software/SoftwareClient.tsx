@@ -589,7 +589,7 @@ export default function SoftwareClient({
                 </span>
               </h1>
 
-              <p className="text-gray-300  max-w-[280px] sm:max-w-screen text-sm  mb-8 text-center break-words ">
+              <p className="text-gray-300  max-w-[280px] sm:max-w-screen text-sm md:text-lg  mb-8 text-center break-words ">
                 {isArabic
                   ? "نحن نهندس تطبيقات ويب مبتكرة وقابلة للتوسع وآمنة مصممة خصيصًا لاحتياجات عملك، مع التركيز على تجارب مستخدم استثنائية ووظائف قوية."
                   : "We engineer innovative, scalable, and secure web applications tailored to your business needs, focusing on exceptional user experiences and robust functionality."}
@@ -599,7 +599,7 @@ export default function SoftwareClient({
                 href={`/${lang}/contact` as any}
                 className="flex justify-center"
               >
-                <button className="px-8 py-4 bg-gradient-to-r  from-cyan-400 to-sky-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
+                <button className="px-2 md:px-8 py-4 bg-gradient-to-r text-sm sm:text-lg  from-cyan-400 to-sky-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
                   {isArabic
                     ? "ابدأ مشروع الويب الخاص بك"
                     : "Start Your Web Project"}
@@ -725,21 +725,21 @@ export default function SoftwareClient({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative p-12 rounded-2xl z-20  backdrop-blur-sm   transition-all duration-200 group text-center overflow-hidden"
+            className="relative px-2 py-12 md:p-12 rounded-2xl z-20  backdrop-blur-sm   transition-all duration-200 group text-center overflow-hidden"
           >
             <div className="relative z-10 h-full">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                 {isArabic
                   ? "هل أنت مستعد لتحويل تواجدك على الإنترنت؟"
                   : "Ready to Transform Your Online Presence?"}
               </h2>
-              <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+              <p className="text-gray-300 text-md sm:text-lg mb-8 max-w-2xl mx-auto">
                 {isArabic
                   ? "دعنا نناقش مشروعك ونحقق رؤيتك بحل ويب قوي."
                   : "Let's discuss your project and bring your vision to life with a powerful web solution."}
               </p>
               <Link href={`/${lang}/contact` as any}>
-                <button className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-sky-500 text-black font-bold rounded-lg hover:shadow-xl hover:shadow-yellow-400/50 transition-all duration-300 hover:scale-110 active:scale-95">
+                <button className="px-1 py-2 md:px-8 md:py-4 bg-gradient-to-r text-md md:text-2xl from-cyan-400 to-sky-500 text-black font-bold rounded-lg hover:shadow-xl hover:shadow-yellow-400/50 transition-all duration-300 hover:scale-110 active:scale-95">
                   {isArabic
                     ? "ابدأ مشروع الويب الخاص بك"
                     : "Start Your Web Project"}
