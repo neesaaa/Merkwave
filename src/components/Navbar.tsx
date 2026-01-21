@@ -42,21 +42,21 @@ export default function Navbar({ lang = 'en' }: { lang?: string }) {
   const directionClass = isArabic ? 'rtl' : 'ltr'
 
   return (
-    <nav className={`bg-black/90 backdrop-blur-md border-b border-[#00D4CD] sticky top-0 z-50 ${directionClass}`} dir={directionClass}>
+    <nav className={`bg-black/90 backdrop-blur-md border-b border-[#00D4CD]  top-0 z-50 ${directionClass}`} dir={directionClass}>
       <div className="container mx-auto md:px-2 sm:px-2 lg:px-4">
         <div className="flex items-center justify-between h-12 md:h-18  gap-2 ">
           {/* Logo */}
           <div className="flex-shrink-0 px-2 md:px-0" suppressHydrationWarning>
             <Link 
               href={`/${lang}`}
-              className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 group"
+              className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 group transform hover:scale-110 group"
             >
               <Image
                 src="/MERKWAV-Logo.png"
                 alt="MerkWave Logo"
                 width={180}
                 height={60}
-                className="h-14 w-auto group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg"
+                className=" "
                 priority
               />
             </Link>
