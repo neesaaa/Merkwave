@@ -167,7 +167,7 @@ const dictionaries: Record<Locale, Dictionary> = {
             "Official Odoo Partner providing custom ERP and high-performance software.",
         },
         {
-          slug: "Branding",
+          slug: "branding",
           name: "Branding & Identity",
           description:
             "Crafting iconic identities that demand attention and build lasting trust.",
@@ -338,7 +338,7 @@ const dictionaries: Record<Locale, Dictionary> = {
             "استراتيجيات نمو رقمي قائمة على البيانات مدمجة مع حلول الطباعة الفاخرة",
         },
         {
-          slug: "Branding",
+          slug: "branding",
           name: "العلامة التجارية والهوية",
           description:
             "ابتكار هويات بصرية أيقونية تفرض حضورها وتبني ثقة مستدامة.",

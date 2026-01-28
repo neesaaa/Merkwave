@@ -326,8 +326,18 @@ export default function BusinessClient({
               transition={{ duration: 0.8 }}
               className="text-4xl md:text-5xl font-bold mb-6 h-full  w-full text-center"
             >
-              <span className="text-white block text-center">
-                {isArabic ? "تطوير الأعمال: استراتيجيات السيادة على السوق" : "Business Development: Strategies for Market Dominance"}
+              <span className="text-white text-center flex flex-col gap-2">
+                {isArabic ? (
+                  <>
+                    <span className="font-bold text-[#ff3000]">تطوير الأعمال</span>
+                    <span>استراتيجيات السيادة على السوق</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="font-bold text-[#ff3000]">Business Development</span>
+                    <span>Strategies for Market Dominance</span>
+                  </>
+                )}
               </span>
             </motion.h1>
 

@@ -585,13 +585,13 @@ export default function SoftwareClient({
               <h1 className="max-w-[280px] sm:max-w-screen text-4xl md:text-5xl  text-center font-bold mb-6">
                 {" "}
                 <span className="text-[#00FFFF] mb-1">
-                  {isArabic
-                    ? "من خلال البرمجيات المخصصة ونظام أودو"
-                    : "with Custom Software & Odoo"}
+                  {isArabic ? "ابتكر في عملياتك" : "Innovate Your Operations "}
                 </span>
                 <br />
                 <span className="text-md md:text-3xl text-white">
-                  {isArabic ? "ابتكر في عملياتك" : "Innovate Your Operations "}
+                                    {isArabic
+                    ? "خلال البرمجيات المخصصة ونظام أودو"
+                    : "Custom Software & Odoo"}
                 </span>
               </h1>
 

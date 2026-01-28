@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -42,36 +43,40 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
   // Why Merkwave values
   const values = [
     {
-      icon: Code2,
+      logo: "/Software.png",
       title: isArabic ? "خدمات البرمجيات" : "Software Services",
       description: isArabic
         ? "بصفتنا شريك أودو (Odoo) الرسمي، نطوّر برمجيات مخصصة وحلول ERP تقوم بأتمتة نجاحك وتأمين عملياتك للمستقبل."
         : "As an official Odoo Partner, we build custom software and ERP solutions that automate your success and future-proof your operations.",
       color: "from-cyan-400 to-cyan-600",
+      accent: "#06B6D4",
     },
     {
-      icon: Palette,
+      logo: "/Branding.png",
       title: isArabic ? "خدمات الهوية التجارية" : "Branding Services",
       description: isArabic
         ? "نبني هويات تجارية قوية تترك أثراً لدى جمهورك وترتقي بمكانتك في السوق من خلال التميز الإبداعي."
         : "We build iconic brand identities that resonate with your audience and elevate your market position through creative excellence.",
       color: "from-orange-400 to-orange-600",
+      accent: "#F59E0B",
     },
     {
-      icon: TrendingUp,
+      logo: "/Marketing.png",
       title: isArabic ? "التسويق" : "Marketing",
       description: isArabic
         ? "استراتيجيات تسويق تعتمد على البيانات، مصممة لتوسيع نطاق وصولك، وزيادة التفاعل، وتحقيق أعلى معدلات التحويل."
         : "Data-driven marketing strategies designed to expand your reach, increase engagement, and drive high-value conversions.",
       color: "from-pink-400 to-pink-600",
+      accent: "#22C55E",
     },
     {
-      icon: Briefcase,
+      logo: "/Business.png",
       title: isArabic ? "تطوير الأعمال" : "Business Development",
       description: isArabic
         ? "استشارات استراتيجية لتحسين مبيعاتك، وتبسيط العمليات، وضمان سيطرتك على المشهد التنافسي."
         : "Strategic consulting to optimize your sales, streamline operations, and ensure you dominate your competitive landscape.",
-      color: "from-cyan-400 to-cyan-600",
+      color: "from-pink-500 to-orange-500",
+      accent: "#FF0000",
     },
   ];
 
@@ -153,8 +158,8 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
             "
             >
               {isArabic
-                ? "ابتكار ارتقاء سيادة."
-                : "Innovate Elevate DominateReady to"}
+                ? "ابتكار، ارتقاء، سيادة."
+                : "Innovate, Elevate, Dominate."}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -266,8 +271,6 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 z-20">
               {values.map((value, index) => {
-                const IconComponent = value.icon;
-                const borderColor = borderColors[index % borderColors.length];
                 const borderColorBright =
                   borderColorsBright[index % borderColors.length];
                 const animationSpeed = 0.6 + (index % 5) * 0.15;
@@ -292,11 +295,21 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                         >
                           {/* Icon with gradient background */}
                           <div
-                            className={`inline-flex p-4 rounded-2xl  mb-6`}
-                            style={{ backgroundColor: borderColorBright }}
+                            className="inline-flex p-4 rounded-2xl mb-6 backdrop-blur-sm border"
+                            style={{
+                              backgroundColor: `${value.accent}1A`,
+                              borderColor: `${value.accent}4D`,
+                              boxShadow: `0 0 20px ${value.accent}33`,
+                            }}
                           >
-                            <IconComponent className="w-10 h-10 text-white" />
+                            <Image
+                              src={value.logo}
+                              alt={value.title}
+                              width={40}
+                              height={40}
+                            />
                           </div>
+
                           <h3 className="text-xl font-bold mb-4 text-white">
                             {value.title}
                           </h3>
@@ -312,11 +325,21 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                       >
                         {/* Icon with gradient background */}
                         <div
-                          className={`inline-flex p-4 rounded-2xl  mb-6`}
-                          style={{ backgroundColor: borderColorBright }}
+                          className="inline-flex p-4 rounded-2xl mb-6 backdrop-blur-sm border"
+                          style={{
+                            backgroundColor: `${borderColorBright}1A`, 
+                            borderColor: `${borderColorBright}4D`, 
+                            boxShadow: `0 0 0 1px ${borderColorBright}33`,
+                          }}
                         >
-                          <IconComponent className="w-10 h-10 text-white" />
+                          <Image
+                            src={value.logo}
+                            alt={value.title}
+                            width={40}
+                            height={40}
+                          />
                         </div>
+
                         <h3 className="text-xl font-bold mb-4 text-white">
                           {value.title}
                         </h3>
@@ -406,12 +429,12 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                         ease: "easeInOut",
                       }}
                     >
-                      للسيادة؟ 
+                      للسيادة؟
                     </motion.span>
                   </>
                 ) : (
                   <>
-                    Ready to {" "}
+                    Ready to{" "}
                     <motion.span
                       className="inline-block text-4xl"
                       animate={{
@@ -431,16 +454,12 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                     </motion.span>
                   </>
                 )}
-
-                </h2>
-                  <p
-
-                    className="text-sm sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed relative z-10"
-                  >
-                    {isArabic
-                      ? "نساعد الشركات الصغيرة والمتوسطة على النمو من خلال التسويق الرقمي الإبداعي وتطوير البرمجيات المخصصة والاستشارات الاستراتيجية."
-                      : "We help SMBs grow with creative digital marketing, be spoke software development, and strategic consulting."}
-                  </p>
+              </h2>
+              <p className="text-sm sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed relative z-10">
+                {isArabic
+                  ? "نساعد الشركات الصغيرة والمتوسطة على النمو من خلال التسويق الرقمي الإبداعي وتطوير البرمجيات المخصصة والاستشارات الاستراتيجية."
+                  : "We help SMBs grow with creative digital marketing, be spoke software development, and strategic consulting."}
+              </p>
 
               <Link href={`/${lang}/contact` as any}>
                 <motion.button
@@ -448,9 +467,7 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                   whileTap={{ scale: 0.95 }}
                   className="  inline-flex items-center gap-3 px-3 md:px-15 py-3 bg-[#F6FF00] text-black font-bold text-sm sm:text-lg rounded-full transition-all duration-300 shadow-2xl shadow-yellow-500/40 hover:shadow-yellow-500/60"
                 >
-                  <span>
-                    {isArabic ? "تواصل معنا" : "Contact Us"}
-                  </span>
+                  <span>{isArabic ? "تواصل معنا" : "Contact Us"}</span>
                 </motion.button>
               </Link>
             </motion.div>

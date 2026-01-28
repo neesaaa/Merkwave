@@ -336,7 +336,7 @@ export default function CommerceClient({
           </Link>
 
           <div className="flex flex-col items-center justify-center text-center pt-8 md:pt-24">
-            <div className="mb-12">
+            <div className="mb-6">
               <Image
                 src="/Marketing.png"
                 alt="Branding Wave"
@@ -351,10 +351,24 @@ export default function CommerceClient({
               transition={{ duration: 0.8 }}
               className="text-4xl md:text-5xl  font-bold mb-6"
             >
-              <span className="text-white ">
-                {isArabic
-                  ? "خدمات التسويق: الارتقاء بحضور علامتك التجارية"
-                  : "Marketing Services: Elevate Your Brand Presence"}
+              <span className="text-white">
+                {isArabic ? (
+                  <>
+                    <span className="block font-bold mb-2 text-[#34D399]">خدمات التسويق</span>
+                    <span className="block font-medium">
+                      الارتقاء بحضور علامتك التجارية
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="block font-bold mb-2 text-[#34D399]">
+                      Marketing Services
+                    </span>
+                    <span className="block font-medium">
+                      Elevate Your Brand Presence
+                    </span>
+                  </>
+                )}
               </span>
             </motion.h1>
 

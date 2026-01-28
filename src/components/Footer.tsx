@@ -41,7 +41,7 @@ export default function Footer({ lang }: { lang: string }) {
     },
     {
       name: isArabic ? "الهوية والعلامة التجارية" : "Branding & Identity",
-      href: `/${lang}/services/Branding` as const,
+      href: `/${lang}/services/branding` as const,
     },
   ];
 
