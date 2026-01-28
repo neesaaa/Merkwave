@@ -332,7 +332,7 @@ const dictionaries: Record<Locale, Dictionary> = {
             "شريك أودو الرسمي لتقديم حلول ERP مخصصة وبرمجيات عالية الأداء.",
         },
         {
-          slug: "Marketing",
+          slug: "marketing",
           name: "التسويق",
           description:
             "استراتيجيات نمو رقمي قائمة على البيانات مدمجة مع حلول الطباعة الفاخرة",
