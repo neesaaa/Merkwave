@@ -59,14 +59,11 @@ export default function WhyMerkwaveSection({ dict, lang }: WhyMerkwaveSectionPro
           {/* Main Heading */}
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 bg-clip-text text-transparent">
-              {dict.about.title}
+              {isArabic ? 'شريكك في النجاح الرقمي' : 'Your Partner in Digital Success'}
             </span>
           </h2>
 
-          {/* Subheading */}
-          <h3 className="text-2xl md:text-3xl font-semibold text-white mb-8 drop-shadow-lg">
-            {isArabic ? 'شريكك في النجاح الرقمي' : 'Your Partner in Digital Success'}
-          </h3>
+
 
           {/* Philosophy Paragraph */}
           <div className="max-w-4xl mx-auto mb-8">

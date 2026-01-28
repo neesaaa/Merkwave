@@ -129,11 +129,13 @@ export default function StackCardsSection({ isArabic = false }: StackCardsSectio
           animate={isMobile ? { scale: 1 - (currentStep / (totalSteps - 1)) * 0.7 } : undefined}
           transition={isMobile ? { duration: 0.3, ease: "easeOut" } : undefined}
         >
-          <h3 className="text-white text-3xl md:text-8xl font-bold whitespace-nowrap">
-            {isArabic ? "بثقة أكثر من مليون عميل" : "My Section Heading"}
+          <h3 className="text-white text-3xl md:text-8xl font-bold text-center w-full ">
+            {isArabic ? "شريك واحد . تحول شامل لأعمالك" : "One Partner"}
           </h3>
-          <p className="text-lg md:text-3xl font-medium text-white/90 text-center max-w-2xl">
-            نقدم لك أول بنك رقمي سعودي متوافق مع أحكام الشريعة الإسلامية
+          <p className="text-lg md:text-3xl font-medium text-white/90 text-center max-w-5xl">
+            {isArabic
+              ? "ندمج التقنية، الهوية، والاستراتيجية لهندسة نمو نجاحك"
+              : "Total Business Transformation ,We integrate tech, branding, and strategy to engineer your growth"}
           </p>
         </motion.div>
       </div>

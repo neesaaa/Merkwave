@@ -129,22 +129,20 @@
               >
                   {isArabic ? (
                     <>
-                      <span  className="text-white " > تمكين </span>
-                      <span  className="bg-gradient-to-r from-[#FF4D4D ] bg-[#D00000] to-[#FF4D4D ] bg-clip-text text-transparent " >أعمالك</span>
+                      <span  className="bg-gradient-to-r from-[#00BEC3] via-[#00F9FF] to-[#05C1C5] bg-clip-text text-transparent " > ابتكار </span>
                       <br />
-                      <span className="text-white">بحلول </span>
-                      <span  className=" from-[#00BEC3]   bg-[#FFF200] to-[#05C1C5] bg-clip-text text-transparent" >رقمية ذكية</span>
+                      <span  className="bg-gradient-to-r from-[#FF4D4D ] bg-[#D00000] to-[#FF4D4D ] bg-clip-text text-transparent " > ارتقاء</span>
+                      <span  className=" from-[#00BEC3]   bg-[#FFF200] to-[#05C1C5] bg-clip-text text-transparent mr-2" >سيادة </span>
                     </>
                   ) : (
                     <>
-                      <span className="text-white">Empowering Your </span>
                       <span className="bg-gradient-to-r from-[#00BEC3] via-[#00F9FF] to-[#05C1C5] bg-clip-text text-transparent">
-                        Business
+                        Innovate
                       </span>
                       <br />
-                      <span className="text-white">with Smart </span>
-                      <span className="bg-gradient-to-r from-[#00BEC3] via-[#00F9FF] to-[#05C1C5] bg-clip-text text-transparent">
-                        Digital Solutions
+                      <span className="bg-gradient-to-r from-[#FF4D4D ] bg-[#D00000] to-[#FF4D4D ] bg-clip-text text-transparent">Elevate </span>
+                      <span className="from-[#00BEC3]   bg-[#FFF200] to-[#05C1C5] bg-clip-text text-transparent">
+                        Dominate
                       </span>
                     </>
                 )}
@@ -158,8 +156,8 @@
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
                 {isArabic 
-                  ? 'نساعد الشركات الصغيرة والمتوسطة على النمو من خلال التسويق الرقمي الإبداعي، وتطوير البرمجيات المخصصة، والاستشارات الاستراتيجية.'
-                  : 'We help SMBs grow with creative digital marketing, bespoke software development, and strategic consulting.'}
+                  ?'هندسة مستقبل الأعمال. من حلول أودو الرسمية إلى انشاء برمجيات خاصه إلى الهويات الأيقونية والنمو الاستراتيجي، نحن نبني المحركات التي تقود نجاحك '
+                  : 'Engineering the future of business. From Official Odoo ERP solutions to custom software development to iconic branding and strategic growth, we build the engines that drive your success'}
               </motion.p>
 
               {/* CTA Buttons */}
@@ -189,7 +187,7 @@
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {isArabic ? 'استكشف الخدمات' : 'View Our Work'}
+                    {isArabic ? 'خدماتنا' : 'Our Services'}
                   </motion.button>
 
                 </Link>

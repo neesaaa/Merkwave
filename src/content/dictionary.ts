@@ -156,34 +156,34 @@ const dictionaries: Record<Locale, Dictionary> = {
       items: [
         {
           slug: "business",
-          name: "Digital Solutions",
+          name: "Business Development",
           description:
-            "Websites, e-commerce, and automation flows designed to scale with your business.",
+            "Strategic consulting to optimize operations and scale your market presence.",
         },
         {
           slug: "software",
           name: "Software Engineering",
           description:
-            "Custom software and apps engineered for performance, security, and usability.",
+            "Official Odoo Partner providing custom ERP and high-performance software.",
         },
         {
           slug: "Branding",
-          name: "Social Media",
+          name: "Branding & Identity",
           description:
-            "Audience-first storytelling, community management, and data-led campaign optimization.",
+            "Crafting iconic identities that demand attention and build lasting trust.",
         },
         {
           slug: "commerce",
-          name: "Media Production",
+          name: "Marketing",
           description:
-            "Video, photo, and motion assets that make your brand impossible to ignore.",
+            " Data-led digital growth strategies combined with premium printing solutions.",
         },
       ],
     },
     about: {
       title: "Why Merkwave",
       body:
-        "We unite strategists, creatives, and engineers to transform ambitious ideas into experiences that deliver measurable business outcomes. With global talent operating locally, we stay close to your market while bringing world-class execution.",
+        "We transform ambitious ideas into measurable business outcomes , Data-driven strategies designed to scale with your vision. Global execution delivered with local market expertise. "
     },
     contact: {
       title: "Let's build your next success story",
@@ -321,34 +321,34 @@ const dictionaries: Record<Locale, Dictionary> = {
       items: [
         {
           slug: "business",
-          name: "البزنس",
+          name: "تطوير الأعمال",
           description:
-            "مواقع إلكترونية، ومتاجر إلكترونية، وأتمتة متكاملة تنمو مع عملك.",
+            "استشارات استراتيجية لتحسين العمليات وتوسيع نطاق تواجدك في السوق",
         },
         {
           slug: "software",
-          name: "الهندسة البرمجية",
+          name: "هندسة البرمجيات",
           description:
-            "برمجيات وتطبيقات مخصصة بآداء عالٍ وأمان وتجربة مستخدم مريحة.",
+            "شريك أودو الرسمي لتقديم حلول ERP مخصصة وبرمجيات عالية الأداء.",
         },
         {
           slug: "Marketing",
-          name: "إدارة وسائل التواصل",
+          name: "التسويق",
           description:
-            "سرد قصصي يركز على الجمهور، وإدارة المجتمعات، وتحسين الحملات.",
+            "استراتيجيات نمو رقمي قائمة على البيانات مدمجة مع حلول الطباعة الفاخرة",
         },
         {
           slug: "Branding",
-          name: "العلامة التجارية",
+          name: "العلامة التجارية والهوية",
           description:
-            "بناء وتطوير الهوية التجارية للشركة أو المنتج لجذب العملاء وتعزيز الثقة",
+            "ابتكار هويات بصرية أيقونية تفرض حضورها وتبني ثقة مستدامة.",
         },
       ],
     },
     about: {
       title: "لماذا مِرك ويف",
       body:
-        "نجمع بين الاستراتيجيين والمبدعين والمهندسين لتحويل الأفكار الطموحة إلى تجارب تحقق نتائج تجارية ملموسة. مع مواهب عالمية تعمل محليًا، نبقى قريبين من سوقك مع تقديم تنفيذ بمعايير عالمية.",
+        "نحول الأفكار الطموحة إلى نتائج أعمال ملموسة,استراتيجيات قائمة على البيانات مصممة للتوسع مع رؤيتك,فريق من الخبراء بتنفيذ عالمي وخبرة محلية",
     },
     contact: {
       title: "فلنصنع قصة نجاحك التالية",

@@ -5,15 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowLeft,
-  Users,
+  Compass,
   Palette,
-  MessageCircle,
+  Type,
   Package,
   BookOpen,
   Megaphone,
   ShieldCheck,
   Sparkles,
-  HeartHandshake 
+  HeartHandshake,
+  Crown,
 } from "lucide-react";
 import { Timeline } from "@/components/Timeline";
 
@@ -35,60 +36,61 @@ export default function BrandingClient({
 
   const services = [
     {
-      icon: Users,
+      icon: Compass,
       title: isArabic
-        ? "استراتيجية العلامة التجارية وتحديد المواقع"
+        ? "استراتيجية وتموضع العلامة"
         : "Brand Strategy & Positioning",
       description: isArabic
-        ? "تحديد قيمك الأساسية ورسالتك ورؤيتك وعرض البيع الفريد."
-        : "Defining your core values, mission, vision, and unique selling proposition.",
+        ? 'تحديد "لماذا" مشروعك. نقوم بمحاذاة مهمتك ورؤيتك وقيمك الأساسية لخلق مساحة فريدة لك في السوق.'
+        : 'Defining your "Why." We align your mission, vision, and core values to carve out a unique space in the market.',
       color: "orange",
     },
     {
       icon: Palette,
-      title: isArabic
-        ? "تصميم الشعار والهوية البصرية"
-        : "Logo Design & Visual Identity",
+      title: isArabic ? "الشعار والهوية البصرية" : "Logo & Visual Identity",
       description: isArabic
-        ? "صياغة شعارات لا تُنسى ولوحات ألوان وطباعة وإرشادات العلامة التجارية."
-        : "Crafting memorable logos, color palettes, typography, and brand guidelines.",
+        ? "ابتكار شعارات أيقونية، لوحات ألوان، وخطوط تجعل علامتك التجارية قابلة للتمييز فوراً."
+        : "Crafting iconic logos, color palettes, and typography that make your brand instantly recognizable.",
       color: "cyan",
     },
     {
-      icon: MessageCircle,
+      icon: Type,
       title: isArabic
-        ? "تسمية العلامة التجارية وتطوير الشعارات"
-        : "Brand Naming & Slogan Development",
+        ? "تسمية العلامة والشعارات"
+        : "Naming & Slogan Development",
       description: isArabic
-        ? "إنشاء أسماء وشعارات مؤثرة تتردد مع جمهورك المستهدف."
-        : "Creating impactful names and taglines that resonate with your target audience.",
+        ? 'ابتكار أسماء قوية وشعارات رنانة – مثل "ابتكار، ارتقاء، سيادة" – تلتصق في أذهان جمهورك.'
+        : 'Creating powerful names and taglines—like "Innovate, Elevate, Dominate"—that stick in the minds of your audience.',
       color: "pink",
     },
     {
       icon: Package,
-      title: isArabic ? "تصميم العبوات" : "Packaging Design",
+      title: isArabic
+        ? "تصميم التغليف والمنتجات"
+        : "Packaging & Product Design",
       description: isArabic
-        ? "تصميم عبوات جذابة وعملية تعكس جوهر علامتك التجارية."
-        : "Designing attractive and functional packaging that reflects your brand essence.",
+        ? "تحويل المنتجات المادية إلى تجارب للعلامة التجارية من خلال تغليف عملي وجذاب بصرياً."
+        : "Turning physical products into brand experiences through functional and aesthetically stunning packaging.",
       color: "purple",
     },
     {
       icon: BookOpen,
-      title: isArabic ? "أدلة نمط العلامة التجارية" : "Brand Style Guides",
+      title: isArabic ? "أدلة الهوية التجارية" : "Brand Style Guides",
       description: isArabic
-        ? "أدلة شاملة لضمان تطبيق العلامة التجارية بشكل متسق عبر جميع نقاط الاتصال."
-        : "Comprehensive guides to ensure consistent brand application across all touchpoints.",
+        ? 'توفير "كتاب القواعد" لعلامتك التجارية لضمان الاتساق في كل منشور، وثيقة، أو مكتب تابع لك.'
+        : "Providing the rulebook for your brand to ensure consistency across every social media post, document, and office.",
       color: "emerald",
     },
     {
       icon: Megaphone,
-      title: isArabic ? "سرد قصص العلامة التجارية" : "Brand Storytelling",
+      title: isArabic ? "السرد القصصي للعلامة" : "Brand Storytelling",
       description: isArabic
-        ? "تطوير روايات مقنعة تتواصل عاطفياً مع عملائك."
-        : "Developing compelling narratives that connect emotionally with your customers.",
+        ? "صياغة رواية تربط عملائك عاطفياً بك، وتحولهم من مجرد مشترين إلى مدافعين عن علامتك التجارية."
+        : "Crafting a narrative that connects emotionally with your customers, turning them from buyers into brand advocates.",
       color: "blue",
     },
   ];
+
   const getColorClasses = (color: string) => {
     const colors: Record<
       string,
@@ -238,21 +240,21 @@ export default function BrandingClient({
               <h1 className="text-4xl md:text-5xl  text-center font-bold mb-6">
                 <span className="text-white">
                   {isArabic
-                    ? "هوية العلامة التجارية واستراتيجيتها"
-                    : "Brand Identity & Strategy"}
+                    ? "ارتقِ بحضورك: استراتيجيات بناء الهوية والعلامة التجارية"
+                    : "Elevate Your Presence: Strategic Branding & Identity"}
                 </span>
               </h1>
 
-              <p className="text-gray-300 max-w-[280px] sm:max-w-screen text-sm md:text-lg leading-relaxed mb-12 text-center">
+              <p className="text-gray-300 max-w-[280px] sm:max-w-3/4 text-sm md:text-lg leading-relaxed mb-12 text-center">
                 {isArabic
-                  ? "تطوير هوية علامة تجارية قوية ومتماسكة تتردد مع جمهورك وتتميز في السوق."
-                  : "Develop a strong, cohesive brand identity that resonates with your audience and stands out in the market."}
+                  ? "نحن لا نصمم شعارات فحسب، بل نهندس أنظمة متكاملة للعلامات التجارية. من مصر إلى السعودية، نساعد الشركات على بناء صورة احترافية تفرض احترامها وتكسب ولاء العملاء."
+                  : "We don’t just design logos; we engineer brand systems. From Egypt to Saudi Arabia, we help businesses build a professional image that commands respect and inspires loyalty"}
               </p>
 
               <Link href={`/${lang}/contact` as any}>
                 <button className="px-2 md:px-8 py-4 bg-gradient-to-r text-sm sm:text-lg from-amber-400 via-yellow-400 to-yellow-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-300 hover:scale-105">
                   {isArabic
-                    ? "احصل على استشارة العلامة التجارية"
+                    ? "احصل على استشارة لهويتك التجارية"
                     : "Get a Brand Consultation"}
                 </button>
               </Link>
@@ -262,10 +264,9 @@ export default function BrandingClient({
       </section>
 
       {/* Branding Expertise Section */}
-      <section className=" py-8 px-4">
-        <div className="container mx-auto max-w-[96%]">
-
-          <div className="flex items-center justify-center  ">
+      <section className=" px-4 z-20">
+        <div className="container mx-auto max-w-[96%] -mb-4">
+          <div className="relative  space-y-2 z-20">
             <Timeline
               titleText={
                 isArabic
@@ -286,93 +287,88 @@ export default function BrandingClient({
       </section>
 
       {/* Why Branding Matters Section */}
-  
 
-<section
-  className="
+      <section
+        className="
     relative z-20 py-24 px-4
     bg-gradient-to-b
     from-transparent
     via-[#060912]/90
     to-transparent
   "
->
-  <div className="container mx-auto flex flex-col max-w-6xl">
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="text-center"
-    >
-      {/* Header */}
-      <div className="max-w-3xl mx-auto mb-20 flex flex-col items-center justify-center">
-        <h2
-          className="
+      >
+        <div className="container mx-auto flex flex-col max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            {/* Header */}
+            <div className="max-w-3xl mx-auto mb-20 flex flex-col items-center justify-center">
+              <h2
+                className="
             text-2xl sm:text-3xl md:text-4xl font-bold h-full py-4
             bg-clip-text text-transparent
             bg-gradient-to-r from-amber-400 via-yellow-400 to-yellow-500
             mb-6 text-center
           "
-          
-        >
-          {isArabic
-            ? "كيف تصنع الهوية البصرية تأثيرًا حقيقيًا؟"
-            : "How Brand Identity Creates Real Impact"}
-        </h2>
+              >
+                {isArabic
+                  ? "ما وراء البصريات: هندسة الأثر"
+                  : "Beyond Visuals: Engineering Impact"}
+              </h2>
 
-        <p
-          className="text-gray-400 text-md sm:text-lg leading-relaxed text-center"
-          
-        >
-          {isArabic
-            ? "نحن لا نصمم فقط، بل نبني أنظمة بصرية تتفاعل مع جمهورك وتترك أثرًا طويل الأمد."
-            : "We don’t just design visuals — we build brand systems that interact, resonate, and leave a lasting impression."}
-        </p>
-      </div>
+              <p className="text-gray-400 text-md sm:text-lg leading-relaxed text-center">
+                {isArabic
+                  ? "نحن لا نصمم فقط، بل نبني أنظمة بصرية تتفاعل مع جمهورك وتترك أثرًا طويل الأمد."
+                  : "We don’t just design visuals — we build brand systems that interact, resonate, and leave a lasting impression."}
+              </p>
+            </div>
 
-      {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Card */}
-        {[
-          {
-            icon: ShieldCheck,
-            color: "cyan",
-            titleAr: "الثقة والمصداقية",
-            titleEn: "Trust & Credibility",
-            descAr:
-              "هوية قوية تعكس الاحتراف وتبني ثقة فورية مع جمهورك من أول تفاعل.",
-            descEn:
-              "A strong identity signals professionalism and builds instant trust from the first interaction.",
-          },
-          {
-            icon: Sparkles,
-            color: "violet",
-            titleAr: "تميّز بصري واضح",
-            titleEn: "Distinct Visual Presence",
-            descAr:
-              "نخلق لغة بصرية فريدة تجعل علامتك واضحة ولا تُنسى وسط المنافسين.",
-            descEn:
-              "We craft a unique visual language that makes your brand stand out and stay memorable.",
-          },
-          {
-            icon: HeartHandshake,
-            color: "indigo",
-            titleAr: "ارتباط عاطفي",
-            titleEn: "Emotional Connection",
-            descAr:
-              "نحوّل العلامة التجارية إلى تجربة يشعر بها العميل وليس مجرد شكل.",
-            descEn:
-              "We turn branding into an experience customers feel — not just see.",
-          },
-        ].map((item, i) => {
-          const Icon = item.icon
-          return (
-            <motion.div
-              key={i}
-              whileHover={{ y: -6 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              className="
+            {/* Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Card */}
+              {[
+                {
+                  icon: ShieldCheck,
+                  color: "cyan",
+                  titleAr: "الثقة والمصداقية",
+                  titleEn: "Trust & Credibility",
+                  descAr:
+                    "في أسواق تنافسية مثل السعودية ومصر، الهوية المصقولة تعني أنك منافس حقيقي، مما يبني سلطة وثقة فورية لعلامتك التجارية.",
+                  descEn:
+                    "In competitive markets like KSA and Egypt, a polished identity signals that you are a serious player, building instant authority and trust.",
+                },
+                {
+                  icon: Sparkles,
+                  color: "violet",
+                  titleAr: "حضور متميز",
+                  titleEn: "Distinct Presence",
+                  descAr:
+                    "نضمن لعلامتك ألا تكتفي بالانضمام إلى الحوار، بل تقوده بلغة بصرية ولفظية فريدة تضعك في الصدارة.",
+                  descEn:
+                    "We ensure your brand doesn’t just join the conversation—it leads it with a unique visual and verbal language.",
+                },
+                {
+                  icon: Crown,
+                  color: "indigo",
+                  titleAr: "عامل السيادة",
+                  titleEn: "The Domination Factor",
+                  descAr:
+                    "الهوية التجارية هي أساس النمو. من خلال الارتقاء بصورتك، نوفر لك المنصة التي تحتاجها للسيادة في مجالك.",
+                  descEn:
+                    "Branding is the foundation of growth. By elevating your image, we provide the platform you need to dominate your industry.",
+                },
+              ].map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    whileHover={{ y: -6 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                    className="
                 group relative
                 p-8 rounded-2xl
                 border border-white/10
@@ -380,10 +376,10 @@ export default function BrandingClient({
                 backdrop-blur-xl
                 overflow-hidden
               "
-            >
-              {/* Glow */}
-              <div
-                className={`
+                  >
+                    {/* Glow */}
+                    <div
+                      className={`
                   absolute inset-0 opacity-0 group-hover:opacity-100
                   transition duration-700
                   bg-gradient-to-br
@@ -391,11 +387,11 @@ export default function BrandingClient({
                   via-transparent
                   to-transparent
                 `}
-              />
+                    />
 
-              {/* Icon */}
-              <div
-                className={`
+                    {/* Icon */}
+                    <div
+                      className={`
                   relative z-10
                   w-16 h-16 mb-6 mx-auto
                   rounded-xl
@@ -403,31 +399,31 @@ export default function BrandingClient({
                   flex items-center justify-center
                   shadow-[0_0_30px_-10px_var(--tw-${item.color}-500)]
                 `}
-              >
-                <Icon className={`w-8 h-8 text-${item.color}-400`} />
-              </div>
+                    >
+                      <Icon className={`w-8 h-8 text-${item.color}-400`} />
+                    </div>
 
-              {/* Content */}
-              <h3
-                className="relative z-10 text-xl font-semibold text-white mb-3"
-                dir={isArabic ? "rtl" : "ltr"}
-              >
-                {isArabic ? item.titleAr : item.titleEn}
-              </h3>
+                    {/* Content */}
+                    <h3
+                      className="relative z-10 text-xl font-semibold text-white mb-3"
+                      dir={isArabic ? "rtl" : "ltr"}
+                    >
+                      {isArabic ? item.titleAr : item.titleEn}
+                    </h3>
 
-              <p
-                className="relative z-10 text-gray-400 leading-relaxed"
-                dir={isArabic ? "rtl" : "ltr"}
-              >
-                {isArabic ? item.descAr : item.descEn}
-              </p>
-            </motion.div>
-          )
-        })}
-      </div>
-    </motion.div>
-  </div>
-</section>
+                    <p
+                      className="relative z-10 text-gray-400 leading-relaxed"
+                      dir={isArabic ? "rtl" : "ltr"}
+                    >
+                      {isArabic ? item.descAr : item.descEn}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
+      </section>
       {/* CTA Section */}
       <section className="py-16 px-4 ">
         <div className="container  mx-auto max-w-[96%]">
@@ -440,18 +436,18 @@ export default function BrandingClient({
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
               {isArabic
-                ? "هل أنت مستعد لبناء علامة تجارية لا تُنسى؟"
-                : "Ready to Build a Memorable Brand?"}
+                ? "هل أنت مستعد لبناء علامة تجارية سائدة؟"
+                : "Ready to Build a Dominant Brand?"}
             </h2>
             <p className="text-gray-300 text-md sm:text-lg mb-8 max-w-2xl mx-auto">
               {isArabic
-                ? "دعنا نعمل معًا لإنشاء هوية علامة تجارية تحكي قصتك وتتواصل مع جمهورك."
-                : "Let's work together to create a brand identity that tells your story and connects with your audience."}
+                ? "لنحول رؤيتك إلى تحفة بصرية تترك أثراً وتحقق نتائج."
+                : "Let’s transform your vision into a visual masterpiece that resonates and converts"}
             </p>
             <Link href={`/${lang}/contact` as any}>
               <button className="px-2 md:px-8 py-4 bg-gradient-to-r from-amber-400 via-yellow-400 to-yellow-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
                 {isArabic
-                  ? "ابدأ رحلة علامتك التجارية"
+                  ? "ابدأ رحلة بناء علامتك الآن"
                   : "Start Your Brand Journey"}
               </button>
             </Link>

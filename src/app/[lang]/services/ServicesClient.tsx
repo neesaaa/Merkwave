@@ -17,11 +17,16 @@ const services = [
   {
     id: "software",
     logo: "/Software.png",
-    titleEn: "SOFTWARE WAVE",
-    titleAr: "موجة البرمجيات",
+    titleEn: "SOFTWARE SERVICES",
+    titleAr: "خدمات البرمجيات",
     descriptionEn:
-      "Custom software solutions that scale with your business and streamline operations.",
-    descriptionAr: "حلول برمجية مخصصة تنمو مع عملك وتبسط العمليات.",
+      "Official Odoo Partner & Custom Tech. We build the digital backbone of your business with high-performance ERP solutions and custom software.",
+    descriptionAr:
+      "شريك أودو الرسمي والحلول التقنية. نبني العمود الفقري الرقمي لعملك من خلال حلول ERP عالية الأداء وبرمجيات مخصصة.",
+    pillar: {
+      en: "INNOVATE",
+      ar: "ابتكار",
+    },
     colors: {
       from: "from-cyan-500",
       to: "to-blue-500",
@@ -34,57 +39,39 @@ const services = [
   {
     id: "Branding",
     logo: "/Branding.png",
-    titleEn: "BRANDING WAVE",
-    titleAr: "موجة العلامة التجارية",
+    titleEn: "BRANDING SERVICES",
+    titleAr: "خدمات العلامة التجارية",
     descriptionEn:
-      "Comprehensive brand strategies that make your business stand out and connect with customers.",
+      "Iconic visual identities. We craft brands that resonate and leave a lasting impact, ensuring you stand out in any market.",
     descriptionAr:
-      "استراتيجيات علامة تجارية شاملة تجعل عملك متميزًا وتتواصل مع العملاء.",
-colors: {
-  from: "from-amber-400",
-  to: "to-yellow-500",
-  border: "border-amber-400/30",
-  hoverBorder: "hover:border-amber-400/60",
-  iconBg: "bg-amber-400/10",
-  iconColor: "text-amber-300",
-},
-
-  },
-  {
-    id: "business",
-    logo: "/Business.png",
-    titleEn: "BUSINESS WAVE",
-    titleAr: "موجة الأعمال",
-    descriptionEn:
-      "Data-driven digital marketing to grow awareness, leads, and revenue.",
-    descriptionAr:
-      "تسويق رقمي قائم على البيانات لتنمية الوعي والعملاء المحتملين والإيرادات.",
-    // colors: {
-    //   from: "from-cyan-500",
-    //   to: "to-blue-500",
-    //   border: "border-cyan-500/30",
-    //   hoverBorder: "hover:border-cyan-500/60",
-    //   iconBg: "bg-cyan-500/10",
-    //   iconColor: "text-cyan-400",
-    // },
-        colors: {
-      from: "from-pink-500",
-      to: "to-orange-500",
-      border: "border-pink-500/30",
-      hoverBorder: "hover:border-pink-500/60",
-      iconBg: "bg-pink-500/10",
-      iconColor: "text-pink-400",
+      "هويات بصرية أيقونية. نصمم علامات تجارية تترك أثراً دائماً، مما يضمن تميزك في أي سوق.",
+    pillar: {
+      en: "ELEVATE",
+      ar: "ارتقاء",
+    },
+    colors: {
+      from: "from-amber-400",
+      to: "to-yellow-500",
+      border: "border-amber-400/30",
+      hoverBorder: "hover:border-amber-400/60",
+      iconBg: "bg-amber-400/10",
+      iconColor: "text-amber-300",
     },
   },
   {
     id: "commerce",
-    logo: "/Marketing.png",
-    titleEn: "COMMERCE WAVE",
-    titleAr: "موجة التجارة",
+
+    logo: "/Business.png",
+    titleEn: "MARKETING SERVICES",
+    titleAr: "خدمات التسويق",
     descriptionEn:
-      "Ecommerce platforms designed to convert visitors into loyal customers.",
+      "Data-driven growth. Strategic marketing campaigns designed to increase your reach, engagement, and ROI.",
     descriptionAr:
-      "منصات تجارة إلكترونية مصممة لتحويل الزوار إلى عملاء مخلصين.",
+      "نمو قائم على البيانات. حملات تسويقية استراتيجية مصممة لزيادة انتشارك، وتفاعلك، وعائد استثمارك.",
+    pillar: {
+      en: "ELEVATE",
+      ar: "ارتقاء",
+    },
     colors: {
       from: "from-green-500",
       to: "to-teal-500",
@@ -92,6 +79,30 @@ colors: {
       hoverBorder: "hover:border-green-500/60",
       iconBg: "bg-green-500/10",
       iconColor: "text-green-400",
+    },
+  },
+  {
+    id: "business",
+
+    logo: "/Marketing.png",
+    titleEn: "BUSINESS DEVELOPMENT",
+    titleAr: "تطوير الأعمال",
+    descriptionEn:
+      "Strategic scaling. We optimize your operations and sales strategies to help you dominate your industry in Egypt and KSA.",
+    descriptionAr:
+      "توسع استراتيجي. نقوم بتحسين عملياتك واستراتيجيات المبيعات لمساعدتك على السيادة في مجالك داخل مصر والسعودية.",
+    pillar: {
+      en: "DOMINATE",
+      ar: "سيادة",
+    },
+
+    colors: {
+      from: "from-pink-500",
+      to: "to-orange-500",
+      border: "border-pink-500/30",
+      hoverBorder: "hover:border-pink-500/60",
+      iconBg: "bg-pink-500/10",
+      iconColor: "text-pink-400",
     },
   },
 ];
@@ -112,7 +123,7 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
             isArabic ? "md:flex-row-reverse" : "md:flex-row"
           }`}
         >
-          <div className="flex flex-col w-full text-center  items-center">
+          <div className="flex flex-col  w-full text-center  items-center">
             <motion.div
               initial={{ y: 30 }}
               animate={{
@@ -126,19 +137,20 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                 repeat: Infinity,
                 repeatType: "mirror",
               }}
-              className="opacity-100"
+              className="opacity-100 flex flex-col items-center justify-center "
             >
               <motion.h1
                 initial={{ y: 30 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-5xl md:text-7xl font-bold mb-6"
+                className="text-3xl sm:text-4xl md:text-7xl font-bold mb-6 text-center"
               >
                 <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 bg-clip-text text-transparent">
-                  {isArabic ? "موجاتنا" : "OUR "}
+                  {isArabic ? "خدماتنا:" : "Our Services: "}
                 </span>
+                <br />
                 <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 bg-clip-text text-transparent">
-                  {isArabic ? "" : "WAVES"}
+                  {isArabic ? "هندسة نجاحك" : "Engineering Your Success"}
                 </span>
               </motion.h1>
 
@@ -146,18 +158,17 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                 initial={{ y: 20 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-white text-lg md:text-xl max-w-3xl  leading-relaxed"
+                className="text-white text-lg md:text-xl max-w-3xl text-center  leading-relaxed"
               >
                 {isArabic
-                  ? "في MerkWave، لا نركب التيارات فحسب - بل نخلقها. استكشف خدماتنا المتخصصة المصممة لدفع عملك إلى الأمام."
-                  : "At MerkWave, we don't just ride the currents — we create them. Explore our specialized services designed to propel your business forward."}
+                  ? 'نحن لا نقدم مجرد خدمات، بل نبني محركات للنمو. من خلال إطار عملنا "ابتكار، ارتقاء، سيادة"، نحول عملك إلى قائد في السوق'
+                  : ' We don\'t just provide services; we build growth engines. Through our "Innovate, Elevate, Dominate" framework, we transform your business into a market leader.'}
               </motion.p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
       {/* Services Grid */}
       <section className="pt-10 px-4">
         <div className="max-w-7xl mx-auto">
@@ -172,9 +183,7 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Link
-                    href={`/${lang}/services/${service.id}` as any}
-                  >
+                  <Link href={`/${lang}/services/${service.id}` as any}>
                     <div
                       className={`
                   group relative overflow-hidden
@@ -224,6 +233,19 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                           className="object-contain"
                         />
                       </div>
+                      {/* Pillar Badge */}
+                      <div className="relative z-10 mb-4">
+                        <span
+                          className={`
+      inline-block px-4 py-1 text-sm font-bold tracking-widest
+      rounded-full uppercase
+      bg-gradient-to-r ${service.colors.from} ${service.colors.to}
+      text-white shadow-md
+    `}
+                        >
+                          {isArabic ? service.pillar.ar : service.pillar.en}
+                        </span>
+                      </div>
 
                       {/* Title */}
                       <h3 className="relative z-10 text-xl font-bold text-white mb-4 tracking-wide">
@@ -263,23 +285,18 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
             viewport={{ once: true }}
             className=" p-12 md:p-16  text-center hover:border-cyan-500/50 transition-all duration-500"
           >
-            <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-8">
               {isArabic
-                ? "هل أنت مستعد للارتقاء بعملك إلى المستوى التالي؟"
-                : "Ready to take your business to the next level?"}
+                ? "هل أنت مستعد للابتكار، الارتقاء، والسيادة؟"
+                : "Ready to Innovate, Elevate, and Dominate?"}
             </h2>
-            <p className="text-gray-400 text-sm sm:text-lg mb-8 max-w-2xl mx-auto">
-              {isArabic
-                ? "دعنا نناقش كيف يمكن لخدماتنا أن تساعد في تحقيق أهدافك."
-                : "Let's discuss how our services can help achieve your goals."}
-            </p>
-            <Link href={`/${lang}/contact` as any} >
+            <Link href={`/${lang}/contact` as any}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-5 py-2 md:px-10 md:py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg rounded-full transition-all duration-300 shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50"
+                className="inline-flex items-center text-sm  gap-1 sm:gap-3 px-2 sm:px-5 py-2 md:px-10 md:py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold md:text-lg rounded-full transition-all duration-300 shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50"
               >
-                {isArabic ? "ابدأ اليوم" : "Get Started Today"}
+                {isArabic ? "ابدأ مشروعك اليوم" : "Start Your Project Today"}
                 <ArrowRight
                   className={`w-5 h-5 ${isArabic ? "rotate-180" : ""}`}
                 />

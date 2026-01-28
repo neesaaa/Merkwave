@@ -6,14 +6,16 @@ import Image from "next/image";
 import {
   ArrowLeft,
   Globe as gb,
-  ShoppingCart,
+  Boxes,
+  Code2,
+  Cloud,
   Smartphone,
+  LayoutDashboard,
+  Workflow,
   Link2,
-  Database,
-  RefreshCw,
   Palette,
-  Server,
-  Wrench,
+  LifeBuoy,
+  ShieldCheck,
 } from "lucide-react";
 import { Timeline } from "@/components/Timeline";
 import Globe from "@/components/Globe";
@@ -37,85 +39,90 @@ export default function SoftwareClient({
 
   const services = [
     {
-      icon: gb,
-      title: isArabic ? "تطوير مواقع مخصصة" : "Custom Website Development",
+      icon: Boxes,
+      title: isArabic ? "تنفيذ نظام أودو ERP" : "Odoo ERP Implementation",
       description: isArabic
-        ? "إنشاء مواقع فريدة ومتجاوبة مصممة خصيصًا لرؤية علامتك التجارية وأهداف عملك."
-        : "Crafting unique, responsive websites tailored to your brand's vision and business goals.",
+        ? "تنفيذ نظام أودو الرسمي: إعداد متكامل للمحاسبة، المبيعات، والمخازن وكل تطبيقات أودو الأخرى لتبسيط عملياتك التشغيلية."
+        : "Official Odoo implementation including Accounting, CRM, Inventory, and all Odoo apps to streamline operations.",
       color: "cyan",
     },
     {
-      icon: ShoppingCart,
-      title: isArabic ? "تطوير التجارة الإلكترونية" : "E-commerce Development",
+      icon: Code2,
+      title: isArabic ? "تطوير برمجيات مخصصة" : "Custom Software Development",
       description: isArabic
-        ? "تطوير متاجر آمنة وقابلة للتوسع عبر الإنترنت تزيد المبيعات وتعزز تجربة العملاء."
-        : "Developing secure and scalable online stores that drive sales and enhance customer experience.",
+        ? "هندسة حلول برمجية فريدة وقابلة للتوسع مصممة خصيصاً لحل تحديات عملك."
+        : "Engineering bespoke, scalable software solutions tailored to your specific business challenges.",
       color: "emerald",
     },
     {
-      icon: Smartphone,
-      title: isArabic
-        ? "تطبيقات الويب التقدمية (PWAs)"
-        : "Progressive Web Apps (PWAs)",
+      icon: Cloud,
+      title: isArabic ? "الاستضافة السحابية المُدارة" : "Managed Cloud Hosting",
       description: isArabic
-        ? "بناء تطبيقات ويب توفر تجربة تطبيق أصلية مع قدرات غير متصلة وإشعارات دفع."
-        : "Building web applications that offer a native app experience with offline capabilities and push notifications.",
+        ? "استضافة عالية الأداء لنظام أودو وتطبيقات الشركات مع ضمان تشغيل 99.9% ونسخ احتياطي دوري."
+        : "High-performance managed hosting for Odoo and enterprise apps with 99.9% uptime and daily backups.",
+      color: "purple",
+    },
+    {
+      icon: Smartphone,
+      title: isArabic ? "تطبيقات الموبايل" : "Mobile App Development",
+      description: isArabic
+        ? "تطوير تطبيقات جوال ذكية (iOS & Android) تعزز تفاعل المستخدمين وتدفع بالنمو."
+        : "Developing native and cross-platform mobile apps that boost engagement and drive growth.",
+      color: "orange",
+    },
+    {
+      icon: LayoutDashboard,
+      title: isArabic ? "بوابات الويب للمؤسسات" : "Enterprise Web Portals",
+      description: isArabic
+        ? "بناء منصات ويب آمنة ومحركات تجارة إلكترونية تتحمل ضغط الزيارات العالي."
+        : "Building secure, high-traffic web platforms and enterprise-grade e-commerce portals.",
+      color: "cyan",
+    },
+    {
+      icon: Workflow,
+      title: isArabic
+        ? "أتمتة العمليات الإدارية"
+        : "Business Process Automation",
+      description: isArabic
+        ? "تحويل مسارات العمل الداخلية المعقدة إلى أنظمة رقمية مؤتمتة تقلل الجهد اليدوي."
+        : "Automating complex internal workflows to reduce manual work and increase efficiency.",
       color: "purple",
     },
     {
       icon: Link2,
-      title: isArabic ? "تطوير ودمج API" : "API Development & Integration",
+      title: isArabic ? "الربط المتكامل للأنظمة" : "API Integration",
       description: isArabic
-        ? "إنشاء واجهات برمجية قوية ودمج خدمات طرف ثالث لتعزيز الوظائف وتدفق المستخدم."
-        : "Creating robust APIs and integrating third-party services to enhance functionality and user flow.",
-      color: "orange",
-    },
-    {
-      icon: Database,
-      title: isArabic
-        ? "أنظمة إدارة المحتوى (CMS)"
-        : "Content Management Systems (CMS)",
-      description: isArabic
-        ? "تنفيذ حلول CMS مرنة لـ WordPress أو Drupal أو أنظمة مخصصة لتحديثات المحتوى السهلة."
-        : "Implementing flexible CMS solutions for WordPress, Drupal, or custom-built systems for easy content updates.",
-      color: "cyan",
-    },
-    {
-      icon: RefreshCw,
-      title: isArabic
-        ? "إعادة تصميم وتحسين المواقع"
-        : "Website Redesign & Optimization",
-      description: isArabic
-        ? "تجديد المواقع الحالية للحصول على جماليات حديثة وأداء محسّن وتجربة مستخدم أفضل."
-        : "Revamping existing websites for modern aesthetics, improved performance, and better user experience.",
-      color: "purple",
-    },
-    {
-      icon: Palette,
-      title: isArabic ? "تصميم UI/UX للويب" : "UI/UX Design for Web",
-      description: isArabic
-        ? "تصميم واجهات مستخدم بديهية وجذابة وجذابة بصريًا تعزز تجارب المستخدم."
-        : "Designing intuitive, engaging, and visually appealing user interfaces and user experiences.",
+        ? "ربط نظام أودو بالأدوات الخارجية والـ APIs لخلق بيئة بيانات موحدة."
+        : "Seamless integration between Odoo ERP and third-party tools through secure APIs.",
       color: "yellow",
     },
     {
-      icon: Server,
-      title: isArabic ? "تطوير بوابات الويب" : "Web Portal Development",
+      icon: Palette,
+      title: isArabic ? "تصميم واجهة وتجربة المستخدم" : "UI / UX Design",
       description: isArabic
-        ? "بناء بوابات ويب آمنة وفعالة للموظفين أو العملاء أو الشركاء مع وظائف مخصصة."
-        : "Building secure and efficient web portals for employees, customers, or partners with custom functionality.",
+        ? "تصميم واجهات بديهية تركز على المستخدم وتجعل البرمجيات المعقدة سهلة الاستخدام."
+        : "User-centric UI/UX design that makes complex enterprise software intuitive and easy to use.",
       color: "cyan",
     },
     {
-      icon: Wrench,
-      title: isArabic ? "صيانة ودعم المواقع" : "Website Maintenance & Support",
+      icon: LifeBuoy,
+      title: isArabic ? "الصيانة والدعم الفني" : "Maintenance & Tech Support",
       description: isArabic
-        ? "صيانة مستمرة وتحديثات أمنية ودعم تقني لضمان تشغيل موقعك بسلاسة."
-        : "Ongoing maintenance, security updates, and technical support to ensure your website runs smoothly.",
+        ? "دعم فني مخصص ومستمر لضمان بقاء أنظمتك آمنة، محدثة، وفعالة دائماً."
+        : "Dedicated ongoing support to keep your systems secure, updated, and running smoothly.",
+      color: "pink",
+    },
+    {
+      icon: ShieldCheck,
+      title: isArabic
+        ? "الاستشارات والتدقيق التقني"
+        : "Technical Consulting & Auditing",
+      description: isArabic
+        ? "استشارات استراتيجية حول التحول الرقمي، أمن الأنظمة، وخرائط الطريق التقنية."
+        : "Strategic consulting on digital transformation, system security, and technology roadmaps.",
       color: "pink",
     },
   ];
-
   const technologies = [
     {
       name: "React.js",
@@ -233,20 +240,21 @@ export default function SoftwareClient({
       color: "white",
     },
     {
-      name: "Odoo",
+      name: "MongoDB",
       description: isArabic
-        ? "نظام إدارة أعمال شامل مفتوح المصدر."
-        : "A comprehensive open‑source business management system.",
+        ? "قاعدة بيانات NoSQL شهيرة لتطبيقات الويب الحديثة."
+        : "A popular NoSQL database for modern web applications.",
       iconPath: (
-        <Image
-          src="/odoo.svg"
-          alt="Odoo Logo"
+        <svg
           className="w-12 h-12"
-          width={12}
-          height={12}
-        />
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296 4.877-3.582 4.292-11.375zm-5.336 11.73a11.56 11.56 0 01-.481-.36c-.922-.728-1.988-2.064-2.066-3.93l-.001-.022c.062 1.07.58 2.01 1.551 2.81.943.774 2.537 1.502 3.29 1.91-.447.732-.726 1.037-1.145 1.328a11.823 11.823 0 01-1.148-.736z" />
+        </svg>
       ),
-      color: "purple",
+      color: "emerald",
     },
     {
       name: "Angular",
@@ -266,21 +274,20 @@ export default function SoftwareClient({
       color: "red",
     },
     {
-      name: "MongoDB",
+      name: "Odoo",
       description: isArabic
-        ? "قاعدة بيانات NoSQL شهيرة لتطبيقات الويب الحديثة."
-        : "A popular NoSQL database for modern web applications.",
+        ? "نظام إدارة أعمال شامل مفتوح المصدر."
+        : "A comprehensive open‑source business management system.",
       iconPath: (
-        <svg
+        <Image
+          src="/odoo.svg"
+          alt="Odoo Logo"
           className="w-12 h-12"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296 4.877-3.582 4.292-11.375zm-5.336 11.73a11.56 11.56 0 01-.481-.36c-.922-.728-1.988-2.064-2.066-3.93l-.001-.022c.062 1.07.58 2.01 1.551 2.81.943.774 2.537 1.502 3.29 1.91-.447.732-.726 1.037-1.145 1.328a11.823 11.823 0 01-1.148-.736z" />
-        </svg>
+          width={12}
+          height={12}
+        />
       ),
-      color: "emerald",
+      color: "purple",
     },
     {
       name: "PostgreSQL",
@@ -458,17 +465,17 @@ export default function SoftwareClient({
     return colors[color] || colors.purple;
   };
 
-        const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-      useEffect(() => {
-        // Check initial value
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
+  useEffect(() => {
+    // Check initial value
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
 
-        // Listen for resize
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-      }, []);
+    // Listen for resize
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const timelineData: TimelineEntry[] = services.map((service, index) => {
     const Icon = service.icon;
@@ -542,7 +549,7 @@ export default function SoftwareClient({
         <div className="container mx-auto max-w-[96%] relative  flex flex-col z-20">
           <Link
             href={`/${lang}/services` as any}
-            className={`inline-flex items-center text-[#00FFFF] hover:text-cyan-300 transition-colors mb-8 `}
+            className={`inline-flex items-center text-[#00FFFF] hover:text-cyan-300 transition-colors md:mb-8 `}
             dir={isArabic ? "rtl" : "ltr"}
           >
             <ArrowLeft
@@ -550,11 +557,9 @@ export default function SoftwareClient({
             />
             {isArabic ? "العودة إلى الخدمات" : "Back to Services"}
           </Link>
-          <div
-            className={`flex self-center items-center justify-center mb-24`}
-          >
+          <div className={`flex self-center items-center justify-center mb-4 md:mb-24`}>
             {/* Left Content */}
-                  {/* Back Link */}
+            {/* Back Link */}
 
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -568,7 +573,7 @@ export default function SoftwareClient({
                   <Globe
                     theta={0.2}
                     dark={1}
-                    scale={isMobile?0.7:1.2}
+                    scale={isMobile ? 0.7 : 1.2}
                     diffuse={1.5}
                     baseColor="#009999"
                     markerColor="#ff0000"
@@ -577,22 +582,23 @@ export default function SoftwareClient({
                 </motion.div>
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">
-                <span className="text-[#00FFFF]">
+              <h1 className="max-w-[280px] sm:max-w-screen text-4xl md:text-5xl  text-center font-bold mb-6">
+                {" "}
+                <span className="text-[#00FFFF] mb-1">
                   {isArabic
-                    ? "بناء الأسس الرقمية"
-                    : "Building Digital Foundations"}
+                    ? "من خلال البرمجيات المخصصة ونظام أودو"
+                    : "with Custom Software & Odoo"}
                 </span>
                 <br />
-                <span className="text-white">
-                  {isArabic ? "لنجاحك" : "for Your Success"}
+                <span className="text-md md:text-3xl text-white">
+                  {isArabic ? "ابتكر في عملياتك" : "Innovate Your Operations "}
                 </span>
               </h1>
 
-              <p className="text-gray-300  max-w-[280px] sm:max-w-screen text-sm md:text-lg  mb-8 text-center break-words ">
+              <p className="text-gray-300  max-w-[280px] sm:max-w-screen text-md sm:text-base  md:text-lg  mb-8 text-center break-words ">
                 {isArabic
-                  ? "نحن نهندس تطبيقات ويب مبتكرة وقابلة للتوسع وآمنة مصممة خصيصًا لاحتياجات عملك، مع التركيز على تجارب مستخدم استثنائية ووظائف قوية."
-                  : "We engineer innovative, scalable, and secure web applications tailored to your business needs, focusing on exceptional user experiences and robust functionality."}
+                  ? "نحن نصمم حلولاً برمجية ذكية، آمنة وقابلة للتوسع. بصفتنا شريك أودو الرسمي، نردم الفجوة بين احتياجات العمل المعقدة والتنفيذ الرقمي السلس"
+                  : "We engineer scalable, secure, and intelligent software solutions. As an Official Odoo Partner, we bridge the gap between complex business needs and seamless digital execution."}
               </p>
 
               <Link
@@ -601,8 +607,8 @@ export default function SoftwareClient({
               >
                 <button className="px-2 md:px-8 py-4 bg-gradient-to-r text-sm sm:text-lg  from-cyan-400 to-sky-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
                   {isArabic
-                    ? "ابدأ مشروع الويب الخاص بك"
-                    : "Start Your Web Project"}
+                    ? "ابدأ رحلتك البرمجية"
+                    : "Start Your Software Journey"}
                 </button>
               </Link>
             </motion.div>
@@ -652,15 +658,71 @@ export default function SoftwareClient({
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto">
               {isArabic
-                ? "تقنيات حديثة لتطوير الويب المتطور"
-                : "Cutting-edge technologies for modern web development"}
+                ? "تقنيات متطورة تضمن لك السيادة في السوق"
+                : "Cutting-Edge Tech for Market Dominance"}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {technologies.map((tech, index) => {
               const colors = getColorClasses(tech.color);
 
+              // Check for Odoo to apply special UI
+              if (tech.name === "Odoo") {
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20, rotate: 0 }}
+                    animate={{ opacity: 1, y: 0, rotate: [0, 1, -1, 0] }}
+                    transition={{
+                      duration: 0.2,
+                      delay: index * 0.03,
+                      ease: "easeOut",
+                    }}
+                    whileHover={{ y: -10, scale: 1.08, rotate: 2 }}
+                    className="group relative p-6 rounded-3xl bg-gradient-to-tr from-purple-600 via-purple-500 to-indigo-700 text-white shadow-2xl hover:shadow-[0_20px_60px_rgba(128,90,213,0.5)] cursor-pointer transition-all duration-500"
+                  >
+                    {/* Glow / floating shine */}
+                    <div
+                      className="absolute inset-0 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 70%)",
+                      }}
+                    />
+
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                      {/* Logo container with subtle hover scale */}
+                      <div className="w-24 h-12 mb-4 relative">
+                        <div className="absolute inset-0 rounded-full bg-purple-400 opacity-10 blur-xl group-hover:scale-110 transition-transform duration-500" />
+                        <Image
+                          src="/odoo.svg"
+                          alt="Odoo Logo"
+                          width={48}
+                          height={48}
+                          className="relative w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+
+                      {/* Name and description */}
+                      <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
+                        Odoo
+                      </h3>
+                      <p className="mt-2 text-sm md:text-base text-gray-100 max-w-[180px] leading-snug">
+                        {tech.description ||
+                          (isArabic
+                            ? "نظام إدارة أعمال شامل مفتوح المصدر."
+                            : "A comprehensive open-source business management system.")}
+                      </p>
+
+                      {/* Bottom accent line */}
+                      <div className="mt-4 h-1 w-10 rounded-full bg-white/40 group-hover:bg-white/60 transition-all duration-300" />
+                    </div>
+                  </motion.div>
+                );
+              }
+
+              // Default card for other technologies
               return (
                 <motion.div
                   key={index}
@@ -718,7 +780,7 @@ export default function SoftwareClient({
       </section>
 
       {/* CTA Section */}
-      <section className="py-20  px-4">
+      <section className="py-10 lg:py-20  px-4">
         <div className="container mx-auto max-w-[96%]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -730,19 +792,17 @@ export default function SoftwareClient({
             <div className="relative z-10 h-full">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                 {isArabic
-                  ? "هل أنت مستعد لتحويل تواجدك على الإنترنت؟"
-                  : "Ready to Transform Your Online Presence?"}
+                  ? "هل أنت مستعد للارتقاء ببنيتك التحتية الرقمية؟"
+                  : "Ready to Elevate Your Digital Infrastructure?"}
               </h2>
               <p className="text-gray-300 text-md sm:text-lg mb-8 max-w-2xl mx-auto">
                 {isArabic
-                  ? "دعنا نناقش مشروعك ونحقق رؤيتك بحل ويب قوي."
-                  : "Let's discuss your project and bring your vision to life with a powerful web solution."}
+                  ? "لنبني البرمجيات التي تساعدك على السيادة في مجالك"
+                  : "Let’s build the software that helps you dominate your industry"}
               </p>
               <Link href={`/${lang}/contact` as any}>
-                <button className="px-1 py-2 md:px-8 md:py-4 bg-gradient-to-r text-md md:text-2xl from-cyan-400 to-sky-500 text-black font-bold rounded-lg hover:shadow-xl hover:shadow-yellow-400/50 transition-all duration-300 hover:scale-110 active:scale-95">
-                  {isArabic
-                    ? "ابدأ مشروع الويب الخاص بك"
-                    : "Start Your Web Project"}
+                <button className="px-3 py-2 md:px-8 md:py-4 bg-gradient-to-r text-md md:text-2xl from-cyan-400 to-sky-500 text-black font-medium  rounded-lg hover:shadow-xl hover:shadow-purple-800 transition-all duration-300 hover:scale-110 active:scale-95">
+                  {isArabic ? "احجز عرضاً تجريبياً لأودو" : "Book an Odoo Demo"}
                 </button>
               </Link>
             </div>

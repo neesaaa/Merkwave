@@ -6,16 +6,21 @@ import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
-  ShoppingCart,
-  Smartphone,
   TrendingUp,
-  Package,
-  CreditCard,
-  Shield,
-  Database,
-  Truck,
   BarChart3,
-  Lock,
+  Megaphone,
+  MonitorPlay,
+  Mail,
+  PenTool,
+  Printer,
+  Target,
+  Users,
+  Search,
+  LayoutDashboard,
+  Share2,
+  Facebook,
+  LineChart,
+  Palette,
 } from "lucide-react";
 import { Timeline } from "@/components/Timeline";
 
@@ -38,144 +43,156 @@ export default function CommerceClient({
 
   const ecommerceServices = [
     {
-      icon: ShoppingCart,
-      title: isArabic ? "تطوير متجر Shopify" : "Shopify Store Development",
+      icon: Search,
+      title: isArabic ? "تحسين محركات البحث (SEO & SEM)" : "SEO & SEM",
       description: isArabic
-        ? "بناء متاجر Shopify مذهلة ومحسنة للتحويل تدفع المبيعات وتوفر تجارب تسوق سلسة."
-        : "Build stunning, conversion-optimized Shopify stores that drive sales and provide seamless shopping experiences.",
+        ? "السيادة على نتائج البحث لضمان أن تكون علامتك التجارية الخيار الأول للعملاء المحتملين."
+        : "Dominating search results to ensure your brand is the first choice for potential customers.",
       color: "emerald",
     },
     {
-      icon: Database,
-      title: isArabic ? "حلول WooCommerce" : "WooCommerce Solutions",
+      icon: Users,
+      title: isArabic
+        ? "إدارة وسائل التواصل الاجتماعي"
+        : "Social Media Management",
       description: isArabic
-        ? "الاستفادة من مرونة WordPress مع متاجر WooCommerce القوية المصممة خصيصًا لاحتياجات عملك."
-        : "Leverage WordPress flexibility with powerful WooCommerce stores tailored to your business needs.",
+        ? "بناء مجتمعات نشطة وولاء قوي للعلامة التجارية عبر محتوى استراتيجي وتفاعل فعّال."
+        : "Building active communities and brand loyalty through strategic content and engagement.",
       color: "purple",
     },
     {
-      icon: TrendingUp,
-      title: isArabic ? "Magento Commerce" : "Magento Commerce",
+      icon: Target,
+      title: isArabic
+        ? "التسويق عبر الأداء (PPC)"
+        : "Performance Marketing (PPC)",
       description: isArabic
-        ? "حلول تجارة إلكترونية على مستوى المؤسسات مع ميزات متقدمة لمتطلبات الأعمال المعقدة."
-        : "Enterprise e-commerce solutions with advanced features for complex business requirements.",
+        ? "حملات إعلانية مستهدفة على جوجل وميتا مصممة لتحقيق أعلى معدلات التحويل."
+        : "Targeted ad campaigns on Google and Meta designed for high conversion.",
       color: "orange",
     },
     {
-      icon: BarChart3,
-      title: isArabic ? "منصات BigCommerce" : "BigCommerce Platforms",
+      icon: Printer,
+      title: isArabic ? "حلول الطباعة الفاخرة" : "Premium Printing Solutions",
       description: isArabic
-        ? "منصات تجارة إلكترونية قابلة للتوسع تنمو مع عملك وتتعامل مع حركة المرور على مستوى المؤسسات."
-        : "Scalable e-commerce platforms that grow with your business and handle enterprise-level traffic.",
+        ? "إنتاج عالي الجودة لكروت الأعمال، البروشورات، واللوحات الإرشادية لدعم مجهوداتك التسويقية."
+        : "High-quality production for business cards, brochures, and corporate signage to support your marketing.",
       color: "cyan",
     },
     {
-      icon: CreditCard,
-      title: isArabic ? "تكامل بوابة الدفع" : "Payment Gateway Integration",
+      icon: PenTool,
+      title: isArabic ? "صناعة المحتوى الجذاب" : "Content Strategy & Creation",
       description: isArabic
-        ? "حلول معالجة دفع آمنة وموثوقة تبني الثقة وتعزز التحويلات."
-        : "Secure, reliable payment processing solutions that build trust and maximize conversions.",
+        ? "إنتاج مرئيات ونصوص عالية التأثير تروي قصة علامتك التجارية الفريدة."
+        : "Producing high-impact visuals and copy that tell your brand’s unique story.",
       color: "purple",
     },
     {
-      icon: Smartphone,
-      title: isArabic ? "تطبيقات التجارة عبر الموبايل" : "Mobile Commerce Apps",
+      icon: Mail,
+      title: isArabic ? "حملات البريد الإلكتروني" : "Email Marketing",
       description: isArabic
-        ? "تطبيقات موبايل أصلية توفر تجارب تسوق استثنائية وتعزز ولاء العملاء."
-        : "Native mobile apps that provide exceptional shopping experiences and boost customer loyalty.",
+        ? "رعاية العملاء المحتملين وزيادة المبيعات عبر حملات بريدية مخصصة ومؤتمتة."
+        : "Nurturing leads and driving sales with personalized and automated email campaigns.",
       color: "emerald",
     },
     {
       icon: BarChart3,
-      title: isArabic
-        ? "تحليلات التجارة الإلكترونية وإعداد التقارير"
-        : "E-commerce Analytics & Reporting",
+      title: isArabic ? "تحليلات البيانات والتقارير" : "Analytics & Reporting",
       description: isArabic
-        ? "رؤى مدفوعة بالبيانات لتحسين أداء متجرك وتعظيم الإمكانات."
-        : "Data-driven insights to optimize your store performance and maximize potential.",
+        ? "تتبع أداء التسويق في الوقت الفعلي لتحسين النتائج ودعم النمو المستمر."
+        : "Real-time tracking of marketing performance to continuously optimize for growth.",
       color: "pink",
     },
     {
-      icon: Truck,
-      title: isArabic ? "تنفيذ الطلبات والشحن" : "Order Fulfillment & Shipping",
+      icon: TrendingUp,
+      title: isArabic
+        ? "تحسين معدل التحويل (CRO)"
+        : "Conversion Rate Optimization (CRO)",
       description: isArabic
-        ? "حلول معالجة الطلبات والشحن المبسطة التي تعزز رضا العملاء."
-        : "Streamlined order processing and shipping solutions that enhance customer satisfaction.",
+        ? "تحليل وتدقيق نقاط التواصل الرقمية لتحويل المزيد من الزوار إلى عملاء."
+        : "Strategic auditing of digital touchpoints to turn more visitors into customers.",
       color: "orange",
     },
     {
-      icon: Lock,
-      title: isArabic ? "الأمان والامتثال" : "Security & Compliance",
+      icon: MonitorPlay,
+      title: isArabic ? "شراء المساحات الإعلانية" : "Media Buying",
       description: isArabic
-        ? "إجراءات أمنية قوية لحماية بيانات العملاء وضمان الامتثال التنظيمي."
-        : "Robust security measures to protect customer data and ensure regulatory compliance.",
+        ? "وضع علامتك التجارية في المساحات الرقمية المناسبة لتعظيم الظهور والتأثير."
+        : "Placing your brand in the right digital spaces to maximize visibility and impact.",
       color: "pink",
     },
     {
-      icon: Package,
-      title: isArabic ? "أنظمة إدارة المخزون" : "Inventory Management Systems",
+      icon: Megaphone,
+      title: isArabic ? "التسويق عبر المؤثرين" : "Influencer Marketing",
       description: isArabic
-        ? "تبسيط عملياتك مع تتبع المخزون المتقدم وإدارة المخزون التلقائية."
-        : "Streamline your operations with advanced inventory tracking and automated stock management.",
+        ? "الاستفادة من قادة الرأي لتوسيع نطاق وصول علامتك وبناء ثقة حقيقية."
+        : "Leveraging key opinion leaders to expand your brand’s reach and authentic trust.",
       color: "blue",
     },
   ];
 
   const marketingTools = [
     {
-      name: "Google Analytics",
+      icon: Search,
+      name: isArabic ? "سيادة البحث" : "Search Dominance",
       description: isArabic
-        ? "تتبع حركة المرور على الموقع وسلوك المستخدم."
-        : "Track website traffic and user behavior.",
-      color: "cyan",
-    },
-    {
-      name: "Google Search Console",
-      description: isArabic
-        ? "تحسين ظهور محرك البحث والفهرسة."
-        : "Optimize search engine visibility and indexing.",
-      color: "cyan",
-    },
-    {
-      name: "Google Ads",
-      description: isArabic
-        ? "إدارة حملات البحث والعرض الإعلانية."
-        : "Manage search and display advertising campaigns.",
+        ? "الوصول للعملاء المهتمين فعلاً من خلال استهداف دقيق للكلمات المفتاحية."
+        : "Capturing high-intent customers through precision keyword targeting.",
       color: "yellow",
     },
     {
-      name: "Meta Ads Manager",
+      icon: Facebook,
+      name: isArabic ? "النمو الاجتماعي" : "Social Growth",
       description: isArabic
-        ? "تشغيل وتحسين الإعلانات على Facebook/Instagram."
-        : "Run and optimize ads on Facebook/Instagram.",
+        ? "زيادة التحويلات والوصول لجمهور أكبر عبر فيسبوك وانستقرام."
+        : "Scaling conversions and brand reach across Facebook and Instagram.",
       color: "blue",
     },
     {
-      name: "Mailchimp / HubSpot",
+      icon: Palette,
+      name: isArabic ? "الإبداع البصري (Adobe)" : "Creative Excellence",
       description: isArabic
-        ? "أتمتة البريد الإلكتروني وتكاملات CRM."
-        : "Email automation and CRM integrations.",
-      color: "purple",
-    },
-    {
-      name: "SEMrush / Ahrefs",
-      description: isArabic
-        ? "أدوات شاملة لتحسين محركات البحث والمحتوى والمنافسين."
-        : "Comprehensive SEO, content, and competitor tools.",
-      color: "emerald",
-    },
-    {
-      name: "Hootsuite / Buffer",
-      description: isArabic
-        ? "جدولة وإدارة وسائل التواصل الاجتماعي."
-        : "Scheduling and social media management.",
+        ? "تصميم محتوى بصري فاخر يخدم علامتك التجارية في العالم الرقمي والمطبوع."
+        : "Crafting high-end visual content and brand assets for digital and print.",
       color: "pink",
     },
     {
-      name: "Data Studio / Looker",
+      icon: BarChart3,
+      name: isArabic ? "احتراف الـ SEO" : "SEO & Competitors",
       description: isArabic
-        ? "إنشاء لوحات معلومات وتقارير غنية."
-        : "Create dashboards and rich reports.",
+        ? "تتبع تحركات المنافسين وخطف الصدارة في محركات البحث."
+        : "Tracking market shifts and outranking competitors in search results.",
+      color: "emerald",
+    },
+    {
+      icon: LineChart,
+      name: isArabic ? "ذكاء البيانات" : "Data Intelligence",
+      description: isArabic
+        ? "تحليل سلوك زوار موقعك عشان نضمن لك أفضل عائد على استثمارك التسويقي."
+        : "Analyzing user behavior to maximize your marketing ROI.",
+      color: "cyan",
+    },
+    {
+      icon: Users,
+      name: isArabic ? "إدارة العملاء" : "Lead Nurturing",
+      description: isArabic
+        ? "أتمتة رحلة العميل من أول ضغطة لين تتم عملية البيع بنجاح."
+        : "Managing and automating the journey from first click to final sale.",
+      color: "purple",
+    },
+    {
+      icon: Share2,
+      name: isArabic ? "إدارة التواصل" : "Social Management",
+      description: isArabic
+        ? "تنظيم ونشر المحتوى وإدارة مجتمعك الرقمي في كل المنصات باحترافية."
+        : "Professional scheduling and community management across all platforms.",
+      color: "pink",
+    },
+    {
+      icon: LayoutDashboard,
+      name: isArabic ? "تقارير الأداء" : "Performance Dashboards",
+      description: isArabic
+        ? "لوحات تحكم بصرية تعطيك نتائج حملاتك التسويقية لحظة بلحظة وبكل شفافية."
+        : "Real-time visual reporting on all marketing campaign results.",
       color: "orange",
     },
   ];
@@ -287,7 +304,7 @@ export default function CommerceClient({
           </motion.article>
         ),
       };
-    }
+    },
   );
 
   return (
@@ -308,17 +325,17 @@ export default function CommerceClient({
         <div className="container mx-auto max-w-[96%] relative z-10">
           {/* Back Link */}
           <Link
-            href={`/${lang}` as any}
-            className={`inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mb-8 `}
+            href={`/${lang}/services` as any}
+            className={`inline-flex items-center text-[#00FFFF] hover:text-cyan-300 py-4 transition-colors md:mb-8 `}
             dir={isArabic ? "rtl" : "ltr"}
           >
             <ArrowLeft
               className={`w-5 h-5 ${isArabic ? "ml-2 rotate-180" : "mr-2"}`}
             />
-            {isArabic ? "العودة إلى الرئيسية" : "Back to Home"}
+            {isArabic ? "العودة إلى الخدمات" : "Back to Services"}
           </Link>
 
-          <div className="flex flex-col items-center justify-center text-center pt-24">
+          <div className="flex flex-col items-center justify-center text-center pt-8 md:pt-24">
             <div className="mb-12">
               <Image
                 src="/Marketing.png"
@@ -335,7 +352,9 @@ export default function CommerceClient({
               className="text-4xl md:text-5xl  font-bold mb-6"
             >
               <span className="text-white ">
-                {isArabic ? "موجة التجارة" : "COMMERCE WAVE"}
+                {isArabic
+                  ? "خدمات التسويق: الارتقاء بحضور علامتك التجارية"
+                  : "Marketing Services: Elevate Your Brand Presence"}
               </span>
             </motion.h1>
 
@@ -343,11 +362,11 @@ export default function CommerceClient({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="max-w-[280px] sm:max-w-screen text-sm md:text-lg text-gray-300  mx-auto mb-8"
+              className="max-w-[280px] sm:max-w-3/4 text-md md:text-lg text-gray-300  mx-auto mb-8"
             >
               {isArabic
-                ? "حوّل عملك بحلول تجارة إلكترونية قوية تحول الزوار إلى عملاء مخلصين وتدفع نمو الإيرادات المستدامة."
-                : "Transform your business with powerful e-commerce solutions that convert visitors into loyal customers and drive sustainable revenue growth."}
+                ? "نحن نجمع بين الاستراتيجيات الرقمية القائمة على البيانات والتنفيذ الإبداعي لضمان وصول علامتك التجارية إلى الجمهور المناسب. صُممت حلولنا التسويقية لتعزيز التفاعل، وزيادة التحويلات، وتعظيم العائد على الاستثمار."
+                : "We combine data-driven digital strategies with creative execution to ensure your brand reaches the right audience. Our marketing solutions are engineered to drive engagement, boost conversions, and maximize your ROI."}
             </motion.p>
 
             <motion.div
@@ -357,7 +376,9 @@ export default function CommerceClient({
             >
               <Link href={`/${lang}/contact` as any}>
                 <button className="px-4 md:px-8 py-4 bg-gradient-to-r from-green-200 to-green-300 text-black font-bold rounded-full hover:shadow-lg hover:shadow-green-400/30 transition-all duration-300 hover:scale-105">
-                  {isArabic ? "أطلق متجرك" : "Launch Your Store"}
+                  {isArabic
+                    ? "نمِّ علامتك التجارية اليوم"
+                    : "Grow Your Brand Today"}
                 </button>
               </Link>
             </motion.div>
@@ -366,9 +387,9 @@ export default function CommerceClient({
       </section>
 
       {/* E-commerce Solutions Section */}
-      <section className="py-4 md:py-16 px-4">
-        <div className="container mx-auto max-w-[96%]">
-          <div className="flex items-center justify-center ">
+      <section className=" px-4 z-20">
+        <div className="container mx-auto max-w-[96%] -mb-4">
+          <div className="relative  space-y-2 z-20">
             <Timeline
               titleText={
                 isArabic
@@ -391,8 +412,8 @@ export default function CommerceClient({
       {/* Digital Marketing Section */}
       <section className="py-16 px-4 bg-gradient-to-b z-30 from-transparent via-[#0a0f1e]/50 to-transparent">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ y: 30 }}
+          whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
           className="flex flex-col items-center justify-center text-center mb-12 z-20"
@@ -409,7 +430,6 @@ export default function CommerceClient({
             </span>
           </h2>
         </motion.div>
-        {/* Marketing Tools Grid */}
         <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {marketingTools.map((tool, index) => {
             const colors = getColorClasses(tool.color);
@@ -417,15 +437,12 @@ export default function CommerceClient({
             return (
               <motion.div
                 key={index}
-                initial={false}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 1, y: 0, scale: 1 }}
                 whileHover={{ y: -8 }}
                 transition={{
                   type: "spring",
                   stiffness: 260,
                   damping: 22,
-                  delay: index * 0.02,
                 }}
                 className={`
                         group relative overflow-hidden rounded-2xl p-5
@@ -438,7 +455,6 @@ export default function CommerceClient({
                         transition-all duration-500 z-20
                       `}
               >
-                {/* Gradient glow */}
                 <div
                   className={`
                           pointer-events-none absolute inset-0 opacity-0
@@ -448,10 +464,8 @@ export default function CommerceClient({
                         `}
                 />
 
-                {/* Inner border */}
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-white/5 group-hover:ring-white/10 transition" />
 
-                {/* Content */}
                 <div className="relative z-10 flex flex-col items-start justify-center">
                   <h4
                     className="text-sm md:text-base font-semibold text-white mb-2 tracking-wide
@@ -469,7 +483,6 @@ export default function CommerceClient({
                     {tool.description}
                   </p>
 
-                  {/* Accent line */}
                   <div
                     className={`
                       h-[2px] w-full rounded-full
@@ -500,18 +513,20 @@ export default function CommerceClient({
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-green-400 via-green-500 to-green-700 bg-clip-text text-transparent">
                 {isArabic
-                  ? "ابدأ البيع عبر الإنترنت اليوم"
-                  : "Start Selling Online Today"}
+                  ? "هل أنت مستعد للارتقاء بتسويقك؟"
+                  : "Ready to Elevate Your Marketing"}
               </span>
             </h2>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
               {isArabic
-                ? "هل أنت مستعد لتحويل عملك؟ دعنا نبني منصة تجارة إلكترونية تحول الزوار إلى عملاء."
-                : "Ready to transform your business? Let's build an e-commerce platform that converts visitors into customers."}
+                ? "لنناقش كيف يمكننا تنمية علامتك التجارية وتحقيق نتائج ملموسة لعملك."
+                : "Let's discuss how we can grow your brand and drive measurable results for your business"}
             </p>
             <Link href={`/${lang}/contact` as any}>
-              <button className="px-8 py-3 bg-gradient-to-r from-green-400 via-green-500 to-green-700 text-white font-bold rounded-full hover:shadow-lg hover:shadow-orange-400/30 transition-all duration-300 hover:scale-105 flex items-center gap-2">
-                {isArabic ? "ابدأ الآن" : "Get Started Now"}
+              <button className="px-4 md:px-8 text-sm sm:text-base py-3 bg-gradient-to-r from-green-400 via-green-500 to-green-700 text-white font-bold rounded-full hover:shadow-lg hover:shadow-orange-400/30 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                {isArabic
+                  ? "ابدأ مشروعك التسويقي"
+                  : "Start Your Marketing Project"}
                 <ArrowRight
                   className={`w-5 h-5 transition-transform duration-300 ${
                     isArabic ? "rotate-180" : ""

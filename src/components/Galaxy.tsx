@@ -1,5 +1,5 @@
-import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
-import { useEffect, useRef,useState } from 'react';
+import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const vertexShader = `
 attribute vec2 uv;
@@ -214,21 +214,64 @@ export default function Galaxy({
   ...rest
 }: GalaxyProps) {
   const ctnDom = useRef<HTMLDivElement>(null);
+  const rendererRef = useRef<Renderer | null>(null);
+  const animateIdRef = useRef<number | null>(null);
+  const isInitializedRef = useRef(false);
   const targetMousePos = useRef({ x: 0.5, y: 0.5 });
   const smoothMousePos = useRef({ x: 0.5, y: 0.5 });
   const targetMouseActive = useRef(0.0);
   const smoothMouseActive = useRef(0.0);
-      const [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!ctnDom.current) return;
+    // Ensure we're in the browser
+    if (typeof window === "undefined") return;
+
     const ctn = ctnDom.current;
-    const renderer = new Renderer({
-      alpha: transparent,
-      premultipliedAlpha: false
-    });
-    const gl = renderer.gl;
+    if (!ctn) {
+      console.warn("Galaxy: Container ref is null. Skipping renderer init.");
+      return;
+    }
+
+    // Skip init if container has zero size
+    if (ctn.offsetWidth === 0 || ctn.offsetHeight === 0) {
+      console.warn("Galaxy container has zero size. Skipping renderer init.");
+      return;
+    }
+
+    // Prevent double initialization
+    if (isInitializedRef.current) {
+      return;
+    }
+
+    let renderer: Renderer;
+    let gl: any;
+    let program: Program;
+    let mesh: Mesh;
+    let isDestroyed = false;
+
+    try {
+      renderer = new Renderer({
+        alpha: transparent,
+        premultipliedAlpha: false,
+      });
+
+      gl = renderer.gl;
+
+      // Check if WebGL context was successfully created
+      if (!gl || !gl.canvas) {
+        console.warn("Galaxy: Failed to create WebGL context.");
+        setLoading(false);
+        return;
+      }
+
+      rendererRef.current = renderer;
+      isInitializedRef.current = true;
+    } catch (error) {
+      console.warn("Galaxy: Error creating renderer:", error);
+      setLoading(false);
+      return;
+    }
 
     if (transparent) {
       gl.enable(gl.BLEND);
@@ -238,20 +281,19 @@ export default function Galaxy({
       gl.clearColor(0, 0, 0, 1);
     }
 
-    let program: Program;
-
     function resize() {
+      if (isDestroyed || !ctn || !renderer) return;
       const scale = 1;
       renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
-      if (program) {
+      if (program?.uniforms?.uResolution) {
         program.uniforms.uResolution.value = new Color(
           gl.canvas.width,
           gl.canvas.height,
-          gl.canvas.width / gl.canvas.height
+          gl.canvas.width / gl.canvas.height,
         );
       }
     }
-    window.addEventListener('resize', resize, false);
+    window.addEventListener("resize", resize, false);
     resize();
 
     const geometry = new Triangle(gl);
@@ -261,7 +303,11 @@ export default function Galaxy({
       uniforms: {
         uTime: { value: 0 },
         uResolution: {
-          value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
+          value: new Color(
+            gl.canvas.width,
+            gl.canvas.height,
+            gl.canvas.width / gl.canvas.height,
+          ),
         },
         uFocal: { value: new Float32Array(focal) },
         uRotation: { value: new Float32Array(rotation) },
@@ -270,7 +316,10 @@ export default function Galaxy({
         uHueShift: { value: hueShift },
         uSpeed: { value: speed },
         uMouse: {
-          value: new Float32Array([smoothMousePos.current.x, smoothMousePos.current.y])
+          value: new Float32Array([
+            smoothMousePos.current.x,
+            smoothMousePos.current.y,
+          ]),
         },
         uGlowIntensity: { value: glowIntensity },
         uSaturation: { value: saturation },
@@ -280,37 +329,51 @@ export default function Galaxy({
         uRepulsionStrength: { value: repulsionStrength },
         uMouseActiveFactor: { value: 0.0 },
         uAutoCenterRepulsion: { value: autoCenterRepulsion },
-        uTransparent: { value: transparent }
-      }
+        uTransparent: { value: transparent },
+      },
     });
 
-    const mesh = new Mesh(gl, { geometry, program });
-    let animateId: number;
+    mesh = new Mesh(gl, { geometry, program });
 
     function update(t: number) {
-      animateId = requestAnimationFrame(update);
-      if (!disableAnimation) {
+      if (isDestroyed) return;
+
+      animateIdRef.current = requestAnimationFrame(update);
+
+      if (!disableAnimation && program?.uniforms) {
         program.uniforms.uTime.value = t * 0.001;
         program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
       }
 
       const lerpFactor = 0.05;
-      smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
-      smoothMousePos.current.y += (targetMousePos.current.y - smoothMousePos.current.y) * lerpFactor;
+      smoothMousePos.current.x +=
+        (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
+      smoothMousePos.current.y +=
+        (targetMousePos.current.y - smoothMousePos.current.y) * lerpFactor;
 
-      smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
+      smoothMouseActive.current +=
+        (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
 
-      program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
-      program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
-      program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
+      if (program?.uniforms?.uMouse) {
+        program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
+        program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
+        program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
+      }
 
-      renderer.render({ scene: mesh });
+      if (renderer && mesh) {
+        renderer.render({ scene: mesh });
+      }
     }
-    animateId = requestAnimationFrame(update);
-    ctn.appendChild(gl.canvas);
+    animateIdRef.current = requestAnimationFrame(update);
+
+    // Safely append canvas to container
+    if (ctn && gl?.canvas && !ctn.contains(gl.canvas)) {
+      ctn.appendChild(gl.canvas);
+    }
     setLoading(false);
 
     function handleMouseMove(e: MouseEvent) {
+      if (!ctn) return;
       const rect = ctn.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
@@ -322,21 +385,37 @@ export default function Galaxy({
       targetMouseActive.current = 0.0;
     }
 
-    if (mouseInteraction) {
-      ctn.addEventListener('mousemove', handleMouseMove);
-      ctn.addEventListener('mouseleave', handleMouseLeave);
+    if (mouseInteraction && ctn) {
+      ctn.addEventListener("mousemove", handleMouseMove);
+      ctn.addEventListener("mouseleave", handleMouseLeave);
     }
 
-
     return () => {
-      cancelAnimationFrame(animateId);
-      window.removeEventListener('resize', resize);
-      if (mouseInteraction) {
-        ctn.removeEventListener('mousemove', handleMouseMove);
-        ctn.removeEventListener('mouseleave', handleMouseLeave);
+      isDestroyed = true;
+      isInitializedRef.current = false;
+
+      if (animateIdRef.current !== null) {
+        cancelAnimationFrame(animateIdRef.current);
+        animateIdRef.current = null;
       }
-      ctn.removeChild(gl.canvas);
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+
+      window.removeEventListener("resize", resize);
+
+      if (mouseInteraction && ctn) {
+        ctn.removeEventListener("mousemove", handleMouseMove);
+        ctn.removeEventListener("mouseleave", handleMouseLeave);
+      }
+
+      try {
+        if (gl?.canvas && ctn && ctn.contains(gl.canvas)) {
+          ctn.removeChild(gl.canvas);
+        }
+        gl?.getExtension("WEBGL_lose_context")?.loseContext();
+      } catch (e) {
+        // Ignore cleanup errors
+      }
+
+      rendererRef.current = null;
     };
   }, [
     focal,
@@ -354,7 +433,7 @@ export default function Galaxy({
     rotationSpeed,
     repulsionStrength,
     autoCenterRepulsion,
-    transparent
+    transparent,
   ]);
 
   return (
@@ -366,5 +445,4 @@ export default function Galaxy({
       )}
     </div>
   );
-
 }

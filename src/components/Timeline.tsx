@@ -29,7 +29,7 @@ export const Timeline = ({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setIsMobile(window.innerWidth < 768); // you can change breakpoint
+      setIsMobile(window.innerWidth < 768); 
     }
   }, []);
   useEffect(() => {
@@ -100,9 +100,9 @@ export const Timeline = ({
           return (
             <div
               key={index}
-              className="flex justify-start pt-10 md:pt-40 gap-1 md:gap-10"
+              className={`flex justify-start pt-10 md:pt-40 ${isArabic ? 'gap-0':'gap-16'} md:gap-10`}
             >
-              <div className="md:sticky flex flex-col  md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
+              <div className="md:sticky flex flex-col  md:flex-row z-40 items-center top-40 self-start max-w-sm lg:max-w-sm md:w-full">
                 <motion.div
                   style={{ backgroundColor: circleColor }}
                   className={`w-6 h-6 md:h-8 md:w-8    absolute ${
@@ -151,7 +151,7 @@ export const Timeline = ({
                 >
                   {item.title}
                 </motion.h3>
-                <motion.div className="text-sm sm:text-lg" style={{ color: textColor }}>
+                <motion.div className="text-sm sm:text-lg w-full" style={{ color: textColor }}>
                   {item.content}
                 </motion.div>
               </div>

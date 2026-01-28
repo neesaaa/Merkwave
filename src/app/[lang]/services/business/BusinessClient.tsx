@@ -12,10 +12,17 @@ import {
   BarChart3,
   Target,
   TrendingUp,
-  Users,
-  ArrowRight
+  Globe as gp,
+  ArrowRight,
+  Filter,
+  Settings,
+  Handshake,
+  Brain,
+  DollarSign,
+  Shield
 } from "lucide-react";
 import { Timeline } from "@/components/Timeline";
+import Globe from "@/components/Globe";
 
 interface LocalizedComponentProps {
   dict: any;
@@ -34,81 +41,72 @@ export default function BusinessClient({
   const isArabic = lang === "ar";
 
   const digitalMarketingServices = [
-    {
-      icon: Search,
-      title: isArabic ? "تحسين SEO وSEM" : "SEO & SEM Optimization",
-      description: isArabic
-        ? "عزز ظهورك وادفع حركة المرور العضوية من خلال خبرة تحسين محركات البحث والتسويق."
-        : "Boost your visibility and drive organic traffic with expert search engine optimization and marketing.",
-      color: "cyan",
-    },
-    {
-      icon: Share2,
-      title: isArabic
-        ? "إدارة وسائل التواصل الاجتماعي الاستراتيجية"
-        : "Strategic Social Media Management",
-      description: isArabic
-        ? "بناء مشاركة مجتمعية قوية وولاء للعلامة التجارية عبر منصات التواصل الاجتماعي الرئيسية."
-        : "Build strong community engagement and brand loyalty across major social platforms.",
-      color: "pink",
-    },
-    {
-      icon: Edit,
-      title: isArabic ? "إنشاء محتوى جذاب" : "Engaging Content Creation",
-      description: isArabic
-        ? "من المقالات المقنعة إلى الفيديوهات الفيروسية، نصنع محتوى يجذب ويحول."
-        : "From compelling articles to viral videos, we create content that captivates and converts.",
-      color: "yellow",
-    },
-    {
-      icon: Mail,
-      title: isArabic
-        ? "حملات البريد الإلكتروني المستهدفة"
-        : "Targeted Email Campaigns",
-      description: isArabic
-        ? "رعاية العملاء المحتملين ودفع المبيعات باستراتيجيات التسويق عبر البريد الإلكتروني الشخصية والفعالة."
-        : "Nurture leads and drive sales with personalized and effective email marketing strategies.",
-      color: "red",
-    },
-    {
-      icon: BarChart3,
-      title: isArabic
-        ? "تحليلات البيانات وإعداد التقارير"
-        : "Data Analytics & Reporting",
-      description: isArabic
-        ? "احصل على رؤى قابلة للتنفيذ من بيانات التسويق الخاصة بك لتحسين الأداء بشكل مستمر."
-        : "Gain actionable insights from your marketing data to continuously optimize performance.",
-      color: "blue",
-    },
-    {
-      icon: Target,
-      title: isArabic
-        ? "إعلانات الدفع بالنقرة (PPC)"
-        : "Pay-Per-Click (PPC) Advertising",
-      description: isArabic
-        ? "عظّم عائد الاستثمار مع حملات إعلانية مدفوعة مستهدفة ومحسنة بدقة."
-        : "Maximize your ROI with precisely targeted and optimized paid advertising campaigns.",
-      color: "orange",
-    },
-    {
-      icon: TrendingUp,
-      title: isArabic
-        ? "تحسين معدل التحويل (CRO)"
-        : "Conversion Rate Optimization (CRO)",
-      description: isArabic
-        ? "حوّل المزيد من الزوار إلى عملاء بتحسينات استراتيجية للموقع وصفحات الهبوط."
-        : "Turn more visitors into customers with strategic website and landing page optimizations.",
-      color: "emerald",
-    },
-    {
-      icon: Users,
-      title: isArabic ? "التسويق عبر المؤثرين" : "Influencer Marketing",
-      description: isArabic
-        ? "استفد من قوة قادة الرأي لتوسيع نطاق علامتك التجارية ومصداقيتها."
-        : "Leverage the power of key opinion leaders to expand your brand's reach and credibility.",
-      color: "pink",
-    },
-  ];
+  {
+    icon: gp,
+    title: isArabic ? "دخول وتوسيع الأسواق" : "Market Entry & Expansion",
+    description: isArabic
+      ? "تخطيط استراتيجي مدعوم بالبيانات لدخول الأسواق المصرية والسعودية والتوسع فيها بنجاح."
+      : "Data-backed strategic planning for successfully entering and scaling in the Egyptian and Saudi markets.",
+    color: "cyan",
+  },
+  {
+    icon: Filter,
+    title: isArabic ? "هندسة قنوات البيع" : "Sales Funnel Engineering",
+    description: isArabic
+      ? "تحليل وإعادة بناء عمليات المبيعات لزيادة معدلات التحويل ورفع متوسط قيمة الصفقات."
+      : "Analyzing and rebuilding your sales processes to maximize conversion rates and increase average deal value.",
+    color: "pink",
+  },
+  {
+    icon: Settings,
+    title: isArabic ? "التميز التشغيلي" : "Operational Excellence",
+    description: isArabic
+      ? "تبسيط مسارات العمل الداخلية والاستفادة من أنظمة ERP للقضاء على المعوقات وتعظيم الأرباح."
+      : "Streamlining internal workflows and leveraging ERP systems to eliminate bottlenecks and maximize profitability.",
+    color: "yellow",
+  },
+  {
+    icon: Handshake,
+    title: isArabic ? "التحالفات الاستراتيجية" : "Strategic Alliances",
+    description: isArabic
+      ? "تحديد وتأمين شراكات رئيسية توسع نطاق وصولك وتفتح مصادر دخل جديدة."
+      : "Identifying and securing key partnerships that expand your reach and create new revenue streams.",
+    color: "red",
+  },
+  {
+    icon: Brain,
+    title: isArabic ? "دعم القرار الاستراتيجي" : "Strategic Decision Support",
+    description: isArabic
+      ? "استخدام تحليلات متقدمة لتقديم رؤى واضحة تقلل مخاطر السوق وتعظم العائد على الاستثمار."
+      : "Using advanced analytics to deliver clear insights, minimizing market risks while maximizing ROI.",
+    color: "blue",
+  },
+  {
+    icon: Target,
+    title: isArabic ? "توليد عملاء عالي القيمة (B2B)" : "High-Value Lead Generation",
+    description: isArabic
+      ? "تنفيذ أنظمة B2B لتحديد واستهداف واكتساب فرص أعمال ذات اهتمام شرائي عالٍ."
+      : "Implementing B2B systems to identify, target, and acquire high-intent business opportunities.",
+    color: "orange",
+  },
+  {
+    icon: DollarSign,
+    title: isArabic ? "الاستراتيجية المالية والنمو" : "Financial Strategy & Growth Planning",
+    description: isArabic
+      ? "مواءمة الهيكل المالي مع أهداف التوسع لضمان نمو مستدام وقوي."
+      : "Aligning your financial structure with expansion goals to ensure sustainable and aggressive scaling.",
+    color: "emerald",
+  },
+  {
+    icon: Shield,
+    title: isArabic ? "الميزة التنافسية" : "Competitive Edge & Benchmarking",
+    description: isArabic
+      ? "بحث وتحليل متعمق للمنافسين لضمان بقاء عرض القيمة الخاص بك بلا منازع."
+      : "In-depth competitor research to ensure your value proposition remains unrivaled in the market.",
+    color: "pink",
+  },
+];
+
 
   const getColorClasses = (color: string) => {
     const colors: Record<
@@ -221,63 +219,64 @@ export default function BusinessClient({
   );
 
   const marketingTools = [
-    {
-      name: "Google Analytics",
-      description: isArabic
-        ? "تتبع حركة المرور على الموقع وسلوك المستخدم."
-        : "Track website traffic and user behavior.",
-      color: "cyan",
-    },
-    {
-      name: "Google Search Console",
-      description: isArabic
-        ? "تحسين ظهور محرك البحث والفهرسة."
-        : "Optimize search engine visibility and indexing.",
-      color: "cyan",
-    },
-    {
-      name: "Google Ads",
-      description: isArabic
-        ? "إدارة حملات البحث والعرض الإعلانية."
-        : "Manage search and display advertising campaigns.",
-      color: "cyan",
-    },
-    {
-      name: "Meta Ads Manager",
-      description: isArabic
-        ? "تشغيل وتحسين الإعلانات على Facebook/Instagram."
-        : "Run and optimize ads on Facebook/Instagram.",
-      color: "blue",
-    },
-    {
-      name: "Mailchimp / HubSpot",
-      description: isArabic
-        ? "أتمتة البريد الإلكتروني وتكاملات CRM."
-        : "Email automation and CRM integrations.",
-      color: "purple",
-    },
-    {
-      name: "SEMrush / Ahrefs",
-      description: isArabic
-        ? "أدوات شاملة لتحسين محركات البحث والمحتوى والمنافسين."
-        : "Comprehensive SEO, content, and competitor tools.",
-      color: "emerald",
-    },
-    {
-      name: "Hootsuite / Buffer",
-      description: isArabic
-        ? "جدولة وإدارة وسائل التواصل الاجتماعي."
-        : "Scheduling and social media management.",
-      color: "pink",
-    },
-    {
-      name: "Data Studio / Looker",
-      description: isArabic
-        ? "إنشاء لوحات معلومات وتقارير غنية."
-        : "Create dashboards and rich reports.",
-      color: "blue",
-    },
-  ];
+  {
+    name: "Odoo ERP",
+    description: isArabic
+      ? "مركزية جميع إجراءات العمل لتحقيق أقصى قدر من الكفاءة التشغيلية."
+      : "Centralizing all business processes to achieve maximum operational efficiency.",
+    color: "cyan",
+  },
+  {
+    name: "Salesforce / CRM",
+    description: isArabic
+      ? "تتبع دورة حياة العملاء المحتملين لزيادة معدلات التحويل وتعظيم قيمة الصفقات."
+      : "Tracking lead lifecycles to increase conversion rates and maximize deal value.",
+    color: "cyan",
+  },
+  {
+    name: "SEMrush",
+    description: isArabic
+      ? "تحليل المنافسين لتحديد الفجوات وفرص النمو في السوق."
+      : "Analyzing competitors to identify market gaps and growth opportunities.",
+    color: "cyan",
+  },
+  {
+    name: "Power BI",
+    description: isArabic
+      ? "تحويل البيانات المعقدة إلى رؤى تنفيذية قابلة للتنفيذ."
+      : "Turning complex data into actionable executive-level insights.",
+    color: "blue",
+  },
+  {
+    name: "Asana",
+    description: isArabic
+      ? "إدارة مشاريع التوسع عالية المستوى بدقة وسرعة."
+      : "Managing high-level scaling projects with precision and speed.",
+    color: "purple",
+  },
+  {
+    name: "Google Trends",
+    description: isArabic
+      ? "توقع تحولات السوق للبقاء في صدارة احتياجات المستهلكين."
+      : "Predicting market shifts to stay ahead of evolving consumer demand.",
+    color: "emerald",
+  },
+  {
+    name: "HubSpot",
+    description: isArabic
+      ? "توسيع نطاق المبيعات عبر مسارات عمل ذكية ومؤتمتة."
+      : "Scaling sales outreach through smart, automated workflows.",
+    color: "pink",
+  },
+  {
+    name: "Google Data Studio",
+    description: isArabic
+      ? "بناء لوحات تحكم تنفيذية مخصصة لتتبع عائد الاستثمار الشامل."
+      : "Building custom executive dashboards to track total business ROI.",
+    color: "blue",
+  },
+];
+
 
   return (
     <main
@@ -295,21 +294,21 @@ export default function BusinessClient({
 
         <div className="container flex flex-col mx-auto max-w-[96%] relative z-10">
           {/* Back Link */}
-          <div className="flex self-start justify-center mb-8">
-            <Link
-              href={`/${lang}`}
-              className={`inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors `}
-              dir={isArabic ? "rtl" : "ltr"}
-            >
-              <ArrowLeft
-                className={`w-5 h-5 ${isArabic ? "ml-2 rotate-180" : "mr-2"}`}
-              />
-              {isArabic ? "العودة إلى الرئيسية" : "Back to Home"}
-            </Link>
+          <div className="flex self-start justify-center md:mb-8">
+          <Link
+            href={`/${lang}/services` as any}
+            className={`inline-flex items-center text-[#00FFFF] hover:text-cyan-300 transition-colors mb-8 `}
+            dir={isArabic ? "rtl" : "ltr"}
+          >
+            <ArrowLeft
+              className={`w-5 h-5 ${isArabic ? "ml-2 rotate-180" : "mr-2"}`}
+            />
+            {isArabic ? "العودة إلى الخدمات" : "Back to Services"}
+          </Link>
           </div>
 
           <div
-            className="flex flex-col items-center justify-center text-center pt-24"
+            className="flex flex-col items-center justify-center text-center pt-4 md:pt-24"
             dir={isArabic ? "rtl" : "ltr"}
           >
             <div className="mb-12">
@@ -328,7 +327,7 @@ export default function BusinessClient({
               className="text-4xl md:text-5xl font-bold mb-6 h-full  w-full text-center"
             >
               <span className="text-white block text-center">
-                {isArabic ? "موجة الأعمال" : "BUSINESS WAVE"}
+                {isArabic ? "تطوير الأعمال: استراتيجيات السيادة على السوق" : "Business Development: Strategies for Market Dominance"}
               </span>
             </motion.h1>
 
@@ -336,11 +335,11 @@ export default function BusinessClient({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="max-w-[280px] sm:max-w-screen text-sm md:text-lg text-gray-300  mb-8 text-center"
+              className="max-w-[280px] sm:max-w-3/4 text-md md:text-lg text-gray-300  mb-8 text-center"
             >
               {isArabic
-                ? "نهندس تطبيقات ويب مبتكرة وقابلة للتوسع وآمنة مصممة خصيصًا لاحتياجات عملك، مع التركيز على تجارب مستخدم استثنائية ووظائف قوية."
-                : "We engineer innovative, scalable, and secure web applications tailored to your business needs, focusing on exceptional user experiences and robust functionality."}
+                ? "نحن لا نقدم مجرد نصائح، بل نهندس النمو. صُممت خدمات تطوير الأعمال لدينا لتحسين عملياتك، وتحديد الفرص عالية القيمة، وتوسيع نطاق علامتك التجارية في منطقة الشرق الأوسط وشمال أفريقيا"
+                : "We don't just provide advice; we engineer growth. Our business development services are designed to optimize your operations, identify high-value opportunities, and scale your brand across the MENA region."}
             </motion.p>
 
             <motion.div
@@ -358,8 +357,8 @@ export default function BusinessClient({
                             transition-all duration-300"
                 >
                   {isArabic
-                    ? "ابدأ مشروع الويب الخاص بك"
-                    : "Start Your Web Project →"}
+                    ? "ابدأ استراتيجية نموك "
+                    : "Start Your Growth Strategy →"}
                 </button>
               </Link>
             </motion.div>
@@ -368,17 +367,17 @@ export default function BusinessClient({
       </section>
 
       {/* Digital Marketing Solutions Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-[96%]">
-          <div className="flex items-center justify-center  gap-6">
+      <section className=" px-4 z-20">
+        <div className="container mx-auto max-w-[96%] -mb-4">
+          <div className="relative  space-y-2 z-20">
             <Timeline
               titleText={
-                isArabic ? "حلول التسويق الرقمي" : "Digital Marketing Solutions"
+                isArabic ? "استراتيجيات قابلة للتوسع للسيادة على السوق" : "Scalable Strategies for Market Dominance"
               }
               subtitleText={
                 isArabic
-                  ? "في المشهد الحديث، التواجد الرقمي القوي ليس اختياريًا. إنه كيفية الوصول إلى جمهورك وإشراكه وتحويله بفعالية."
-                  : "In the modern landscape, a strong digital presence is not optional. It's how you reach, engage, and convert your audience effectively."
+                  ? "نقدم استشارات رفيعة المستوى وتدقيقاً تشغيلياً لمساعدة عملك على الانتقال من النجاح المحلي إلى القيادة الإقليمية. ينصب تركيزنا على الكفاءة، الربحية، والتوسع المستدام."
+                  : "We provide high-level consulting and operational auditing to help your business transition from local success to regional leadership. Our focus is on efficiency, profitability, and sustainable scaling."
               }
               data={timelineData}
               isArabic={isArabic}
@@ -408,16 +407,21 @@ export default function BusinessClient({
                 className="flex flex-col items-center justify-center text-center mb-12 z-20"
                 dir={isArabic ? "rtl" : "ltr"}
               >
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center z-20">
+                <h2 className="text-3xl w-full md:text-4xl font-bold mb-4 text-center z-20">
                   <span className="text-white block text-center">
-                    {isArabic ? "حلولنا " : "Our Advanced "}
+                    {isArabic ? "أدوات " : "Integrated"}
                   </span>
                   <span className="text-red-500 block text-center">
                     {isArabic
-                      ? "للتسويق الرقمي المتقدمة"
-                      : "Digital Marketing Solutions"}
+                      ? " متكاملة لنمو قابل للتوسع"
+                      : "Tools for Scalable Growth"}
                   </span>
                 </h2>
+                <p className="text-center">
+                  {isArabic
+                    ? "نحن نستخدم منصات رائدة عالمياً لإدارة وتتبع وتسريع أهداف عملك"
+                    : "We utilize industry-leading platforms to manage, track, and accelerate your business objectives"}
+                </p>
               </motion.div>
 
               {/* Grid */}
@@ -518,8 +522,8 @@ export default function BusinessClient({
             >
               <span className="text-transparent p-4 bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 block text-center">
                 {isArabic
-                  ? "هل أنت مستعد لتحويل تواجدك على الإنترنت؟"
-                  : "Ready to Transform Your Online Presence?"}
+                  ? "هل أنت مستعد لقيادة مجالك؟"
+                  : "Ready to Lead Your Industry?"}
               </span>
             </h2>
 
@@ -528,18 +532,18 @@ export default function BusinessClient({
               dir={isArabic ? "rtl" : "ltr"}
             >
               {isArabic
-                ? "دعنا نناقش مشروعك ونحول رؤيتك إلى حقيقة من خلال حل ويب قوي."
-                : "Let's discuss your project and bring your vision to life with a powerful web solution."}
+                ? "لنناقش تحديات عملك الحالية ونبني خارطة طريق للسيادة المطلقة على السوق."
+                : "Let’s discuss your current business challenges and build a roadmap for absolute market dominance."}
             </p>
 
 
             <Link href={`/${lang}/contact` as any}>
-              <button className="px-1 py-2 md:px-8 md:py-4 bg-gradient-to-r text-md md:text-2xl from-yellow-600 via-orange-500 to-red-500 text-white font-bold rounded-full hover:shadow-lg hover:shadow-red-400/30 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+              <button className="px-1 py-2 md:px-8 lg:px-10 md:py-3 bg-gradient-to-r text-md md:text-xl from-yellow-600 via-orange-500 to-red-500 text-white font-medium rounded-full hover:shadow-lg hover:shadow-red-400/30 transition-all duration-300 hover:scale-105 flex items-center ">
                 {isArabic
-                  ? "ابدأ مشروع الويب الخاص بك"
-                  : "Start Your Web Project"}
+                  ? "احجز جلسة استراتيجية"
+                  : "Book Your Strategy Session"}
                 <ArrowRight
-                  className={`w-5 h-5 transition-transform duration-300 ${isArabic ? "rotate-180" : ""
+                  className={`w-5 h-5 transition-transform duration-300 ${isArabic ? "rotate-180 " : ""}
                     }`}
                 />
               </button>

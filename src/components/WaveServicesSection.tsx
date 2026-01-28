@@ -8,7 +8,7 @@ import {
   AnimatePresence,
   useReducedMotion,
   Easing,
-  PanInfo 
+  PanInfo,
 } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -19,6 +19,8 @@ interface WaveServicesSectionProps {
 
 interface ServiceItem {
   name: string;
+  badgeAr: string;
+  badgeEn: string;
   description: string;
   slug?: string | number | null;
 }
@@ -30,6 +32,8 @@ interface Service {
   gradient: string;
   slug: string;
   logo: { src: string; classes: string };
+  badgeAr: string;
+  badgeEn: string;
 }
 
 export default function WaveServicesSection({
@@ -44,29 +48,36 @@ export default function WaveServicesSection({
 
   const isArabic = lang === "ar";
 
-  // Service logos mapping - optimized paths
   const serviceLogos = useMemo(
     () => [
       {
         src: "/digital.gif",
-        classes: "w-32 h-32  object-contain",
+        classes: "w-32 h-32 object-contain",
+        badgeAr: "السيادة",
+        badgeEn: "Dominate",
       },
       {
         src: "/solutions.gif",
-        classes: "w-32 h-32  object-contain",
+        classes: "w-32 h-32 object-contain",
+        badgeAr: "الابتكار",
+        badgeEn: "Innovate",
       },
       {
         src: "/Media.gif",
         classes:
           "w-32 h-32 lg:w-48 lg:h-48 shadow-[0_0_30px_10px_rgba(0,213,197,0.4)] object-contain rounded-full",
+        badgeAr: "الارتقاء",
+        badgeEn: "Elevate",
       },
       {
         src: "/branding.gif",
         classes:
-          "w-32 h-32  object-contain rounded-full shadow-[0_0_30px_10px_rgba(0,213,197,0.4)]",
+          "w-32 h-32 object-contain rounded-full shadow-[0_0_30px_10px_rgba(0,213,197,0.4)]",
+        badgeAr: "الارتقاء",
+        badgeEn: "Elevate",
       },
     ],
-    []
+    [],
   );
 
   // Memoize services array to prevent unnecessary recalculations
@@ -77,6 +88,12 @@ export default function WaveServicesSection({
           id: index + 1,
           title: item.name,
           description: item.description,
+
+          badgeAr:
+            item.badgeAr || serviceLogos[index % serviceLogos.length].badgeAr,
+          badgeEn:
+            item.badgeEn || serviceLogos[index % serviceLogos.length].badgeEn,
+
           gradient: [
             "from-purple-500/20 via-pink-500/20 to-cyan-400/30",
             "from-blue-500/20 via-purple-500/20 to-pink-500/30",
@@ -85,12 +102,14 @@ export default function WaveServicesSection({
             "from-orange-500/20 via-red-500/20 to-pink-500/30",
             "from-indigo-500/20 via-purple-500/20 to-cyan-400/30",
           ][index % 6],
+
           slug:
             typeof item.slug === "string" ? item.slug : String(item.slug ?? ""),
+
           logo: serviceLogos[index % serviceLogos.length],
-        })
+        }),
       ),
-    [dict.services.items, serviceLogos]
+    [dict.services.items, serviceLogos, isArabic],
   );
 
   const nextSlide = useCallback(() => {
@@ -108,66 +127,51 @@ export default function WaveServicesSection({
       setDirection(index > activeIndex ? 1 : -1);
       setActiveIndex(index);
     },
-    [activeIndex]
+    [activeIndex],
   );
 
-const handleDragEnd = useCallback(
-  (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    setIsDragging(false);
+  const handleDragEnd = useCallback(
+    (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      setIsDragging(false);
 
-    const swipeThreshold = 50;
-    if (Math.abs(info.offset.x) < swipeThreshold) return;
+      const swipeThreshold = 50;
+      if (Math.abs(info.offset.x) < swipeThreshold) return;
 
-    const isSwipeRight = info.offset.x > 0;
+      const isSwipeRight = info.offset.x > 0;
 
-    if (isArabic) {
-            isSwipeRight ? prevSlide() : nextSlide();
-
-    } else {
-      isSwipeRight ? prevSlide() : nextSlide();
-    }
-  },
-  [isArabic, nextSlide, prevSlide]
-);
-
-
+      if (isArabic) {
+        isSwipeRight ? prevSlide() : nextSlide();
+      } else {
+        isSwipeRight ? prevSlide() : nextSlide();
+      }
+    },
+    [isArabic, nextSlide, prevSlide],
+  );
 
   const isTouchDevice =
-  typeof window !== "undefined" &&
-  ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 
+  useEffect(() => {
+    if (services.length === 0) return;
 
-useEffect(() => {
-  if (services.length === 0) return;
+    const interval = setInterval(() => {
+      setDirection(1);
+      setActiveIndex((prev) => (prev + 1) % services.length);
+    }, 6000);
 
-  const interval = setInterval(() => {
-    setDirection(1);
-    setActiveIndex((prev) => (prev + 1) % services.length);
-  }, 6000);
+    return () => clearInterval(interval);
+  }, [services.length, activeIndex]);
 
-  return () => clearInterval(interval);
-}, [services.length, activeIndex]);
+  useEffect(() => {
+    if (!isDragging) return;
 
+    const timeout = setTimeout(() => {
+      setIsDragging(false);
+    }, 1500); // iOS safety reset
 
-useEffect(() => {
-  if (!isDragging) return;
-
-  const timeout = setTimeout(() => {
-    setIsDragging(false);
-  }, 1500); // iOS safety reset
-
-  return () => clearTimeout(timeout);
-}, [isDragging]);
-
-
-
-
-
-
-
-
-
-
+    return () => clearTimeout(timeout);
+  }, [isDragging]);
 
   const visibleCards = useMemo(() => {
     const prevIndex = (activeIndex - 1 + services.length) % services.length;
@@ -175,7 +179,7 @@ useEffect(() => {
     return [prevIndex, activeIndex, nextIndex];
   }, [activeIndex, services.length]);
 
-    const cardVariants = useMemo(
+  const cardVariants = useMemo(
     () => ({
       enter: (direction: number) => ({
         opacity: 0,
@@ -218,7 +222,28 @@ useEffect(() => {
       }),
     }),
     [],
-  )
+  );
+
+  const ServiceBadge = ({ text }: { text: string }) => (
+    <span
+      className="
+      absolute top-4 right-4
+      px-3 py-1
+      text-[10px] sm:text-xs
+      font-bold uppercase tracking-wider
+      rounded-full
+      bg-gradient-to-r from-cyan-400/20 via-teal-400/20 to-emerald-400/20
+      text-cyan-300
+      border border-cyan-400/30
+      backdrop-blur-md
+      z-50
+      shadow-[0_0_15px_rgba(0,213,197,0.4)]
+      select-none
+    "
+    >
+      {text}
+    </span>
+  );
 
   return (
     <section
@@ -259,8 +284,8 @@ useEffect(() => {
             id="services-heading"
             className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 md:mb-6 tracking-tight px-4"
           >
-            <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent uppercase">
-              {isArabic ? "موجاتنا من الخدمات" : "Our Waves of Service"}
+            <span className="bg-gradient-to-r from-cyan-400 py-3 via-teal-300 to-emerald-400 bg-clip-text text-transparent uppercase">
+              {isArabic ? "أمواج التميز لدينا" : "Our Waves of Excellence"}
             </span>
           </h2>
 
@@ -378,9 +403,12 @@ useEffect(() => {
                           className="absolute inset-0 rounded-xl  border-2 border-cyan-600 pointer-events-none"
                           aria-hidden="true"
                         />
-                      
 
-                        <div className="relative  z-10 p-4 py-16 sm:p-5 h-full flex flex-col items-center justify-center gap-2">
+                        <ServiceBadge
+                          text={isArabic ? service.badgeAr : service.badgeEn}
+                        />
+
+                        <div className="relative z-10 p-4 py-16 sm:p-5 h-full flex flex-col items-center justify-center gap-2">
                           <div className="mb-4 sm:mb-6 flex justify-center">
                             <div
                               className={`w-full h-full relative rounded-lg sm:rounded-xl   p-1 shadow-2xl  `}
@@ -404,9 +432,11 @@ useEffect(() => {
                           <p className="text-gray-300 mb-2 md:mb-4 text-xs sm:text-sm leading-relaxed text-center flex-grow line-clamp-3 sm:line-clamp-none  ">
                             {service.description}
                           </p>
-                          
+
                           <Link
-                            href={{ pathname: `/${lang}/services/${service.slug}` }}
+                            href={{
+                              pathname: `/${lang}/services/${service.slug}`,
+                            }}
                             className="w-full px-3  sm:px-4 py-2 sm:py-3  text-xs sm:text-sm md:text-base leading-normal font-semibold text-center bg-gradient-to-r from-[#FFF200] to-[#FFD700] text-[#FF1A1A]!  rounded-lg hover:from-red-400 hover:to-red-700 hover:text-yellow-200! transition-all duration-300"
                           >
                             {isArabic ? "استكشف" : "Explore"}
@@ -474,6 +504,10 @@ useEffect(() => {
                             aria-hidden="true"
                           />
 
+                          <ServiceBadge
+                            text={isArabic ? service.badgeAr : service.badgeEn}
+                          />
+
                           {isCenter && !prefersReducedMotion && (
                             <motion.div
                               className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent pointer-events-none"
@@ -529,7 +563,9 @@ useEffect(() => {
                                 className=""
                               >
                                 <Link
-                                  href={{ pathname: `/${lang}/services/${service.slug}` }}
+                                  href={{
+                                    pathname: `/${lang}/services/${service.slug}`,
+                                  }}
                                   prefetch={true}
                                   aria-label={`${
                                     isArabic ? "استكشف خدمة" : "Explore"
