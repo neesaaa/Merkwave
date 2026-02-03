@@ -138,13 +138,13 @@ export const Timeline = ({
                   }}
                   className={`hidden md:block text-2xl z-30   ${
                     isArabic ? " md:pr-26" : "md:pl-26"
-                  } lg:text-4xl font-bold `}
+                  } lg:text-3xl font-bold `}
                 >
                   {item.title}
                 </motion.h3>
               </div>
 
-              <div className="relative md:pl-4 w-full">
+              <div className="relative md:pl-8 w-full">
                 <motion.h3
                   style={{ color: headerColor }}
                   className={`md:hidden block text-2xl mb-4  font-bold ${isArabic ? 'text-right' : 'text-left'}   pr-20  `}

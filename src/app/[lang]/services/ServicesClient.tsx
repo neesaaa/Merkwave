@@ -112,9 +112,7 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
 
   return (
     <div
-      className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.webp')] bg-cover bg-center bg-no-repeat ${
-        isArabic ? "font-arabic" : "font-sans"
-      }`}
+      className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.webp')] bg-cover bg-center bg-no-repeat `}
     >
       <section className="relative py-20 px-4  overflow-hidden ">
         <div className="absolute inset-0  rounded-xl"></div>
@@ -143,9 +141,8 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                 initial={{ y: 30 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-3xl sm:text-4xl md:text-7xl font-bold mb-6 text-center"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center"
               >
-
                 <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 bg-clip-text text-transparent">
                   {isArabic ? "هندسة نجاحك" : "Engineering Your Success"}
                 </span>
@@ -155,7 +152,7 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                 initial={{ y: 20 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-white text-lg md:text-xl max-w-3xl text-center  leading-relaxed"
+                className="text-white text-lg md:text-md max-w-4xl text-center  leading-relaxed"
               >
                 {isArabic
                   ? 'نحن لا نقدم مجرد خدمات، بل نبني محركات للنمو. من خلال إطار عملنا "ابتكار، ارتقاء، سيادة"، نحول عملك إلى قائد في السوق'
@@ -167,9 +164,9 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
       </section>
 
       {/* Services Grid */}
-      <section className="pt-10 px-4">
+      <section className="pt-10 px-2 sm:px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {services.map((service, index) => {
               return (
                 <motion.div
@@ -186,16 +183,16 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                   group relative overflow-hidden
                   bg-gradient-to-br from-gray-900 to-black
                   border ${service.colors.border} ${service.colors.hoverBorder}
-                  rounded-3xl p-8 h-full
+                  rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 h-full
                   transition-all duration-500
-                  hover:scale-[1.06]
+                  hover:scale-[1.02] sm:hover:scale-[1.06]
                   hover:shadow-[0_0_60px_-10px_rgba(24,116,123,0.65)]
                   cursor-pointer
                 `}
                     >
                       <div
                         className="
-                    absolute inset-0 rounded-3xl
+                    absolute inset-0 rounded-2xl sm:rounded-3xl
                     bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent
                     opacity-0 group-hover:opacity-100
                     translate-x-[-120%] group-hover:translate-x-[120%]
@@ -206,7 +203,7 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
 
                       <div
                         className={`
-                    absolute inset-0 rounded-3xl
+                    absolute inset-0 rounded-2xl sm:rounded-3xl
                     bg-gradient-to-br ${service.colors.from} ${service.colors.to}
                     opacity-0 group-hover:opacity-10
                     transition-opacity duration-500
@@ -217,8 +214,8 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                       <div
                         className={`
                     relative z-10
-                    w-16 h-16 ${service.colors.iconBg} rounded-2xl
-                    flex items-center justify-center mb-6
+                    w-12 h-12 sm:w-16 sm:h-16 ${service.colors.iconBg} rounded-xl sm:rounded-2xl
+                    flex items-center justify-center mb-4 sm:mb-6
                     group-hover:scale-110 transition-transform duration-300
                   `}
                       >
@@ -227,14 +224,14 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                           alt={isArabic ? service.titleAr : service.titleEn}
                           width={48}
                           height={48}
-                          className="object-contain"
+                          className="object-contain w-8 h-8 sm:w-12 sm:h-12"
                         />
                       </div>
                       {/* Pillar Badge */}
-                      <div className="relative z-10 mb-4">
+                      <div className="relative z-10 mb-3 sm:mb-4">
                         <span
                           className={`
-      inline-block px-4 py-1 text-sm font-bold tracking-widest
+      inline-block px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold tracking-widest
       rounded-full uppercase
       bg-gradient-to-r ${service.colors.from} ${service.colors.to}
       text-white shadow-md
@@ -245,22 +242,22 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
                       </div>
 
                       {/* Title */}
-                      <h3 className="relative z-10 text-xl font-bold text-white mb-4 tracking-wide">
+                      <h3 className="relative z-10 text-base sm:text-lg font-bold text-white mb-3 sm:mb-4 tracking-wide">
                         {isArabic ? service.titleAr : service.titleEn}
                       </h3>
 
                       {/* Description */}
-                      <p className="relative z-10 text-gray-400 leading-relaxed mb-6">
+                      <p className="relative z-10 text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
                         {isArabic
                           ? service.descriptionAr
                           : service.descriptionEn}
                       </p>
 
                       {/* Explore */}
-                      <div className="relative z-10 flex items-center gap-2 text-cyan-400 font-semibold group-hover:gap-4 transition-all duration-300">
+                      <div className="relative z-10 flex items-center gap-2 text-cyan-400 text-sm sm:text-base font-semibold group-hover:gap-4 transition-all duration-300">
                         <span>{isArabic ? "استكشاف" : "EXPLORE"}</span>
                         <ArrowRight
-                          className={`w-5 h-5 ${isArabic ? "rotate-180" : ""}`}
+                          className={`w-4 h-4 sm:w-5 sm:h-5 ${isArabic ? "rotate-180" : ""}`}
                         />
                       </div>
                     </div>
@@ -273,16 +270,16 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-screen mx-auto">
+      <section className="py-12 sm:py-16 md:py-20 px-2 sm:px-4">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className=" p-12 md:p-16  text-center hover:border-cyan-500/50 transition-all duration-500"
+            className="p-6 sm:p-10 md:p-16 text-center hover:border-cyan-500/50 transition-all duration-500"
           >
-            <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-8">
+            <h2 className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 md:mb-8 leading-tight">
               {isArabic
                 ? "هل أنت مستعد للابتكار، الارتقاء، والسيادة؟"
                 : "Ready to Innovate, Elevate, and Dominate?"}
@@ -291,11 +288,11 @@ export default function ServicesClient({ dict, lang }: ServicesClientProps) {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center text-sm  gap-1 sm:gap-3 px-2 sm:px-5 py-2 md:px-10 md:py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold md:text-lg rounded-full transition-all duration-300 shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50"
+                className="inline-flex items-center text-xs sm:text-sm md:text-base lg:text-lg gap-2 sm:gap-3 px-4 sm:px-6 md:px-10 py-2.5 sm:py-3 md:py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold rounded-full transition-all duration-300 shadow-xl shadow-cyan-500/30 hover:shadow-cyan-500/50"
               >
                 {isArabic ? "ابدأ مشروعك اليوم" : "Start Your Project Today"}
                 <ArrowRight
-                  className={`w-5 h-5 ${isArabic ? "rotate-180" : ""}`}
+                  className={`w-4 h-4 sm:w-5 sm:h-5 ${isArabic ? "rotate-180" : ""}`}
                 />
               </motion.button>
             </Link>

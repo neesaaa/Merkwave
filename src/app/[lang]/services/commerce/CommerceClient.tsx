@@ -309,9 +309,7 @@ export default function CommerceClient({
 
   return (
     <main
-      className={`min-h-screen overflow-x-hidden relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center ${
-        isArabic ? "font-arabic" : "font-sans"
-      }`}
+      className={`min-h-screen overflow-x-hidden relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center `}
     >
       {/* Hero Section */}
       <div className="absolute inset-0 z-1 backdrop-blur-md bg-black/60"></div>
@@ -533,7 +531,7 @@ export default function CommerceClient({
             </h2>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
               {isArabic
-                ? "لنناقش كيف يمكننا تنمية علامتك التجارية وتحقيق نتائج ملموسة لعملك."
+                ? "لنناقش كيف يمكننا تنمية علامتك التجارية وتحقيق نتائج ملموسة لعملك."
                 : "Let's discuss how we can grow your brand and drive measurable results for your business"}
             </p>
             <Link href={`/${lang}/contact` as any}>

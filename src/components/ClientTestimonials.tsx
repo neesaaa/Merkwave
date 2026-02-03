@@ -59,7 +59,7 @@ export default function ClientTestimonials({ lang, dict }: ClientTestimonialsPro
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+          <h2 className="text-2xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 p-3 bg-clip-text text-transparent">
                 {isArabic ? 'قصص نجاحنا ' : 'Stories of Success '}
             </span>
@@ -99,8 +99,8 @@ export default function ClientTestimonials({ lang, dict }: ClientTestimonialsPro
                     </p>
 
                     {/* Client Info */}
-                    <div className="flex items-center gap-4 mt-auto">
-                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="flex items-center gap-4 pt-8 mt-auto">
+                      <div className="w-12 h-12  bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-black font-bold text-sm">{testimonial.avatar}</span>
                       </div>
                       <div>
@@ -132,7 +132,7 @@ export default function ClientTestimonials({ lang, dict }: ClientTestimonialsPro
                     </p>
 
                     {/* Client Info */}
-                    <div className="flex items-center gap-4 mt-auto">
+                    <div className="flex items-center gap-4 pt-8 mt-auto">
                       <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
                         <span className="text-black font-bold text-sm">{testimonial.avatar}</span>
                       </div>
@@ -178,17 +178,7 @@ export default function ClientTestimonials({ lang, dict }: ClientTestimonialsPro
           }
         `}</style>
 
-        {/* Bottom Section */}
-        <div className="text-center mt-16">
-          <div className="relative inline-block">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">
-
-            </h3>
-            <p className="text-cyan-300 text-lg">
-                {isArabic ? 'آراء عملائنا' : 'CLIENT EXPERIENCES'}
-            </p>
-          </div>
-        </div>
+        
       </div>
     </section>
   )

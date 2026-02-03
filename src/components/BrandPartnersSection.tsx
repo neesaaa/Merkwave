@@ -164,12 +164,11 @@ export default function BrandPartnersSection({ dict, lang }: BrandPartnersSectio
         <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
           <div className="text-center">
             {/* Section Heading */}
-            <h2 className="text-2xl md:text-3xl font-bold mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold mb-12">
               <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
                 {isArabic ? 'نقف شامخين مع شركائنا من العلامات التجارية المرموقة' : 'Standing Tall with Our Esteemed Brand Partners'}
               </span>
-            </h2>
-
+            </h3>
             {/* Infinite Loop Slider */}
             <div className="overflow-hidden relative">
               <div className="flex animate-infinite-scroll">

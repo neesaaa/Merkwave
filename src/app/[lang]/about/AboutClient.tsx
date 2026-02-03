@@ -186,7 +186,7 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
               className="border-2 max-w-7xl mx-auto border-cyan-500/40 shadow-[0_0_20px_rgba(7,234,230,0.6)] bg-black/60 bg-blur-lg  rounded-3xl p-10 md:p-16"
             >
               <h2 className="text-xl md:text-5xl font-bold text-center text-[#00FFFF]  mb-8 ">
-                {isArabic ? "من نحن ؟" : "Who We Are ?"}
+                {isArabic ? "من نحن ؟" : "Who We Are?"}
               </h2>
 
               <div className="space-y-8 ">
@@ -248,28 +248,28 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
         </section>
 
         {/* Why Merkwave Values Grid */}
-        <section className="py-20 px-4 ">
+        <section className="py-10 sm:py-16 md:py-20 px-2 sm:px-4">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-8 sm:mb-12 md:mb-16"
             >
-              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
                 <span className="text-[#F6FF00] drop-shadow-[0_0_20px_rgba(250,204,21,0.45)]">
                   {isArabic ? "لماذا ميرك ويف؟" : "WHY MERKWAVE ?"}
                 </span>
               </h2>
-              <p className="text-gray-200 text-xl max-w-3xl mx-auto">
+              <p className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto px-2">
                 {isArabic
                   ? "لأننا لا نتكيف مع التيار فحسب؛ بل نصنع المستقبل."
                   : "Because we don't just adapt to the current; we create the future."}
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 z-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 z-20">
               {values.map((value, index) => {
                 const borderColorBright =
                   borderColorsBright[index % borderColors.length];
@@ -291,11 +291,11 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                         animationSpeed={animationSpeed}
                       >
                         <div
-                          className={`h-full p-8 min-h-[30vh] rounded-2xl shadow-[0_0_20px_rgba(7,234,230,0.6)]  border-2 border-[#00FFFF]  transition-all duration-500  hover:scale-105 hover:shadow-[0_0px_50px_rgba(2,247,255,0.6)]`}
+                          className={`h-full p-4 sm:p-6 md:p-8 xl:min-h-[42vh] rounded-xl sm:rounded-2xl shadow-[0_0_20px_rgba(7,234,230,0.6)] border-2 border-[#00FFFF] transition-all duration-500 hover:scale-105 hover:shadow-[0_0px_50px_rgba(2,247,255,0.6)]`}
                         >
                           {/* Icon with gradient background */}
                           <div
-                            className="inline-flex p-4 rounded-2xl mb-6 backdrop-blur-sm border"
+                            className="inline-flex p-3 sm:p-4 rounded-xl sm:rounded-2xl mb-4 sm:mb-6 backdrop-blur-sm border"
                             style={{
                               backgroundColor: `${value.accent}1A`,
                               borderColor: `${value.accent}4D`,
@@ -307,13 +307,14 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                               alt={value.title}
                               width={40}
                               height={40}
+                              className="w-8 h-8 sm:w-10 sm:h-10"
                             />
                           </div>
 
-                          <h3 className="text-xl font-bold mb-4 text-white">
+                          <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-4 text-white">
                             {value.title}
                           </h3>
-                          <p className="text-gray-300 leading-relaxed">
+                          <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed">
                             {value.description}
                           </p>
                         </div>
@@ -321,14 +322,14 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                     )}
                     {!isDesktop && (
                       <div
-                        className={`h-full p-8 rounded-2xl shadow-[0_0_20px_rgba(7,234,230,0.6)]  border-2 border-[#00FFFF]  transition-all duration-500  hover:scale-105 hover:shadow-[0_0px_50px_rgba(2,247,255,0.6)]`}
+                        className={`h-full p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-[0_0_20px_rgba(7,234,230,0.6)] border-2 border-[#00FFFF] transition-all duration-500 hover:scale-[1.02] sm:hover:scale-105 hover:shadow-[0_0px_50px_rgba(2,247,255,0.6)]`}
                       >
                         {/* Icon with gradient background */}
                         <div
-                          className="inline-flex p-4 rounded-2xl mb-6 backdrop-blur-sm border"
+                          className="inline-flex p-3 sm:p-4 rounded-xl sm:rounded-2xl mb-4 sm:mb-6 backdrop-blur-sm border"
                           style={{
-                            backgroundColor: `${borderColorBright}1A`, 
-                            borderColor: `${borderColorBright}4D`, 
+                            backgroundColor: `${borderColorBright}1A`,
+                            borderColor: `${borderColorBright}4D`,
                             boxShadow: `0 0 0 1px ${borderColorBright}33`,
                           }}
                         >
@@ -337,13 +338,14 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                             alt={value.title}
                             width={40}
                             height={40}
+                            className="w-8 h-8 sm:w-10 sm:h-10"
                           />
                         </div>
 
-                        <h3 className="text-xl font-bold mb-4 text-white">
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-4 text-white">
                           {value.title}
                         </h3>
-                        <p className="text-gray-300 leading-relaxed">
+                        <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed">
                           {value.description}
                         </p>
                       </div>
@@ -355,24 +357,24 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
           </div>
         </section>
         {/* Team Section */}
-        <section className="py-20 px-4 ">
+        <section className="py-10 sm:py-16 md:py-20 px-2 sm:px-4">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-8 sm:mb-12 md:mb-16"
             >
-              <h2 className="text-4xl md:text-6xl  text-[#00FFFF] mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-[#00FFFF] mb-2 sm:mb-4">
                 {isArabic ? "سجلات عملائنا:" : "Our Client Chronicles:"}
               </h2>
-              <p className="text-gray-200 text-xl">
+              <p className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl">
                 {isArabic ? "قصص تجعلنا نبتسم!" : "Stories that Make Us Smile!"}
               </p>
             </motion.div>
 
-            <div className="flex flex-wrap justify-center items-center gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center gap-6 sm:gap-10 md:gap-10">
               {team.map((member, index) => (
                 <motion.div
                   key={index}
@@ -383,16 +385,18 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                   className="text-center flex flex-col items-center"
                 >
                   <div
-                    className={`w-40 h-40 rounded-3xl bg-gradient-to-br ${member.color} flex items-center justify-center mb-4 shadow-2xl`}
+                    className={`w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-2xl sm:rounded-3xl bg-gradient-to-br ${member.color} flex items-center justify-center mb-2 sm:mb-4 shadow-2xl`}
                   >
-                    <span className="text-6xl font-bold text-black">
+                    <span className="text-3xl sm:text-4xl md:text-6xl font-bold text-black">
                       {member.initials}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-1">
+                  <h3 className="text-sm sm:text-base md:text-lg font-bold text-white mb-0.5 sm:mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-cyan-400">{member.role}</p>
+                  <p className="text-cyan-400 text-xs sm:text-sm md:text-base">
+                    {member.role}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -401,21 +405,21 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
         {/* <MotionPathImage /> */}
 
         {/* CTA Section */}
-        <section className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
+        <section className="py-10 sm:py-16 md:py-20 px-2 sm:px-4">
+          <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative rounded-4xl p-3 md:p-16  text-center flex flex-col"
+              className="relative rounded-2xl sm:rounded-3xl md:rounded-4xl p-4 sm:p-8 md:p-16 text-center flex flex-col"
             >
-              <h2 className="text-xl sm:text-2xl md:text-5xl font-bold text-[#F6FF00] mb-6">
+              <h2 className="text-lg sm:text-xl md:text-3xl lg:text-5xl font-bold text-[#F6FF00] mb-3 sm:mb-4 md:mb-6">
                 {isArabic ? (
                   <>
                     هل أنت مستعد{" "}
                     <motion.span
-                      className="inline-block text-4xl"
+                      className="inline-block text-xl sm:text-2xl md:text-4xl"
                       animate={{
                         y: [0, -10, 10, 0],
                         x: [0, 5, -5, 0],
@@ -436,7 +440,7 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                   <>
                     Ready to{" "}
                     <motion.span
-                      className="inline-block text-4xl"
+                      className="inline-block text-xl sm:text-2xl md:text-4xl"
                       animate={{
                         y: [0, -10, 10, 0],
                         x: [0, 5, -5, 0],
@@ -455,7 +459,7 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                   </>
                 )}
               </h2>
-              <p className="text-sm sm:text-xl mb-10 max-w-3xl mx-auto leading-relaxed relative z-10">
+              <p className="text-xs sm:text-sm md:text-base lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed relative z-10 px-2">
                 {isArabic
                   ? "نساعد الشركات الصغيرة والمتوسطة على النمو من خلال التسويق الرقمي الإبداعي وتطوير البرمجيات المخصصة والاستشارات الاستراتيجية."
                   : "We help SMBs grow with creative digital marketing, be spoke software development, and strategic consulting."}
@@ -465,7 +469,7 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="  inline-flex items-center gap-3 px-3 md:px-15 py-3 bg-[#F6FF00] text-black font-bold text-sm sm:text-lg rounded-full transition-all duration-300 shadow-2xl shadow-yellow-500/40 hover:shadow-yellow-500/60"
+                  className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 bg-[#F6FF00] text-black font-bold text-xs sm:text-sm md:text-lg rounded-full transition-all duration-300 shadow-2xl shadow-yellow-500/40 hover:shadow-yellow-500/60"
                 >
                   <span>{isArabic ? "تواصل معنا" : "Contact Us"}</span>
                 </motion.button>

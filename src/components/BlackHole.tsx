@@ -1,10 +1,10 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
+"use client";
+import React, { useEffect, useRef } from "react";
 
-const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
+const BlackHole: React.FC<{ lang?: string }> = ({ lang = "ar" }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const centerHoverRef = useRef<HTMLDivElement | null>(null);
-  const STAR_COLORS = ['#02F7FF', '#00FF00', '#FFFF00', '#FF0000'];
+  const STAR_COLORS = ["#02F7FF", "#00FF00", "#FFFF00", "#FF0000"];
 
   // Flags as refs so both effects can read/write them from closures
   const collapseRef = useRef(false);
@@ -15,15 +15,15 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
     if (!containerRef.current) return;
     const container = containerRef.current;
 
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d')!;
-    canvas.style.position = 'absolute';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.zIndex = '0';
-    canvas.style.pointerEvents = 'none';
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d")!;
+    canvas.style.position = "absolute";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.zIndex = "0";
+    canvas.style.pointerEvents = "none";
 
     container.appendChild(canvas);
 
@@ -42,7 +42,13 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
     let stars: any[] = [];
     const STAR_COUNT = Math.max(10, Math.floor((cw * ch) / 3000));
 
-    function rotate(cx: number, cy: number, x: number, y: number, angle: number) {
+    function rotate(
+      cx: number,
+      cy: number,
+      x: number,
+      y: number,
+      angle: number,
+    ) {
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
       return [
@@ -76,12 +82,13 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
         this.y = centery + this.orbital;
         this.yOrigin = this.y;
 
-        this.speed = (Math.random() * 2 + 1) * Math.PI / 180;
-        this.startRot = (Math.random() * 360) * Math.PI / 180;
+        this.speed = ((Math.random() * 2 + 1) * Math.PI) / 180;
+        this.startRot = (Math.random() * 360 * Math.PI) / 180;
 
         this.collapseBonus = Math.max(0, this.orbital - maxorbit * 0.7);
 
-        this.color = STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
+        this.color =
+          STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)];
 
         this.hoverPos = centery + maxorbit / 2 + this.collapseBonus;
         this.expansePos = centery + (id % 100) * -10 + (Math.random() * 20 + 1);
@@ -100,7 +107,9 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
 
         if (!expanse && !returning) {
           this.rotation = this.startRot + currentTime * this.speed;
-          this.y += collapse ? (this.hoverPos - this.y) * 0.05 : (this.yOrigin - this.y) * 0.1;
+          this.y += collapse
+            ? (this.hoverPos - this.y) * 0.05
+            : (this.yOrigin - this.y) * 0.1;
         } else if (expanse) {
           this.rotation = this.startRot + currentTime * (this.speed / 2);
           this.y += (this.expansePos - this.y) * 0.02;
@@ -114,7 +123,13 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
         ctx.lineWidth = 1;
 
         ctx.beginPath();
-        const old = rotate(centerx, centery, this.prevX, this.prevY, -this.prevR);
+        const old = rotate(
+          centerx,
+          centery,
+          this.prevX,
+          this.prevY,
+          -this.prevR,
+        );
         ctx.moveTo(old[0], old[1]);
 
         ctx.translate(centerx, centery);
@@ -149,7 +164,7 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
       last = t;
       currentTime = (Date.now() - startTime) / 50;
 
-      ctx.fillStyle = 'rgba(11,25,42,0.25)';
+      ctx.fillStyle = "rgba(11,25,42,0.25)";
       ctx.fillRect(0, 0, cw, ch);
 
       stars.forEach((s) => s.draw());
@@ -181,12 +196,12 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
       }, 200);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // cleanup
     return () => {
       cancelAnimationFrame(rafId);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       if (container.contains(canvas)) container.removeChild(canvas);
       window.clearTimeout(resizeTimeout);
     };
@@ -211,11 +226,10 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
       expanseRef.current = true;
       collapseRef.current = false;
 
-      // optionally open contact window when clicked
-      try {
-        window.open(`/${lang}/contact`, '_blank', 'width=800,height=600,noopener,noreferrer');
-      } catch (e) {
-        /* ignore popup blocked */
+      // scroll to contact form section
+      const formSection = document.getElementById("contact-form");
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: "smooth" });
       }
 
       // schedule end of expanse and start returning
@@ -229,14 +243,14 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
       }, 15000);
     };
 
-    hover.addEventListener('mouseover', handleMouseOver);
-    hover.addEventListener('mouseout', handleMouseOut);
-    hover.addEventListener('click', handleClick);
+    hover.addEventListener("mouseover", handleMouseOver);
+    hover.addEventListener("mouseout", handleMouseOut);
+    hover.addEventListener("click", handleClick);
 
     return () => {
-      hover.removeEventListener('mouseover', handleMouseOver);
-      hover.removeEventListener('mouseout', handleMouseOut);
-      hover.removeEventListener('click', handleClick);
+      hover.removeEventListener("mouseover", handleMouseOver);
+      hover.removeEventListener("mouseout", handleMouseOut);
+      hover.removeEventListener("click", handleClick);
       window.clearTimeout(expanseTimeout);
       window.clearTimeout(returningTimeout);
     };
@@ -253,7 +267,7 @@ const BlackHole: React.FC<{ lang?: string }> = ({ lang = 'ar' }) => {
         className="absolute left-1/2 top-1/2 w-[255px] h-[80px] -translate-x-1/2 -translate-y-1/2 rounded-full cursor-pointer flex items-center justify-center z-10 pointer-events-auto"
       >
         <span className="font text-xl font-bold text-center flex items-center gap-3">
-          {lang === 'ar' ? 'اضغط وابدأ مشروعك' : 'Click and Start Your Project'}
+          {lang === "ar" ? "اضغط وابدأ مشروعك" : "Click and Start Your Project"}
         </span>
       </div>
     </div>

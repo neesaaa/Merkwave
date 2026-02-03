@@ -65,7 +65,7 @@ export default function WaveServicesSection({
       {
         src: "/Media.gif",
         classes:
-          "w-32 h-32 lg:w-48 lg:h-48 shadow-[0_0_30px_10px_rgba(0,213,197,0.4)] object-contain rounded-full",
+          "w-32 h-32  shadow-[0_0_30px_10px_rgba(0,213,197,0.4)] object-contain rounded-full",
         badgeAr: "الارتقاء",
         badgeEn: "Elevate",
       },
@@ -282,9 +282,9 @@ export default function WaveServicesSection({
         >
           <h2
             id="services-heading"
-            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 md:mb-6 tracking-tight px-4"
+            className="text-2xl sm:text-4xl  md:text-5xl lg:text-6xl  font-bold mb-2 md:mb-6 tracking-tight px-4"
           >
-            <span className="bg-gradient-to-r from-cyan-400 py-3 via-teal-300 to-emerald-400 bg-clip-text text-transparent uppercase">
+            <span className="block bg-gradient-to-r  from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent uppercase py-2 leading-[130%]">
               {isArabic ? "أمواج التميز لدينا" : "Our Waves of Excellence"}
             </span>
           </h2>
@@ -392,7 +392,7 @@ export default function WaveServicesSection({
                         onDragStart={() => setIsDragging(true)}
                         onDragEnd={handleDragEnd}
                         whileDrag={{ cursor: "grabbing", scale: 0.98 }}
-                        className="relative backdrop-blur-xl rounded-xl overflow-hidden w-full max-w-xs mx-auto cursor-grab active:cursor-grabbing"
+                        className="relative backdrop-blur-xl h-full rounded-xl overflow-hidden w-full max-w-xs mx-auto cursor-grab active:cursor-grabbing"
                         style={{
                           background: `linear-gradient(145deg, rgba(10, 22, 40, 0.95), rgba(15, 31, 46, 0.9))`,
                           minHeight: "420px",
@@ -425,11 +425,11 @@ export default function WaveServicesSection({
                             </div>
                           </div>
 
-                          <h3 className="text-lg sm:text-xl font-bold text-cyan-300 mb-2 sm:mb-3 text-center line-clamp-2">
+                          <h3 className="text-lg sm:text-xl text-center font-bold text-cyan-300 mb-2 sm:mb-3 line-clamp-2">
                             {service.title}
                           </h3>
 
-                          <p className="text-gray-300 mb-2 md:mb-4 text-xs sm:text-sm leading-relaxed text-center flex-grow line-clamp-3 sm:line-clamp-none  ">
+                          <p className="text-gray-300 mb-2 md:mb-4 text-xs sm:text-sm md:text-2xl leading-relaxed text-center flex-grow line-clamp-3 sm:line-clamp-none  ">
                             {service.description}
                           </p>
 

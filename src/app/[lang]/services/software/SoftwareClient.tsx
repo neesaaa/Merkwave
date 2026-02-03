@@ -40,7 +40,7 @@ export default function SoftwareClient({
   const services = [
     {
       icon: Boxes,
-      title: isArabic ? "تنفيذ نظام أودو ERP" : "Odoo ERP Implementation",
+      title: isArabic ? "تنفيذ نظام أودو ERP" : "Odoo ERP Integration",
       description: isArabic
         ? "تنفيذ نظام أودو الرسمي: إعداد متكامل للمحاسبة، المبيعات، والمخازن وكل تطبيقات أودو الأخرى لتبسيط عملياتك التشغيلية."
         : "Official Odoo implementation including Accounting, CRM, Inventory, and all Odoo apps to streamline operations.",

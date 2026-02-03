@@ -57,7 +57,7 @@ export default function WhyMerkwaveSection({ dict, lang }: WhyMerkwaveSectionPro
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
         <div className="text-center">
           {/* Main Heading */}
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+          <h2 className="text-3xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 bg-clip-text text-transparent">
               {isArabic ? 'شريكك في النجاح الرقمي' : 'Your Partner in Digital Success'}
             </span>

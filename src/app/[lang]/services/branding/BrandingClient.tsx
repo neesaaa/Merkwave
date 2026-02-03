@@ -188,9 +188,7 @@ export default function BrandingClient({
 
   return (
     <main
-      className={`min-h-screen relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center   ${
-        isArabic ? "font-arabic" : "font-sans"
-      }`}
+      className={`min-h-screen relative bg-[#0d2342] md:bg-[url('/bg-dots.webp')] md:bg-fixed bg-no-repeat bg-cover bg-center  `}
     >
       <div className="absolute inset-0 z-1 backdrop-blur-md bg-black/60"></div>
       {/* Hero Section */}

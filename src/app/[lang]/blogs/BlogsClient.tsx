@@ -128,7 +128,7 @@ export default function BlogsClient({ dict, lang }: LocalizedComponentProps) {
   };
 
   return (
-    <main className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.webp')] md:bg-fixed bg-cover bg-center ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+    <main className={`min-h-screen bg-[#020617] bg-[url('/mawgatna.webp')] md:bg-fixed bg-cover bg-center `}>
       {/* Hero Section */}
       <section className="py-20 px-1 sm:px-4">
         <div className=" felx flex-col text-center">

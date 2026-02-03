@@ -44,30 +44,37 @@ export default function Navbar({ lang = "en" }: { lang?: string }) {
 
   return (
     <nav
-      className={`bg-black/90 backdrop-blur-md border-b border-[#00D4CD] top-0 z-50 relative ${directionClass}`}
+      className={`bg-black/90 backdrop-blur-md border-b border-[#00D4CD] top-0 z-50 relative overflow-visible ${directionClass}`}
       dir={directionClass}
+      suppressHydrationWarning
     >
-      <div className="container z-50 mx-auto md:px-2 sm:px-2 lg:px-4">
-        <div className="flex items-center justify-between h-12 md:h-18  gap-2 ">
+      <div
+        className="container z-50 mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 max-w-full overflow-visible"
+        suppressHydrationWarning
+      >
+        <div
+          className="flex items-center justify-between h-12 md:h-18 gap-1 sm:gap-2"
+          suppressHydrationWarning
+        >
           {/* Logo */}
-          <div className="flex-shrink-0 px-2 md:px-0" suppressHydrationWarning>
+          <div className="flex-shrink-0 min-w-0" suppressHydrationWarning>
             <Link
               href={`/${lang}`}
-              className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 group transform hover:scale-110 group"
+              className="flex items-center gap-3 hover:opacity-90 transition-all duration-300 group transform hover:scale-105"
             >
               <Image
                 src="/MERKWAV-Logo.png"
                 alt="MerkWave Logo"
                 width={180}
                 height={60}
-                className=" "
+                className="w-[100px] sm:w-[120px] md:w-[130px] lg:w-[150px] xl:w-[180px] h-auto"
                 priority
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center md:space-x-1 lg:space-x-2">
+          <div className="hidden lg:flex items-center flex-1 justify-center gap-1 xl:gap-2 min-w-0">
             {navigation.map((item) => {
               const isActive = mounted && pathname === item.href;
 
@@ -75,7 +82,7 @@ export default function Navbar({ lang = "en" }: { lang?: string }) {
                 <Link
                   key={item.name}
                   href={item.href as any}
-                  className={`relative  transition-all text-md md:text-xs lg:text-base duration-300 group px-3 py-2  ${
+                  className={`relative transition-all text-xs lg:text-sm xl:text-base duration-300 group px-2 lg:px-3 py-2 whitespace-nowrap ${
                     isActive ? "" : ""
                   }`}
                 >
@@ -92,27 +99,27 @@ export default function Navbar({ lang = "en" }: { lang?: string }) {
 
           {/* Right Side: LET'S TALK + Language Switcher + Mobile Menu */}
           <div
-            className={`flex items-center ${isArabic ? "space-x-reverse" : ""} space-x-2 lg:space-x-4`}
+            className={`flex items-center flex-shrink-0 ${isArabic ? "space-x-reverse" : ""} space-x-1 sm:space-x-2 lg:space-x-3`}
           >
             {/* LET'S TALK button */}
             <Link
               href={`/${lang}/contact`}
-              className={`hidden md:inline-flex items-center font-semibold px-6 py-3 bg-[#F6FF00] !text-black 
-                 rounded-full 
+              className={`hidden md:inline-flex items-center font-semibold px-3 lg:px-4 xl:px-6 py-2 lg:py-2.5 xl:py-3 text-xs lg:text-sm xl:text-base bg-[#F6FF00] !text-black 
+                 rounded-full flex-shrink-0
                 hover:text-white hover:bg-gradient-to-r hover:from-yellow-400 hover:via-yellow-500 hover:to-yellow-700 
                 hover:shadow-lg hover:shadow-yellow-400/50 transition-all duration-200 whitespace-nowrap`}
             >
-              <span className="inline lg:hidden !text-black">
+              <span className="inline xl:hidden !text-black">
                 {isArabic ? "لنتحدث" : "TALK"}
               </span>
-              <span className="hidden lg:inline !text-black">
+              <span className="hidden xl:inline !text-black">
                 {isArabic ? "لنتحدث" : "LET'S TALK"}
               </span>
             </Link>
 
             {/* Language Switcher */}
             <div
-              className={`hidden md:flex items-center text-white font-medium ${isArabic ? "space-x-reverse" : ""} space-x-2`}
+              className={`hidden md:flex items-center text-white font-medium text-xs lg:text-sm flex-shrink-0 ${isArabic ? "space-x-reverse" : ""} space-x-1`}
             >
               <button
                 onClick={() => switchLanguage("en")}
@@ -140,7 +147,7 @@ export default function Navbar({ lang = "en" }: { lang?: string }) {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-gray-300 hover:text-cyan-400 transition-all duration-200 p-2 rounded-lg hover:bg-cyan-400/10"
+              className="lg:hidden text-gray-300 hover:text-cyan-400 transition-all duration-200 p-2 rounded-lg hover:bg-cyan-400/10"
             >
               {isOpen ? (
                 <X className="h-7 w-7" />
@@ -153,7 +160,7 @@ export default function Navbar({ lang = "en" }: { lang?: string }) {
 
         {/* Mobile Navigation */}
         <div
-          className={`md:hidden absolute top-full left-0 right-0 w-full z-50 transition-all duration-400 ease-in-out overflow-hidden ${
+          className={`lg:hidden absolute top-full left-0 right-0 w-full z-50 transition-all duration-400 ease-in-out overflow-hidden ${
             isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >

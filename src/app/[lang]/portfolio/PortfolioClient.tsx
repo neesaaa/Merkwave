@@ -271,7 +271,7 @@ export default function PortfolioClient({ dict, lang }: LocalizedComponentProps)
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-6xl md:text-8xl font-bold mb-6 z-50"
+                className="text-4xl md:text-8xl font-bold mb-6 z-50"
                 >
                 <span className="text-[#00FFFF] ">
                   {isArabic ? 'المشاريع' : 'Portfolio'}
@@ -295,7 +295,7 @@ export default function PortfolioClient({ dict, lang }: LocalizedComponentProps)
 
           <section className="py-8 px-4 pt-25 ">
             <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-8 ">
-              <h3 className='text-4xl  text-[#F6FF00] text-center '>
+              <h3 className='text-xl md:text-4xl  text-[#F6FF00] text-center '>
                   {isArabic?"ابحث عما يخص مشروعك الخاص":"Search for what matters to your project"}
               </h3>
               <motion.div

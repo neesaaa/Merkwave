@@ -108,7 +108,7 @@ type Dictionary = {
 const dictionaries: Record<Locale, Dictionary> = {
   en: {
     meta: {
-      siteName: "Merkwave Marketing Agency",
+      siteName: "Merkwave ",
       description:
         "Merkwave crafts digital strategies, software, social media, SEO, and media production that amplify ambitious brands.",
       keywords: [
@@ -204,7 +204,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       sendButton: "Send Message",
       phoneLabel: "Phone:",
       addressLabel: "Address:",
-      phone: "+02 010233 18036",
+      phone: "+20 100 5224435",
       email: "info@merkwave.com",
       address: "Cairo, Egypt",
       getDirectionsButton: "Get Directions",
@@ -273,7 +273,7 @@ const dictionaries: Record<Locale, Dictionary> = {
   },
   ar: {
     meta: {
-      siteName: "مِرك ويف وكالة تسويق",
+      siteName: "ميرك ويڨ",
       description:
         "مِرك ويف تقدّم استراتيجيات تسويق رقمية، وبرمجيات، وإدارة منصات اجتماعية، وتحسين محركات البحث، وإنتاج إعلامي يشعل نمو العلامات الطموحة.",
       keywords: [
@@ -369,7 +369,7 @@ const dictionaries: Record<Locale, Dictionary> = {
       sendButton: "إرسال الرسالة",
       phoneLabel: "الهاتف:",
       addressLabel: "العنوان:",
-      phone: "+02 010233 18036",
+      phone: "+20 100 5224435",
       email: "info@merkwave.com",
       address: "القاهرة, جمهورية مصر العربية",
       getDirectionsButton: "احصل على الاتجاهات",

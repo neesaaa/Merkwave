@@ -50,11 +50,53 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-panchang), system-ui, Arial, "Helvetica Neue", sans-serif;
   background: var(--background);
   color: var(--foreground);
   margin: 0;
 }
+
+[lang="ar"],
+[lang="ar"] *,
+[lang="ar"] h1,
+[lang="ar"] h2,
+[lang="ar"] h3,
+[lang="ar"] h4,
+[lang="ar"] h5,
+[lang="ar"] h6,
+[lang="ar"] p,
+[lang="ar"] span,
+[lang="ar"] a,
+[lang="ar"] button,
+[lang="ar"] input,
+[lang="ar"] textarea,
+[lang="ar"] label,
+[lang="ar"] div,
+[dir="rtl"],
+[dir="rtl"] * {
+  font-family: var(--font-vip-rawy), Arial, sans-serif !important;
+}
+
+/* Scale Arabic font to match English visual size */
+/* Using font-size-adjust to scale without breaking Tailwind responsive classes */
+/* Only targets elements within a container with lang="ar" */
+[lang="ar"],
+[lang="ar"] *,
+[dir="rtl"],
+[dir="rtl"] * {
+  font-size-adjust: 0.62;
+}
+
+/* Scale English font down to balance with Arabic */
+/* Only targets elements within a container with lang="en" (not inside lang="ar") */
+[lang="en"]:not([lang="ar"] *),
+[lang="en"] *:not([lang="ar"] *) {
+  font-size-adjust: 0.40;
+}
+
+
+
+
 
 /* Glass Morphism Base */
 .glass {
@@ -68,6 +110,15 @@ body {
   backdrop-filter: blur(15px);
   border: 1px solid var(--border-accent);
   box-shadow: var(--glow-cyan);
+}
+
+/* Font Utility Classes */
+.font-panchang {
+  font-family: var(--font-panchang), system-ui, Arial, "Helvetica Neue", sans-serif !important;
+}
+
+.font-vip-rawy {
+  font-family: var(--font-vip-rawy), Tahoma, Arial, sans-serif !important;
 }
 
 /* Neon Text Effects */

@@ -22,7 +22,7 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
   const textDirClass = isArabic ? 'text-right' : 'text-left';
 
   return (
-    <div className={`bg-black ${isArabic ? 'font-arabic' : 'font-sans'}`}>
+    <div className={`bg-black `}>
       {/* Hero Section */}
       <HeroSection dict={dict} lang={lang} />
 
@@ -68,7 +68,7 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
             className="text-center flex flex-col items-center justify-center w-full"
           >
             <Mail className="h-16 w-16 mx-auto mb-6 text-yellow-400" />
-            <h2 className="text-4xl md:text-5xl font-bold text-orange-400 mb-6">
+            <h2 className="text-2xl md:text-5xl font-bold text-orange-400 mb-6">
               {dict.home.newsletterTitle}
             </h2>
             <p className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">

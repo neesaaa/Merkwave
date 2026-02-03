@@ -11,8 +11,9 @@ import {
   Mail,
   MapPin,
   Phone,
+  ExternalLink,
+  ChevronRight,
 } from "lucide-react";
-import { ChevronRight } from "lucide-react";
 
 interface SocialLink {
   icon: React.ElementType;
@@ -59,8 +60,10 @@ export default function Footer({ lang }: { lang: string }) {
   ];
 
   const contactInfo = {
-    address: isArabic ? "هليوبوليس، القاهرة، مصر" : "Heliopolis, Cairo, Egypt",
-    phone: "+02 010233 18036",
+    address: isArabic
+      ? "٩٢ شارع عثمان بن عفان، ميدان تريومف، مصر الجديدة، القاهرة، مصر"
+      : "92 Othman Ibn Affan, Triumph Sq, Heliopolis, Cairo, Egypt",
+    phone: "+20 100 5224435",
     email: "info@merkwave.com",
   };
 
@@ -74,25 +77,25 @@ export default function Footer({ lang }: { lang: string }) {
   const socialLinks: SocialLink[] = [
     {
       icon: Facebook,
-      href: "https://facebook.com/merkwave",
+      href: "https://www.facebook.com/merkwave.co",
       color: "hover:text-blue-500",
       label: "Facebook",
     },
     {
       icon: Instagram,
-      href: "https://instagram.com/merkwave",
+      href: "https://www.instagram.com/merk.wave/",
       color: "hover:text-pink-500",
       label: "Instagram",
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/company/merkwave",
+      href: "https://www.linkedin.com/company/merkwave",
       color: "hover:text-blue-500",
       label: "LinkedIn",
     },
     {
       icon: MessageCircle,
-      href: "https://wa.me/201023318036",
+      href: "https://wa.me/201005224435",
       color: "hover:text-green-500",
       label: "WhatsApp",
     },
@@ -148,22 +151,28 @@ export default function Footer({ lang }: { lang: string }) {
           >
             {/* Brand + Socials */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-white text-2xl font-bold mb-4">MerkWave</h3>
+              <h3 className="text-white text-2xl font-bold mb-4">Merkwave</h3>
               <p className="text-gray-400 text-sm leading-6 mb-6">
                 {isArabic ? (
                   <>
                     ميرك ويف هي شريك استراتيجي مقرها مصر والسعودية. نمكن الشركات
-                    من <span className="font-bold text-[#00F9FF]">ابتكار</span> تقنياً،{" "}
-                    <span className="font-bold text-[#D00000]">الارتقاء</span> بهويتها، و
-                    <span className="font-bold text-[#FFF200]">السيادة</span> في سوقها
+                    من <span className="font-bold text-[#00F9FF]">ابتكار</span>{" "}
+                    تقنياً،{" "}
+                    <span className="font-bold text-[#D00000]">الارتقاء</span>{" "}
+                    بهويتها، و
+                    <span className="font-bold text-[#FFF200]">السيادة</span> في
+                    سوقها
                   </>
                 ) : (
                   <>
                     Merkwave is a dynamic strategic partner based in Egypt and
                     Saudi Arabia. We empower businesses to{" "}
-                    <span className="font-bold text-[#00F9FF]">Innovate</span> their tech,{" "}
-                    <span className="font-bold text-[#D00000]">Elevate</span> their brand, and{" "}
-                    <span className="font-bold text-[#FFF200]">Dominate</span> their market.
+                    <span className="font-bold text-[#00F9FF]">Innovate</span>{" "}
+                    their tech,{" "}
+                    <span className="font-bold text-[#D00000]">Elevate</span>{" "}
+                    their brand, and{" "}
+                    <span className="font-bold text-[#FFF200]">Dominate</span>{" "}
+                    their market.
                   </>
                 )}
               </p>
@@ -260,38 +269,50 @@ export default function Footer({ lang }: { lang: string }) {
               </h3>
               <address className="space-y-4 text-sm mb-6 not-italic">
                 <p
-                  className={`text-gray-300 flex items-start gap-3 ${isRTL ? "flex-row " : ""}`}
+                  className={`text-gray-300 flex items-start gap-3 `}
                 >
-                  <MapPin className="w-4 h-4 mt-0.5 text-cyan-400" />
-                  <span>{contactInfo.address}</span>
+                  <Link
+                    href="https://www.google.com/maps/place/30%C2%B006'00.2%22N+31%C2%B020'31.9%22E/@30.100046,31.342199,17z/data=!3m1!4b1!4m4!3m3!8m2!3d30.100046!4d31.342199?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-cyan-400 transition-colors duration-300 inline-flex items-center gap-2"
+                  >
+                    <MapPin className="w-4 h-4 shrink-0 text-cyan-400" />
+                    <span>{contactInfo.address}</span>
+                  </Link>
                 </p>
                 <p
-                  className={`text-gray-300 flex items-start gap-3 ${isRTL ? "flex-row" : ""}`}
+                  className={`text-gray-300  items-start gap-3 rtl-text` } 
                 >
-                  <Phone className={`w-4 h-4 mt-0.5 text-cyan-400 `} />
-                  <a
+                  <Link
                     dir="ltr"
                     href={`tel:${contactInfo.phone.replace(/\s+/g, "")}`}
-                    className="hover:text-cyan-400 transition-colors duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    
+                    className={`hover:text-cyan-400 transition-colors duration-300 inline-flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}
                   >
+                    <Phone className="w-4 h-4 shrink-0 text-cyan-400" />
                     {contactInfo.phone}
-                  </a>
+                  </Link>
                 </p>
                 <p
-                  className={`text-gray-300 flex items-start gap-3 ${isRTL ? "flex-row " : ""}`}
+                  className={`text-gray-300 flex items-start gap-3 `}
                 >
-                  <Mail className="w-4 h-4 mt-0.5 text-cyan-400" />
-                  <a
+                  <Link
                     href={`mailto:${contactInfo.email}`}
-                    className="hover:text-cyan-400 transition-colors duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-cyan-400 transition-colors duration-300 inline-flex items-center gap-2"
                   >
+                    <Mail className="w-4 h-4 shrink-0 text-cyan-400" />
                     {contactInfo.email}
-                  </a>
+                  </Link>
                 </p>
               </address>
 
               {/* Stay Updated */}
-              <div className="mt-10 ">
+              <div className="mt-10  ">
                 <h4 className="text-white text-sm font-bold mb-4">
                   {isArabic ? "ابق على اطلاع" : "Stay Updated"}
                 </h4>
@@ -301,20 +322,20 @@ export default function Footer({ lang }: { lang: string }) {
                     : "Subscribe to our newsletter for the latest insights and updates."}
                 </p>
                 <form
-                  className={`flex flex-col  ${isRTL ? "sm:flex-row-reverse" : "sm:flex-row"} gap-3`}
+                  className={`flex flex-col   md:flex-row gap-3`}
                   onSubmit={(e) => e.preventDefault()}
                 >
                   <input
                     type="email"
                     required
                     placeholder={
-                      isArabic ? "عنوان بريدك الإلكتروني" : "Your email address"
+                      isArabic ? "عنوان بريدك الإلكتروني" : "Email address"
                     }
-                    className="flex-1 px-4 py-3 rounded-md bg-[#0f1625] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/40 focus:border-cyan-400/30"
+                    className="w-full flex-1 md:w-[70%] px-4 py-3 rounded-md text-sm bg-[#0f1625] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/40 focus:border-cyan-400/30"
                   />
                   <button
                     type="submit"
-                    className="px-5 py-3 rounded-md bg-gradient-to-r from-orange-400 to-red-700 text-black font-semibold hover:brightness-95"
+                    className="px-3 py-3 text-sm rounded-md bg-gradient-to-r from-orange-400 to-red-700 text-black font-semibold hover:brightness-95"
                   >
                     {isArabic ? "اشترك" : "Subscribe"}
                   </button>
@@ -336,8 +357,8 @@ export default function Footer({ lang }: { lang: string }) {
             >
               <p className="text-center md:text-start">
                 {isArabic
-                  ? "© 2025 MerkWave. صُنع بشغف في مصر."
-                  : "© 2025 MerkWave. Crafted with passion in Egypt."}
+                  ? "© 2026 Merkwave. صُنع بشغف في مصر."
+                  : "© 2026 Merkwave. Crafted with passion in Egypt."}
               </p>
               <div
                 className={`flex items-center gap-4 ${isRTL ? "flex-row-reverse" : ""}`}

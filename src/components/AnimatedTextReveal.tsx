@@ -21,7 +21,7 @@ const AnimatedTextReveal: React.FC<AnimatedTextRevealProps> = ({
 
   const combinedClassName = className 
     ? className 
-    : "text-white font-bold font-sans text-4xl"; 
+    : "text-white font-bold text-4xl"; 
   const char=isArabic?' ':'';
   const characters = text.split(char);
 
