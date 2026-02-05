@@ -285,9 +285,26 @@ const page = ({ lang }: propsOdoo) => {
               </>
             )}
           </h1>
+                                <div className="py-8 flex justify-center">
+          <Link
+            href={`/${lang}/contact`}
+            className="
+              inline-flex items-center justify-center
+              px-10 py-3
+              rounded-full
+              text-white font-semibold
+              bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500
+              shadow-lg shadow-pink-500/30
+              hover:scale-105 hover:shadow-pink-500/50
+              transition-all duration-300
+            "
+          >
+            {isArabic ? "تواصل معنا الآن" : "Contact Us Now"}
+          </Link>
+        </div>
         </div>
         <section className="w-full z-20">
-          <div className="container mx-auto max-w-full -mb-4">
+          <div className="container mx-auto max-w-full ">
             <div className="relative px-4  space-y-2 overflow-hidden">
               <Timeline
                 titleText={
@@ -338,23 +355,6 @@ const page = ({ lang }: propsOdoo) => {
           </Link>
         </section>
 
-                        <div className="py-8 flex justify-center">
-          <Link
-            href={`/${lang}/contact`}
-            className="
-              inline-flex items-center justify-center
-              px-8 py-3
-              rounded-full
-              text-white font-semibold
-              bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500
-              shadow-lg shadow-pink-500/30
-              hover:scale-105 hover:shadow-pink-500/50
-              transition-all duration-300
-            "
-          >
-            {isArabic ? "تواصل معنا الآن" : "Contact Us Now"}
-          </Link>
-        </div>
 
         {/* CTA Section */}
         <section className="py-10 px-4">
