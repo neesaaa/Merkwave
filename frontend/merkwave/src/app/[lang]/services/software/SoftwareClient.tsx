@@ -682,42 +682,44 @@ export default function SoftwareClient({
                     whileHover={{ y: -10, scale: 1.08, rotate: 2 }}
                     className="group relative p-6 rounded-3xl bg-gradient-to-tr from-purple-600 via-purple-500 to-indigo-700 text-white shadow-2xl hover:shadow-[0_20px_60px_rgba(128,90,213,0.5)] cursor-pointer transition-all duration-500"
                   >
-                    {/* Glow / floating shine */}
-                    <div
-                      className="absolute inset-0 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"
-                      style={{
-                        background:
-                          "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 70%)",
-                      }}
-                    />
+                    <Link href={"odoo" as string}>
+                      {/* Glow / floating shine */}
+                      <div
+                        className="absolute inset-0 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"
+                        style={{
+                          background:
+                            "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08), transparent 70%)",
+                        }}
+                      />
 
-                    <div className="relative z-10 flex flex-col items-center text-center">
-                      {/* Logo container with subtle hover scale */}
-                      <div className="w-24 h-12 mb-4 relative">
-                        <div className="absolute inset-0 rounded-full bg-purple-400 opacity-10 blur-xl group-hover:scale-110 transition-transform duration-500" />
-                        <Image
-                          src="/odoo.svg"
-                          alt="Odoo Logo"
-                          width={48}
-                          height={48}
-                          className="relative w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                        />
+                      <div className="relative z-10 flex flex-col items-center text-center">
+                        {/* Logo container with subtle hover scale */}
+                        <div className="w-24 h-12 mb-4 relative">
+                          <div className="absolute inset-0 rounded-full bg-purple-400 opacity-10 blur-xl group-hover:scale-110 transition-transform duration-500" />
+                          <Image
+                            src="/odoo.svg"
+                            alt="Odoo Logo"
+                            width={48}
+                            height={48}
+                            className="relative w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+
+                        {/* Name and description */}
+                        <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
+                          Odoo
+                        </h3>
+                        <p className="mt-2 text-sm md:text-base text-gray-100  leading-snug">
+                          {tech.description ||
+                            (isArabic
+                              ? "نظام إدارة أعمال شامل مفتوح المصدر."
+                              : "A comprehensive open-source business management system.")}
+                        </p>
+
+                        {/* Bottom accent line */}
+                        <div className="mt-4 h-1 w-10 rounded-full bg-white/40 group-hover:bg-white/60 transition-all duration-300" />
                       </div>
-
-                      {/* Name and description */}
-                      <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
-                        Odoo
-                      </h3>
-                      <p className="mt-2 text-sm md:text-base text-gray-100 max-w-[180px] leading-snug">
-                        {tech.description ||
-                          (isArabic
-                            ? "نظام إدارة أعمال شامل مفتوح المصدر."
-                            : "A comprehensive open-source business management system.")}
-                      </p>
-
-                      {/* Bottom accent line */}
-                      <div className="mt-4 h-1 w-10 rounded-full bg-white/40 group-hover:bg-white/60 transition-all duration-300" />
-                    </div>
+                    </Link>
                   </motion.div>
                 );
               }
