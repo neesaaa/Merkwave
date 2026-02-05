@@ -308,8 +308,10 @@ const page = ({ lang }: propsOdoo) => {
           </div>
         </section>
 
-        <section className="w-full flex flex-col lg:flex-row   gap-12 lg:gap-10 items-center justify-center py-12 mt-5 z-20">
-          <h2 className="text-xl md:text-3xl lg:text-5xl font-bold text-white text-center drop-shadow-[0_0_10px_#FF00E5]">
+
+
+        <section className="w-full flex flex-col lg:flex-row   gap-12 lg:gap-10 items-center justify-center px-4 py-12 mt-5 z-20">
+          <h2 className="text-xl md:text-3xl  font-bold text-white text-center drop-shadow-[0_0_10px_#FF00E5]">
             {isArabic ? (
               <>
                 افتح <span className="text-pink-400">مجلد أودو</span> واكتشف
@@ -317,8 +319,8 @@ const page = ({ lang }: propsOdoo) => {
               </>
             ) : (
               <>
-                Open the <span className="text-pink-400">Odoo Folder</span> and
-                explore our services
+                Open the <span className="text-pink-400">Odoo Folder</span> for
+                our services
               </>
             )}
           </h2>
@@ -335,6 +337,24 @@ const page = ({ lang }: propsOdoo) => {
             />
           </Link>
         </section>
+
+                        <div className="py-8 flex justify-center">
+          <Link
+            href={`/${lang}/contact`}
+            className="
+              inline-flex items-center justify-center
+              px-8 py-3
+              rounded-full
+              text-white font-semibold
+              bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500
+              shadow-lg shadow-pink-500/30
+              hover:scale-105 hover:shadow-pink-500/50
+              transition-all duration-300
+            "
+          >
+            {isArabic ? "تواصل معنا الآن" : "Contact Us Now"}
+          </Link>
+        </div>
 
         {/* CTA Section */}
         <section className="py-10 px-4">
@@ -368,6 +388,93 @@ const page = ({ lang }: propsOdoo) => {
             </motion.div>
           </div>
         </section>
+
+        {/* CTA Section */}
+<section className="py-20 px-4 relative overflow-hidden">
+  <div className="container mx-auto max-w-3xl text-center">
+
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="
+        relative
+        p-10
+        rounded-3xl
+        bg-gradient-to-br from-black/70 via-black/60 to-black/80
+        backdrop-blur-xl
+        border border-pink-500/20
+        shadow-2xl
+      "
+    >
+
+      {/* Glow */}
+      <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-pink-500/30 via-purple-500/30 to-indigo-500/30 blur-xl opacity-60"></div>
+
+      <div className="relative z-10">
+
+        {/* Heading */}
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+          {isArabic
+            ? "جاهز لتطوير شركتك مع أودو؟"
+            : "Ready to Grow Your Business with Odoo?"}
+        </h2>
+
+        {/* Subtitle */}
+        <p className="text-gray-300 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+          {isArabic
+            ? "دعنا نناقش احتياجاتك ونبني لك نظاماً مصمماً خصيصاً لنجاحك."
+            : "Let’s discuss your needs and build a system tailored for your success."}
+        </p>
+
+        {/* Button */}
+        <div className="flex justify-center">
+          <Link
+            href={`/${lang}/contact`}
+            className="
+              group
+              relative
+              inline-flex
+              items-center
+              justify-center
+              px-10 py-4
+              rounded-full
+              font-bold
+              text-lg
+              text-white
+              bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500
+              shadow-xl shadow-pink-500/40
+              hover:scale-105
+              hover:shadow-pink-500/70
+              transition-all duration-300
+            "
+          >
+            <span className="relative z-10">
+              {isArabic ? "تواصل معنا الآن" : "Get Started Now"}
+            </span>
+
+            {/* Hover Glow */}
+            <span
+              className="
+                absolute inset-0
+                rounded-full
+                bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400
+                opacity-0 group-hover:opacity-100
+                blur-lg
+                transition duration-300
+              "
+            />
+          </Link>
+        </div>
+
+      </div>
+    </motion.div>
+
+  </div>
+</section>
+
+
       </section>
     </section>
   );
