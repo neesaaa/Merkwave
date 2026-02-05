@@ -682,7 +682,7 @@ export default function SoftwareClient({
                     whileHover={{ y: -10, scale: 1.08, rotate: 2 }}
                     className="group relative p-6 rounded-3xl bg-gradient-to-tr from-purple-600 via-purple-500 to-indigo-700 text-white shadow-2xl hover:shadow-[0_20px_60px_rgba(128,90,213,0.5)] cursor-pointer transition-all duration-500"
                   >
-                    <Link href={"odoo" as string}>
+                    <Link href={`/${lang}/services/software/odoo` as never}>
                       {/* Glow / floating shine */}
                       <div
                         className="absolute inset-0 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"

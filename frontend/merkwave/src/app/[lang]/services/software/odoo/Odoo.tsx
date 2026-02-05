@@ -257,7 +257,7 @@ const page = ({ lang }: propsOdoo) => {
   });
 
   return (
-    <section className="relative w-full h-full text-white min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative bg-black w-full h-full text-white min-h-screen flex items-center justify-center overflow-hidden">
       <Image src="/odooo.webp" alt="Odoo Software" fill />
       <div className="absolute inset-0 bg-black/80 backdrop-blur-[10px] "></div>
 
@@ -322,7 +322,7 @@ const page = ({ lang }: propsOdoo) => {
               </>
             )}
           </h2>
-          <Link href={`/${lang}/services/`}>
+          <Link href={`/${lang}/services` as never}>
             <GlassFolder
               icon={
                 <Image

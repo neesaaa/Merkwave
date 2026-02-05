@@ -1,0 +1,32 @@
+# Caddyfile for Merkwave
+# Automatic HTTPS with Let's Encrypt
+
+merkwave.com, www.merkwave.com {
+    # Reverse proxy to Docker container
+    reverse_proxy localhost:8080
+    
+    # Enable compression
+    encode gzip zstd
+    
+    # Security headers
+    header {
+        # Enable HSTS
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        # Prevent MIME type sniffing
+        X-Content-Type-Options "nosniff"
+        # Enable XSS protection
+        X-XSS-Protection "1; mode=block"
+        # Prevent clickjacking
+        X-Frame-Options "SAMEORIGIN"
+        # Referrer policy
+        Referrer-Policy "strict-origin-when-cross-origin"
+        # Remove server header
+        -Server
+    }
+    
+    # Logging
+    log {
+        output file /var/log/caddy/merkwave.log
+        format json
+    }
+}

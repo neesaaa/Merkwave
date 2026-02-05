@@ -1,0 +1,5 @@
+http://46.224.186.76:80 {
+    reverse_proxy localhost:8080 {
+        header_uri -Host localhost
+    }
+}

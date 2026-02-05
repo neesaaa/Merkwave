@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  merkwave:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: merkwave-app
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Mount SSL certificates (uncomment after running setup-ssl.sh)
+      # - /etc/letsencrypt/live/merkwave.com:/etc/letsencrypt/live/merkwave.com:ro
+      # - /etc/letsencrypt/archive/merkwave.com:/etc/letsencrypt/archive/merkwave.com:ro
+      # Mount SSL-enabled nginx config (uncomment after running setup-ssl.sh)
+      # - ./nginx-ssl.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - merkwave-network
+
+networks:
+  merkwave-network:
+    driver: bridge
