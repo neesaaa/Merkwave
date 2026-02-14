@@ -13,6 +13,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import BlackHole from "@/components/BlackHole";
+import { API_ENDPOINTS } from "@/config/api";
 
 interface LocalizedComponentProps {
   dict: any;
@@ -54,67 +55,39 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // Build the endpoint from env var so you can configure where the PHP API is hosted
-      // Default to the production API base if the env var isn't set
-      const base =
-        process.env.NEXT_PUBLIC_API_BASE ?? "https://merkwave.com/api";
-      const url = `${base.replace(/\/+$/, "")}/mails/contact.php`;
-
-      // Send as form-encoded values (PHP expects request parameters)
-      const body = new URLSearchParams();
-      body.append("name", formData.name);
-      body.append("email", formData.email);
-      body.append("subject", formData.subject);
-      body.append("phone", formData.phone);
-      body.append("message", formData.message);
-
-      const bodyString = body.toString();
-
-      const res = await fetch(url, {
+      // Send as JSON to the new .NET backend
+      const res = await fetch(API_ENDPOINTS.CLIENTS.CONTACT, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: bodyString,
-        // include credentials if your PHP API requires cookies/auth
-        // credentials: 'include'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          createdAt: new Date().toISOString(),
+        }),
       });
 
-      // Try to print response body (JSON or text). Some servers don't set content-type correctly,
-      // so read text then try to parse JSON as a fallback.
-      const text = await res.text();
-
-      let parsed;
-      try {
-        parsed = JSON.parse(text);
-      } catch (e) {
-        if (!res.ok) {
-          throw new Error("Failed to send message");
-        }
-      }
-
-      // Check if the response indicates failure
-      if (parsed && parsed.status === "failure") {
-        console.error("[ContactClient] API returned failure:", parsed.message);
-        alert(
-          parsed.message ||
-            (isArabic ? "فشل في إرسال الرسالة" : "Failed to send message"),
-        );
-        throw new Error(parsed.message || "Failed to send message");
-      }
-
       if (!res.ok) {
-        console.error("Contact API error", res.status, text);
-        throw new Error("Failed to send message");
+        const errorText = await res.text();
+        console.error("Contact API error", res.status, errorText);
+        throw new Error(errorText || "Failed to send message");
       }
 
       setIsSubmitted(true);
-      // clear only the visible fields (keep subject if you want)
       setFormData({ name: "", email: "", subject: "", phone: "", message: "" });
 
-      // Hide the success after a short delay
-      setTimeout(() => setIsSubmitted(false), 3000);
-    } catch (err) {
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (err: any) {
       console.error("Submit error", err);
-      // Optionally show an error toast here
+      alert(
+        isArabic
+          ? "حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى."
+          : "An error occurred while sending your message. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }

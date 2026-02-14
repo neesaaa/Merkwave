@@ -1,145 +1,99 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Calendar, Clock, Eye, User, Tag } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowLeft, Calendar, User } from "lucide-react";
 import { Locale } from "@/lib/i18n";
-import { getDictionary } from "@/content/dictionary";
-import { BlogApiResponse, Blog } from "@/types/blog";
-import { staticBlogs } from "@/data/blogContent";
+import { API_ENDPOINTS, getImageUrl as getImageUrlHelper } from "@/config/api";
+interface BlogDetail {
+  id: number;
+  titleEn: string;
+  titleAr: string;
+  descriptionEn: string;
+  descriptionAr: string;
+  detailedDescriptionEn: string;
+  detailedDescriptionAr: string;
+  imageUrl: string;
+  creator: string;
+  blogDate: string;
+}
 
 interface BlogDetailQueryClientProps {
   locale: Locale;
-  initialSlug?: string;
 }
 
-export function BlogDetailQueryClient({ locale, initialSlug }: BlogDetailQueryClientProps) {
-  const [blog, setBlog] = useState<Blog | null>(null);
+export function BlogDetailQueryClient({ locale }: BlogDetailQueryClientProps) {
+  const [blog, setBlog] = useState<BlogDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   const searchParams = useSearchParams();
-  const slugFromQuery = searchParams.get('slug');
-  // Prefer server-provided initialSlug when available (pretty URL support)
-  const slug = initialSlug ?? slugFromQuery;
-  const dict = getDictionary(locale);
-  const isArabic = locale === 'ar';
+  const blogId = searchParams.get("id");
+  const isArabic = locale === "ar";
 
   useEffect(() => {
-    // If we already have a slug (from server or query) start fetch.
-    if (!slug) {
-      setError('No blog slug provided');
+    if (!blogId) {
+      setError("No blog ID provided");
       setLoading(false);
       return;
     }
 
-    fetchBlog(slug);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug, initialSlug]);
+    async function fetchBlog() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(
+          API_ENDPOINTS.BLOGS.GET_BY_ID(Number(blogId)),
+        );
 
-  const fetchBlog = async (slugArg?: string) => {
-    const usedSlug = slugArg ?? slug;
-    if (!usedSlug) return;
-
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch(`https://merkwave.com/api/blogs/get_detail.php?slug=${encodeURIComponent(usedSlug)}`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch blog');
-      }
-      
-      const data: BlogApiResponse = await response.json();
-
-      // Backend sometimes returns data.data as an array (listing) even for detail endpoints.
-      // Accept both object and array responses: if it's an array take the first item.
-      if (data.status === 'success' && data.data) {
-        const blogItem = Array.isArray(data.data) ? data.data[0] : data.data;
-        if (blogItem) {
-          setBlog(blogItem as Blog);
-          return;
+        if (!response.ok) {
+          throw new Error("Blog not found");
         }
+
+        const data = await response.json();
+        setBlog(data);
+      } catch (err) {
+        console.error("Error fetching blog:", err);
+        setError("Failed to load blog");
+      } finally {
+        setLoading(false);
       }
-      
-      // If API fails or returns no data, try to find static content
-      const staticBlog = staticBlogs.find(b => b.slug === usedSlug);
-      if (staticBlog) {
-        // Convert static blog to Blog format
-        const mappedBlog: Blog = {
-          id: 0,
-          slug: staticBlog.slug,
-          titleEn: staticBlog.titleEn,
-          titleAr: staticBlog.titleAr,
-          contentEn: staticBlog.contentEn,
-          contentAr: staticBlog.contentAr,
-          excerptEn: staticBlog.excerptEn,
-          excerptAr: staticBlog.excerptAr,
-          authorEn: staticBlog.authorEn,
-          authorAr: staticBlog.authorAr,
-          featured: staticBlog.featured,
-          imageUrl: staticBlog.imageUrl,
-          tagsEn: staticBlog.tagsEn,
-          tagsAr: staticBlog.tagsAr,
-          readTime: staticBlog.readTime,
-          views: 1250,
-          publishedAt: staticBlog.publishedAt,
-          createdAt: staticBlog.createdAt,
-          updatedAt: staticBlog.updatedAt,
-          status: staticBlog.status
-        };
-        setBlog(mappedBlog);
-      } else {
-        setError('Blog not found');
-      }
-    } catch (err) {
-      console.error('Error fetching blog:', err);
-      // Try static content as fallback
-      const staticBlog = staticBlogs.find(b => b.slug === usedSlug);
-      if (staticBlog) {
-        const mappedBlog: Blog = {
-          id: 0,
-          slug: staticBlog.slug,
-          titleEn: staticBlog.titleEn,
-          titleAr: staticBlog.titleAr,
-          contentEn: staticBlog.contentEn,
-          contentAr: staticBlog.contentAr,
-          excerptEn: staticBlog.excerptEn,
-          excerptAr: staticBlog.excerptAr,
-          authorEn: staticBlog.authorEn,
-          authorAr: staticBlog.authorAr,
-          featured: staticBlog.featured,
-          imageUrl: staticBlog.imageUrl,
-          tagsEn: staticBlog.tagsEn,
-          tagsAr: staticBlog.tagsAr,
-          readTime: staticBlog.readTime,
-          views: 1250,
-          publishedAt: staticBlog.publishedAt,
-          createdAt: staticBlog.createdAt,
-          updatedAt: staticBlog.updatedAt,
-          status: staticBlog.status
-        };
-        setBlog(mappedBlog);
-      } else {
-        setError('Failed to load blog');
-      }
-    } finally {
-      setLoading(false);
     }
+
+    fetchBlog();
+  }, [blogId]);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(isArabic ? "ar-EG" : "en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
-  if (!slug) {
+  if (!blogId) {
     return (
-      <div className={`min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2027] to-[#203a43] ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-          <div className="text-center py-12">
-            <p className="text-gray-300 text-lg">
-              {locale === 'ar' ? 'لم يتم تحديد معرف المقال' : 'No blog slug provided'}
-            </p>
-          </div>
+      <div
+        className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2027] to-[#203a43]"
+        dir={isArabic ? "rtl" : "ltr"}
+      >
+        <div className="container mx-auto px-4 py-20 text-center">
+          <p className="text-gray-300 text-lg">
+            {isArabic ? "لم يتم تحديد معرف المقال" : "No blog ID provided"}
+          </p>
+          <Link
+            href={`/${locale}/blogs`}
+            className="inline-flex items-center mt-6 text-cyan-400 hover:text-cyan-300 transition-colors"
+          >
+            <ArrowLeft
+              className={`w-5 h-5 ${isArabic ? "ml-2 rotate-180" : "mr-2"}`}
+            />
+            {isArabic ? "العودة للمقالات" : "Back to Blogs"}
+          </Link>
         </div>
       </div>
     );
@@ -147,14 +101,12 @@ export function BlogDetailQueryClient({ locale, initialSlug }: BlogDetailQueryCl
 
   if (loading) {
     return (
-      <div className={`min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2027] to-[#203a43] ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-          <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto mb-4"></div>
-            <p className="text-gray-200">
-              {locale === 'ar' ? 'جاري تحميل المقال...' : 'Loading blog...'}
-            </p>
-          </div>
+      <div className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2027] to-[#203a43]">
+        <div className="container mx-auto px-4 py-20 text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-cyan-400 mx-auto mb-6"></div>
+          <p className="text-gray-200 text-lg">
+            {isArabic ? "جاري تحميل المقال..." : "Loading blog..."}
+          </p>
         </div>
       </div>
     );
@@ -162,50 +114,65 @@ export function BlogDetailQueryClient({ locale, initialSlug }: BlogDetailQueryCl
 
   if (error || !blog) {
     return (
-      <div className={`min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2027] to-[#203a43] ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-          <div className="text-center py-12">
-            <p className="text-gray-300 text-lg mb-4">
-              {locale === 'ar' ? 'لم يتم العثور على المقال' : 'Blog post not found'}
-            </p>
-            <button 
-              onClick={() => fetchBlog()}
-              className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300"
-            >
-              {locale === 'ar' ? 'إعادة المحاولة' : 'Try Again'}
+      <div
+        className="min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2027] to-[#203a43]"
+        dir={isArabic ? "rtl" : "ltr"}
+      >
+        <div className="container mx-auto px-4 py-20 text-center">
+          <p className="text-gray-300 text-lg mb-6">
+            {isArabic ? "لم يتم العثور على المقال" : "Blog post not found"}
+          </p>
+          <Link href={`/${locale}/blogs`}>
+            <button className="px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300">
+              {isArabic ? "العودة إلى المقالات" : "Back to All Blogs"}
             </button>
-          </div>
+          </Link>
         </div>
       </div>
     );
   }
 
-  const title = locale === 'ar' ? blog.titleAr : blog.titleEn;
-  const content = locale === 'ar' ? blog.contentAr : blog.contentEn;
-  const author = locale === 'ar' ? blog.authorAr : blog.authorEn;
-  const tags = formatTags(locale === 'ar' ? blog.tagsAr : blog.tagsEn);
-  const publishDate = blog.publishedAt || blog.createdAt;
+  const title = isArabic ? blog.titleAr : blog.titleEn;
+  const description = isArabic ? blog.descriptionAr : blog.descriptionEn;
+  const content = isArabic
+    ? blog.detailedDescriptionAr
+    : blog.detailedDescriptionEn;
 
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2027] to-[#203a43] ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
-      
-      {/* Navigation Breadcrumb */}
+    <div
+      className={`min-h-screen bg-gradient-to-b from-[#0a1628] via-[#0f2027] to-[#203a43] ${isArabic ? "text-right" : "text-left"}`}
+      dir={isArabic ? "rtl" : "ltr"}
+    >
+      {/* Navigation */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className={`flex items-center space-x-2 text-sm text-gray-400 mb-8 ${isArabic ? 'flex-row-reverse space-x-reverse' : ''}`}>
-          <Link href={`/${locale}`} className="hover:text-cyan-400 transition-colors">
-            {isArabic ? 'الرئيسية' : 'Home'}
+        <div
+          className={`flex items-center gap-2 text-sm text-gray-400 mb-8 ${isArabic ? "flex-row-reverse" : ""}`}
+        >
+          <Link
+            href={`/${locale}`}
+            className="hover:text-cyan-400 transition-colors"
+          >
+            {isArabic ? "الرئيسية" : "Home"}
           </Link>
           <span>/</span>
-          <Link href={`/${locale}/blogs`} className="hover:text-cyan-400 transition-colors">
-            {dict.navigation.blogs}
+          <Link
+            href={`/${locale}/blogs`}
+            className="hover:text-cyan-400 transition-colors"
+          >
+            {isArabic ? "المدونة" : "Blog"}
           </Link>
           <span>/</span>
           <span className="text-cyan-400 truncate max-w-xs">{title}</span>
         </div>
 
-        <Link href={`/${locale}/blogs`} className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors duration-300 mb-8">
-          <ArrowLeft className={`w-5 h-5 ${isArabic ? 'ml-2 rotate-180' : 'mr-2'}`} />
-          {isArabic ? 'العودة للمقالات' : 'Back to Blogs'}
+        <Link
+          href={`/${locale}/blogs`}
+          className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors duration-300 mb-8"
+        >
+          <ArrowLeft
+            className={`w-5 h-5 ${isArabic ? "ml-2 rotate-180" : "mr-2"}`}
+          />
+          {isArabic ? "العودة للمقالات" : "Back to Blogs"}
         </Link>
       </div>
 
@@ -218,61 +185,43 @@ export function BlogDetailQueryClient({ locale, initialSlug }: BlogDetailQueryCl
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
-            {/* Featured Badge */}
-            {blog.featured && (
-              <div className="mb-6">
-                <span className="px-4 py-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-medium">
-                  {isArabic ? 'مقال مميز' : 'Featured Article'}
-                </span>
-              </div>
-            )}
-            
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-6xl font-bold mb-6"
+            >
               <span className="bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent">
                 {title}
               </span>
-            </h1>
+            </motion.h1>
 
-            {/* Blog Meta Info */}
-            <div className={`flex flex-wrap gap-6 text-sm text-gray-400 mb-8 ${isArabic ? 'flex-row-reverse' : ''}`}>
-              <div className="flex items-center">
-                <User className="w-4 h-4 mr-2" />
-                {author}
+            {/* Blog Meta */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className={`flex flex-wrap gap-6 text-sm text-gray-400 mb-8 ${isArabic ? "flex-row-reverse" : ""}`}
+            >
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4" />
+                {blog.creator}
               </div>
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2" />
-                {new Date(publishDate).toLocaleDateString(locale === 'ar' ? 'ar-AE' : 'en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4" />
+                {formatDate(blog.blogDate)}
               </div>
-              {blog.readTime && (
-                <div className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2" />
-                  {blog.readTime} {isArabic ? 'دقيقة قراءة' : 'min read'}
-                </div>
-              )}
-              <div className="flex items-center">
-                <Eye className="w-4 h-4 mr-2" />
-                {blog.views} {isArabic ? 'مشاهدة' : 'views'}
-              </div>
-            </div>
+            </motion.div>
 
-            {/* Tags */}
-            {tags.length > 0 && (
-              <div className={`flex flex-wrap gap-2 mb-8 ${isArabic ? 'flex-row-reverse' : ''}`}>
-                {tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 bg-cyan-500/20 border border-cyan-400/30 rounded-full text-cyan-300 text-sm font-medium flex items-center"
-                  >
-                    <Tag className="w-3 h-3 mr-1" />
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-gray-300 text-lg leading-relaxed mb-8"
+            >
+              {description}
+            </motion.p>
           </div>
         </div>
       </section>
@@ -282,17 +231,22 @@ export function BlogDetailQueryClient({ locale, initialSlug }: BlogDetailQueryCl
         <section className="py-8">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="relative bg-[#0a1628]/60 backdrop-blur-xl border border-gray-600/40 rounded-2xl overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="relative bg-[#0a1628]/60 backdrop-blur-xl border border-gray-600/40 rounded-2xl overflow-hidden"
+              >
                 <div className="aspect-video relative">
                   <Image
-                    src={blog.imageUrl}
+                    src={getImageUrlHelper(blog.imageUrl)}
                     alt={title}
                     fill
                     className="object-cover"
                     priority
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -302,10 +256,15 @@ export function BlogDetailQueryClient({ locale, initialSlug }: BlogDetailQueryCl
       <section className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-[#0a1628]/60 backdrop-blur-xl border border-gray-600/40 rounded-2xl p-8 lg:p-12">
-              <div 
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="bg-[#0a1628]/60 backdrop-blur-xl border border-gray-600/40 rounded-2xl p-8 lg:p-12"
+            >
+              <div
                 className="prose prose-lg prose-invert max-w-none
-                  prose-headings:text-cyan-400 
+                  prose-headings:text-cyan-400
                   prose-p:text-gray-300 prose-p:leading-relaxed
                   prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:text-cyan-300
                   prose-strong:text-white
@@ -314,21 +273,9 @@ export function BlogDetailQueryClient({ locale, initialSlug }: BlogDetailQueryCl
                   prose-blockquote:border-l-cyan-400 prose-blockquote:text-gray-300
                   prose-code:text-cyan-300 prose-code:bg-gray-800/50 prose-code:px-1 prose-code:rounded
                   prose-pre:bg-gray-800/50 prose-pre:border prose-pre:border-gray-600/40"
-                dangerouslySetInnerHTML={{ __html: content || '' }}
+                dangerouslySetInnerHTML={{ __html: content || "" }}
               />
-            </div>
-
-            {/* Updated Date Footer */}
-            <div className="mt-8 text-center">
-              <p className="text-sm text-gray-500">
-                {isArabic ? 'آخر تحديث:' : 'Last updated:'}{' '}
-                {new Date(blog.updatedAt).toLocaleDateString(locale === 'ar' ? 'ar-AE' : 'en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -338,19 +285,20 @@ export function BlogDetailQueryClient({ locale, initialSlug }: BlogDetailQueryCl
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <Link href={`/${locale}/blogs`}>
-              <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 hover:scale-105">
-                <ArrowLeft className={`${isArabic ? 'ml-2 rotate-180' : 'mr-2'} w-5 h-5`} />
-                {isArabic ? 'العودة إلى المقالات' : 'Back to All Blogs'}
-              </button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300"
+              >
+                <ArrowLeft
+                  className={`${isArabic ? "ml-2 rotate-180" : "mr-2"} w-5 h-5`}
+                />
+                {isArabic ? "العودة إلى المقالات" : "Back to All Blogs"}
+              </motion.button>
             </Link>
           </div>
         </div>
       </section>
     </div>
   );
-}
-
-function formatTags(tags: string | undefined): string[] {
-  if (!tags) return [];
-  return tags.split(',').map(tag => tag.trim()).filter(tag => tag.length > 0);
 }
