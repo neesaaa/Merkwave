@@ -55,7 +55,7 @@ namespace BusinessLogiclayer.Services
             try
             {
                 await _emailService.SendAsync(
-                    "nassar@merkwave.com",
+                    "info@merkwave.com",
                     dto.Subject,
                     body);
                 return true;

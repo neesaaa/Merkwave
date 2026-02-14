@@ -230,7 +230,7 @@ export const ProjectModalContent: React.FC<ProjectModalContentProps> = ({
           accept="image/*"
           onChange={(e) => {
             const file = e.target.files?.[0];
-            if (file) {
+            if (file && setImage) {
               setImage(file);
             }
           }}
