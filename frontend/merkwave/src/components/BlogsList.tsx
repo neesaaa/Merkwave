@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { Locale } from "@/lib/i18n";
 import { BlogsApiResponse, BlogListItem } from "@/types/blog";
 import { BlogCard } from "@/components/BlogCard";
+import { API_ENDPOINTS } from "@/config/api";
 
 interface BlogsListProps {
   locale: Locale;
@@ -26,26 +27,20 @@ export function BlogsList({ locale, initialBlogs = [] }: BlogsListProps) {
     try {
       setLoading(true);
       setError(null);
-      
-      // Fetch directly from your API
-      const response = await fetch('https://merkwave.com/api/blogs/get_all.php', {
-        method: 'GET',
+
+      const response = await fetch(API_ENDPOINTS.BLOGS.GET_ALL, {
+        method: "GET",
       });
-      
+
       if (!response.ok) {
-        throw new Error('Failed to fetch blogs');
+        throw new Error("Failed to fetch blogs");
       }
-      
-      const data: BlogsApiResponse = await response.json();
-      
-      if (data.status === 'success' && data.data) {
-        setBlogs(data.data);
-      } else {
-        setError('No blogs found');
-      }
+
+      const data = await response.json();
+      setBlogs(data);
     } catch (err) {
-      console.error('Error fetching blogs:', err);
-      setError('Failed to load blogs');
+      console.error("Error fetching blogs:", err);
+      setError("Failed to load blogs");
     } finally {
       setLoading(false);
     }
@@ -56,7 +51,7 @@ export function BlogsList({ locale, initialBlogs = [] }: BlogsListProps) {
       <div className="text-center py-12">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
         <p className="text-slate-600">
-          {locale === 'ar' ? 'جاري تحميل المقالات...' : 'Loading blogs...'}
+          {locale === "ar" ? "جاري تحميل المقالات..." : "Loading blogs..."}
         </p>
       </div>
     );
@@ -66,13 +61,15 @@ export function BlogsList({ locale, initialBlogs = [] }: BlogsListProps) {
     return (
       <div className="text-center py-12">
         <p className="text-slate-600 text-lg mb-4">
-          {locale === 'ar' ? 'حدث خطأ في تحميل المقالات' : 'Error loading blogs'}
+          {locale === "ar"
+            ? "حدث خطأ في تحميل المقالات"
+            : "Error loading blogs"}
         </p>
-        <button 
+        <button
           onClick={fetchBlogs}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
         >
-          {locale === 'ar' ? 'إعادة المحاولة' : 'Try Again'}
+          {locale === "ar" ? "إعادة المحاولة" : "Try Again"}
         </button>
       </div>
     );
@@ -82,7 +79,9 @@ export function BlogsList({ locale, initialBlogs = [] }: BlogsListProps) {
     return (
       <div className="text-center py-12">
         <p className="text-slate-600 text-lg">
-          {locale === 'ar' ? 'لا توجد مقالات متاحة حالياً' : 'No blogs available at the moment'}
+          {locale === "ar"
+            ? "لا توجد مقالات متاحة حالياً"
+            : "No blogs available at the moment"}
         </p>
       </div>
     );
