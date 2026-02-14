@@ -54,9 +54,9 @@ CREATE INDEX IF NOT EXISTS idx_projects_category ON projects(category);
 CREATE INDEX IF NOT EXISTS idx_blogs_blogdate ON blogs(blogdate);
 CREATE INDEX IF NOT EXISTS idx_clients_createdat ON clients(createdat);
 
--- Seed admin user (password: Admin@123)
+-- Seed admin user (password: 1?BMP"1vv?7)
 INSERT INTO applicationusers (id, username, passwordhash)
-VALUES (gen_random_uuid(), 'admin', '$2b$12$mQKWb9ha4z3h3i5oUwRU3.0tOvQ6WMsme7u/T3QbCtrFVH6S1hdMe')
+VALUES (gen_random_uuid(), 'admin', '$2b$12$O6kUuXSVIvBZ51GRjbv9BuWv.MNEF3QwKQ.8p1jv0Pg9UcVaN0eQW')
 ON CONFLICT (username) DO NOTHING;
 
 SELECT 'Merkwave database initialized successfully!' AS status;
