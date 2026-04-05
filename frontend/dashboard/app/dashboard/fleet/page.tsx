@@ -13,7 +13,10 @@ import {
 import { ContentCard } from "@/components/ContentCard";
 import { CardActions } from "@/components/CardActions";
 import { Modal } from "@/components/Modal";
-import { FleetModalContent, FleetFeature } from "@/components/Modals/FleetModalContent";
+import {
+  FleetModalContent,
+  FleetFeature,
+} from "@/components/Modals/FleetModalContent";
 
 interface Fleet {
   id: number;
@@ -121,16 +124,29 @@ const FleetPage: React.FC = () => {
     setIsSubmitting(true);
 
     const form = e.currentTarget;
-    const elements = form.elements as HTMLFormControlsCollection & Record<string, HTMLInputElement | HTMLTextAreaElement>;
+    const elements = form.elements as HTMLFormControlsCollection &
+      Record<string, HTMLInputElement | HTMLTextAreaElement>;
     const formData = new FormData();
 
     // Text fields
     formData.append("NameEn", (elements["NameEn"] as HTMLInputElement).value);
     formData.append("NameAr", (elements["NameAr"] as HTMLInputElement).value);
-    formData.append("DescriptionEn", (elements["DescriptionEn"] as HTMLTextAreaElement).value);
-    formData.append("DescriptionAr", (elements["DescriptionAr"] as HTMLTextAreaElement).value);
-    formData.append("DetailedDescriptionEn", (elements["DetailedDescriptionEn"] as HTMLTextAreaElement)?.value ?? "");
-    formData.append("DetailedDescriptionAr", (elements["DetailedDescriptionAr"] as HTMLTextAreaElement)?.value ?? "");
+    formData.append(
+      "DescriptionEn",
+      (elements["DescriptionEn"] as HTMLTextAreaElement).value,
+    );
+    formData.append(
+      "DescriptionAr",
+      (elements["DescriptionAr"] as HTMLTextAreaElement).value,
+    );
+    formData.append(
+      "DetailedDescriptionEn",
+      (elements["DetailedDescriptionEn"] as HTMLTextAreaElement)?.value ?? "",
+    );
+    formData.append(
+      "DetailedDescriptionAr",
+      (elements["DetailedDescriptionAr"] as HTMLTextAreaElement)?.value ?? "",
+    );
 
     // File fields — only append if a file was actually chosen
     const imageInput = elements["Image"] as HTMLInputElement;
@@ -184,14 +200,18 @@ const FleetPage: React.FC = () => {
       console.log("Response:", responseText);
 
       if (response.ok) {
-        alert(`Fleet item ${modalMode === "add" ? "created" : "updated"} successfully`);
+        alert(
+          `Fleet item ${modalMode === "add" ? "created" : "updated"} successfully`,
+        );
         setShowModal(false);
         setSelectedFleet(null);
         setSelectedFleetId(null);
         setFeatures([]);
         fetchFleets();
       } else {
-        alert(`Failed to ${modalMode} fleet item. Status: ${response.status}. ${responseText}`);
+        alert(
+          `Failed to ${modalMode} fleet item. Status: ${response.status}. ${responseText}`,
+        );
       }
     } catch (error) {
       console.error(`Error ${modalMode}ing fleet:`, error);
@@ -292,7 +312,9 @@ const FleetPage: React.FC = () => {
             />
           </svg>
           <p className="text-lg font-medium">No fleet items yet</p>
-          <p className="text-sm mt-1">Click &ldquo;Add Fleet&rdquo; to get started.</p>
+          <p className="text-sm mt-1">
+            Click &ldquo;Add Fleet&rdquo; to get started.
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -363,10 +385,12 @@ const FleetPage: React.FC = () => {
           fleet={selectedFleet}
           features={features}
           onAddFeature={() => setFeatures((prev) => [...prev, emptyFeature()])}
-          onRemoveFeature={(idx) => setFeatures((prev) => prev.filter((_, i) => i !== idx))}
+          onRemoveFeature={(idx) =>
+            setFeatures((prev) => prev.filter((_, i) => i !== idx))
+          }
           onUpdateFeature={(idx, field, value) =>
             setFeatures((prev) =>
-              prev.map((f, i) => (i === idx ? { ...f, [field]: value } : f))
+              prev.map((f, i) => (i === idx ? { ...f, [field]: value } : f)),
             )
           }
           onSubmit={handleSubmit}

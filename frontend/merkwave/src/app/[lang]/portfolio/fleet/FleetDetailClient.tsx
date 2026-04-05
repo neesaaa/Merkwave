@@ -5,7 +5,15 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Box, CheckCircle2, ZoomIn, ChevronRight, Truck, X } from "lucide-react";
+import {
+  ArrowLeft,
+  Box,
+  CheckCircle2,
+  ZoomIn,
+  ChevronRight,
+  Truck,
+  X,
+} from "lucide-react";
 import dynamic from "next/dynamic";
 import { Locale } from "@/lib/i18n";
 import { API_ENDPOINTS, getImageUrl, API_BASE_URL } from "@/config/api";
@@ -13,7 +21,7 @@ import { API_ENDPOINTS, getImageUrl, API_BASE_URL } from "@/config/api";
 // Load the 3D viewer client-side only (no SSR — WebGL)
 const FleetModelViewer = dynamic(
   () => import("@/components/FleetModelViewer").then((m) => m.FleetModelViewer),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface FleetFeature {
@@ -142,15 +150,18 @@ export function FleetDetailClient({ locale }: FleetDetailClientProps) {
             className="inline-flex items-center gap-2 text-gray-400 hover:text-[#00FFFF] transition-colors text-sm font-medium shrink-0"
           >
             <ArrowLeft className={`w-4 h-4 ${isArabic ? "rotate-180" : ""}`} />
-            <span className="hidden sm:inline">{isArabic ? "الأسطول" : "Fleet"}</span>
+            <span className="hidden sm:inline">
+              {isArabic ? "الأسطول" : "Fleet"}
+            </span>
           </Link>
-          <ChevronRight className={`w-3.5 h-3.5 text-white/20 shrink-0 ${isArabic ? "rotate-180" : ""}`} />
+          <ChevronRight
+            className={`w-3.5 h-3.5 text-white/20 shrink-0 ${isArabic ? "rotate-180" : ""}`}
+          />
           <span className="text-white/60 text-sm truncate">{name}</span>
         </div>
       </div>
 
       <div className="relative z-10">
-
         {/* ── Hero banner ── */}
         <section className="relative pt-14 pb-10 sm:pt-20 sm:pb-14 px-4 sm:px-6 overflow-hidden">
           {/* subtle grid bg */}
@@ -192,13 +203,14 @@ export function FleetDetailClient({ locale }: FleetDetailClientProps) {
         <section className="px-4 sm:px-6 pb-16">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-5 sm:gap-8">
-
               {/* Image Panel — always occupies the left column regardless of dir */}
               <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className={isArabic ? "lg:col-start-2 lg:row-start-1" : "lg:col-start-1"}
+                className={
+                  isArabic ? "lg:col-start-2 lg:row-start-1" : "lg:col-start-1"
+                }
               >
                 <div className="relative group rounded-2xl overflow-hidden bg-[#060f1e] border border-white/5 hover:border-cyan-500/30 transition-colors duration-500">
                   <div
@@ -233,7 +245,9 @@ export function FleetDetailClient({ locale }: FleetDetailClientProps) {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.25 }}
-                className={isArabic ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-2"}
+                className={
+                  isArabic ? "lg:col-start-1 lg:row-start-1" : "lg:col-start-2"
+                }
               >
                 <div className="relative rounded-2xl overflow-hidden bg-[#060f1e] border border-cyan-500/20 hover:border-cyan-400/40 transition-colors duration-500 aspect-video">
                   {/* corner glow */}
@@ -266,7 +280,9 @@ export function FleetDetailClient({ locale }: FleetDetailClientProps) {
                     <div className="flex flex-col items-center justify-center w-full h-full text-gray-500 gap-3">
                       <Box className="w-12 h-12 opacity-20" />
                       <span className="text-sm">
-                        {isArabic ? "لا يوجد نموذج ثلاثي الأبعاد" : "No 3D model available"}
+                        {isArabic
+                          ? "لا يوجد نموذج ثلاثي الأبعاد"
+                          : "No 3D model available"}
                       </span>
                     </div>
                   )}
@@ -314,7 +330,9 @@ export function FleetDetailClient({ locale }: FleetDetailClientProps) {
                 className="mb-10"
               >
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3">
-                  {isArabic ? "المواصفات والميزات" : "Specifications & Features"}
+                  {isArabic
+                    ? "المواصفات والميزات"
+                    : "Specifications & Features"}
                 </h2>
                 <div className="w-16 h-1 bg-gradient-to-r from-[#00FFFF] to-blue-500 rounded-full" />
               </motion.div>
@@ -379,7 +397,9 @@ export function FleetDetailClient({ locale }: FleetDetailClientProps) {
                     className="inline-flex items-center gap-2 px-8 py-3 bg-[#F6FF00] text-black font-bold text-sm rounded-full hover:bg-yellow-300 hover:shadow-lg hover:shadow-yellow-400/30 transition-all duration-200"
                   >
                     {isArabic ? "تواصل معنا" : "Get in Touch"}
-                    <ChevronRight className={`w-4 h-4 ${isArabic ? "rotate-180" : ""}`} />
+                    <ChevronRight
+                      className={`w-4 h-4 ${isArabic ? "rotate-180" : ""}`}
+                    />
                   </motion.button>
                 </Link>
                 <Link href={`/${locale}/portfolio` as any}>
@@ -388,7 +408,9 @@ export function FleetDetailClient({ locale }: FleetDetailClientProps) {
                     whileTap={{ scale: 0.97 }}
                     className="inline-flex items-center gap-2 px-8 py-3 border border-cyan-500/40 text-[#00FFFF] font-semibold text-sm rounded-full hover:bg-cyan-500/10 transition-all duration-200"
                   >
-                    <ArrowLeft className={`w-4 h-4 ${isArabic ? "rotate-180" : ""}`} />
+                    <ArrowLeft
+                      className={`w-4 h-4 ${isArabic ? "rotate-180" : ""}`}
+                    />
                     {isArabic ? "العودة إلى الأسطول" : "Back to Fleet"}
                   </motion.button>
                 </Link>
@@ -396,8 +418,8 @@ export function FleetDetailClient({ locale }: FleetDetailClientProps) {
             </motion.div>
           </div>
         </section>
-
-      </div>{/* /relative z-10 */}
+      </div>
+      {/* /relative z-10 */}
 
       {/* ── Image Lightbox ── */}
       <AnimatePresence>

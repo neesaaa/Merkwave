@@ -11,7 +11,9 @@ export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
 
-export default async function FleetDetailPage({ params }: FleetDetailPageProps) {
+export default async function FleetDetailPage({
+  params,
+}: FleetDetailPageProps) {
   const { lang } = await params;
   if (!locales.includes(lang as Locale)) notFound();
   const locale = lang as Locale;

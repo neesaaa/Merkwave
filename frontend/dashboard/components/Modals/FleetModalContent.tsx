@@ -31,7 +31,11 @@ interface FleetModalContentProps {
   features: FleetFeature[];
   onAddFeature: () => void;
   onRemoveFeature: (index: number) => void;
-  onUpdateFeature: (index: number, field: keyof FleetFeature, value: string) => void;
+  onUpdateFeature: (
+    index: number,
+    field: keyof FleetFeature,
+    value: string,
+  ) => void;
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
   isSubmitting?: boolean;
 }
@@ -46,7 +50,6 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
   onSubmit,
   isSubmitting = false,
 }) => {
-
   /* ── VIEW MODE ─────────────────────────────────────────── */
   if (mode === "view" && fleet) {
     const fullImageUrl = fleet.imageUrl
@@ -94,32 +97,47 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
         {/* Details */}
         <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm">
           <div className="sm:col-span-2 pb-1 border-b border-gray-100">
-            <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">Name</dt>
-            <dd className="font-medium text-gray-800">{fleet.nameEn} <span className="text-gray-400">/ {fleet.nameAr}</span></dd>
+            <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">
+              Name
+            </dt>
+            <dd className="font-medium text-gray-800">
+              {fleet.nameEn}{" "}
+              <span className="text-gray-400">/ {fleet.nameAr}</span>
+            </dd>
           </div>
           <div>
-            <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">Description (EN)</dt>
+            <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">
+              Description (EN)
+            </dt>
             <dd className="text-gray-700">{fleet.descriptionEn}</dd>
           </div>
           <div>
-            <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">Description (AR)</dt>
+            <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">
+              Description (AR)
+            </dt>
             <dd className="text-gray-700">{fleet.descriptionAr}</dd>
           </div>
           {fleet.detailedDescriptionEn && (
             <div className="sm:col-span-2">
-              <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">Detailed Description (EN)</dt>
+              <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">
+                Detailed Description (EN)
+              </dt>
               <dd className="text-gray-700">{fleet.detailedDescriptionEn}</dd>
             </div>
           )}
           {fleet.detailedDescriptionAr && (
             <div className="sm:col-span-2">
-              <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">Detailed Description (AR)</dt>
+              <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">
+                Detailed Description (AR)
+              </dt>
               <dd className="text-gray-700">{fleet.detailedDescriptionAr}</dd>
             </div>
           )}
           {fullModelUrl && (
             <div className="sm:col-span-2">
-              <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">3D Model</dt>
+              <dt className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-0.5">
+                3D Model
+              </dt>
               <dd>
                 <a
                   href={fullModelUrl}
@@ -148,9 +166,13 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
                 >
                   <p className="font-semibold text-cyan-800 text-sm">
                     {feat.titleEn}
-                    <span className="font-normal text-cyan-500 ml-2">/ {feat.titleAr}</span>
+                    <span className="font-normal text-cyan-500 ml-2">
+                      / {feat.titleAr}
+                    </span>
                   </p>
-                  <p className="text-xs text-gray-600 mt-1">{feat.descriptionEn}</p>
+                  <p className="text-xs text-gray-600 mt-1">
+                    {feat.descriptionEn}
+                  </p>
                   <p className="text-xs text-gray-500">{feat.descriptionAr}</p>
                 </div>
               ))}
@@ -259,7 +281,12 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-            Image {mode === "edit" && <span className="normal-case font-normal">(leave empty to keep current)</span>}
+            Image{" "}
+            {mode === "edit" && (
+              <span className="normal-case font-normal">
+                (leave empty to keep current)
+              </span>
+            )}
           </label>
           <input
             type="file"
@@ -269,13 +296,19 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
               file:mr-3 file:py-2 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-cyan-100 file:text-cyan-700 hover:file:bg-cyan-200"
           />
           {fleet?.imageUrl && (
-            <p className="text-xs text-gray-400 mt-1 truncate">Current: {fleet.imageUrl}</p>
+            <p className="text-xs text-gray-400 mt-1 truncate">
+              Current: {fleet.imageUrl}
+            </p>
           )}
         </div>
         <div>
           <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
             3D Model{" "}
-            {mode === "edit" && <span className="normal-case font-normal">(leave empty to keep current)</span>}
+            {mode === "edit" && (
+              <span className="normal-case font-normal">
+                (leave empty to keep current)
+              </span>
+            )}
           </label>
           <input
             type="file"
@@ -285,7 +318,9 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
               file:mr-3 file:py-2 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-cyan-100 file:text-cyan-700 hover:file:bg-cyan-200"
           />
           {fleet?.model3DUrl && (
-            <p className="text-xs text-gray-400 mt-1 truncate">Current: {fleet.model3DUrl}</p>
+            <p className="text-xs text-gray-400 mt-1 truncate">
+              Current: {fleet.model3DUrl}
+            </p>
           )}
         </div>
       </div>
@@ -307,8 +342,18 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
             onClick={onAddFeature}
             className="flex items-center gap-1.5 text-xs font-semibold bg-cyan-600 text-white px-3 py-1.5 rounded-lg hover:bg-cyan-700 transition-colors"
           >
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+            <svg
+              className="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M12 4v16m8-8H4"
+              />
             </svg>
             Add Feature
           </button>
@@ -327,8 +372,16 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
               {/* Feature header row */}
               <div className="flex items-center justify-between mb-3">
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 bg-cyan-50 border border-cyan-200 px-2.5 py-1 rounded-full">
-                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clipRule="evenodd" />
+                  <svg
+                    className="w-3 h-3"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   Feature {idx + 1}
                 </span>
@@ -337,8 +390,18 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
                   onClick={() => onRemoveFeature(idx)}
                   className="flex items-center gap-1 text-xs text-red-500 hover:text-red-700 hover:bg-red-50 px-2 py-1 rounded-lg transition-colors"
                 >
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  <svg
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                    />
                   </svg>
                   Remove
                 </button>
@@ -347,22 +410,30 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
               {/* Title row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                 <div>
-                  <label className="block text-xs font-medium text-gray-500 mb-1">Title (EN)</label>
+                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                    Title (EN)
+                  </label>
                   <input
                     type="text"
                     value={feat.titleEn}
-                    onChange={(e) => onUpdateFeature(idx, "titleEn", e.target.value)}
+                    onChange={(e) =>
+                      onUpdateFeature(idx, "titleEn", e.target.value)
+                    }
                     required
                     placeholder="Feature title…"
                     className="w-full px-2.5 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 placeholder-gray-300"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-500 mb-1">Title (AR)</label>
+                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                    Title (AR)
+                  </label>
                   <input
                     type="text"
                     value={feat.titleAr}
-                    onChange={(e) => onUpdateFeature(idx, "titleAr", e.target.value)}
+                    onChange={(e) =>
+                      onUpdateFeature(idx, "titleAr", e.target.value)
+                    }
                     required
                     placeholder="عنوان الميزة…"
                     dir="rtl"
@@ -374,10 +445,14 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
               {/* Description row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-medium text-gray-500 mb-1">Description (EN)</label>
+                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                    Description (EN)
+                  </label>
                   <textarea
                     value={feat.descriptionEn}
-                    onChange={(e) => onUpdateFeature(idx, "descriptionEn", e.target.value)}
+                    onChange={(e) =>
+                      onUpdateFeature(idx, "descriptionEn", e.target.value)
+                    }
                     required
                     rows={2}
                     placeholder="Describe this feature…"
@@ -385,10 +460,14 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-500 mb-1">Description (AR)</label>
+                  <label className="block text-xs font-medium text-gray-500 mb-1">
+                    Description (AR)
+                  </label>
                   <textarea
                     value={feat.descriptionAr}
-                    onChange={(e) => onUpdateFeature(idx, "descriptionAr", e.target.value)}
+                    onChange={(e) =>
+                      onUpdateFeature(idx, "descriptionAr", e.target.value)
+                    }
                     required
                     rows={2}
                     placeholder="وصف الميزة…"
@@ -415,7 +494,14 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
             fill="none"
             viewBox="0 0 24 24"
           >
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
             <path
               className="opacity-75"
               fill="currentColor"
@@ -424,8 +510,12 @@ export const FleetModalContent: React.FC<FleetModalContentProps> = ({
           </svg>
         )}
         {isSubmitting
-          ? mode === "add" ? "Creating…" : "Updating…"
-          : mode === "add" ? "Create Fleet" : "Update Fleet"}
+          ? mode === "add"
+            ? "Creating…"
+            : "Updating…"
+          : mode === "add"
+            ? "Create Fleet"
+            : "Update Fleet"}
       </button>
     </form>
   );

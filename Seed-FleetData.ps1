@@ -19,7 +19,7 @@ $glbDir = "d:\dec 2025\merkwave_Website\frontend\merkwave"
 $vessels = Get-Content "d:\dec 2025\merkwave_Website\fleet-data.json" -Raw | ConvertFrom-Json
 
 function Post-Fleet($v, $imgPath) {
-    $hc   = [System.Net.Http.HttpClient]::new()
+    $hc = [System.Net.Http.HttpClient]::new()
     $form = [System.Net.Http.MultipartFormDataContent]::new()
 
     $fields = @{
@@ -34,9 +34,9 @@ function Post-Fleet($v, $imgPath) {
     $fi = 0
     foreach ($feat in $v.features) {
         foreach ($prop in @(
-            @("TitleEn", $feat.titleEn), @("TitleAr", $feat.titleAr),
-            @("DescriptionEn", $feat.descEn), @("DescriptionAr", $feat.descAr)
-        )) {
+                @("TitleEn", $feat.titleEn), @("TitleAr", $feat.titleAr),
+                @("DescriptionEn", $feat.descEn), @("DescriptionAr", $feat.descAr)
+            )) {
             $sc = [System.Net.Http.StringContent]::new($prop[1], [System.Text.Encoding]::UTF8)
             $form.Add($sc, "Features[$fi].$($prop[0])")
         }
@@ -72,7 +72,8 @@ foreach ($v in $vessels) {
         $resp = Invoke-WebRequest $v.img -TimeoutSec 30 -UseBasicParsing
         [System.IO.File]::WriteAllBytes($imgPath, $resp.Content)
         Write-Host " OK ($([math]::Round($resp.Content.Length/1024))KB)" -ForegroundColor Green
-    } catch {
+    }
+    catch {
         Write-Host " FAILED. Skipping." -ForegroundColor Red
         continue
     }
@@ -92,13 +93,14 @@ foreach ($v in $vessels) {
         $p = $r.Body | ConvertFrom-Json
         Write-Host "  [OK] id=$($p.id)" -ForegroundColor Green
         $created += [pscustomobject]@{ Id = $p.id; Name = $v.nameEn }
-    } else {
+    }
+    else {
         Write-Host "  [FAIL] HTTP $($r.Code): $($r.Body.Substring(0,[math]::Min(300,$r.Body.Length)))" -ForegroundColor Red
     }
 }
 
 Write-Host ""
 Write-Host "===========================================" -ForegroundColor Cyan
-Write-Host "   DONE: $($created.Count)/$($vessels.Count) vessels seeded" -ForegroundColor $(if ($created.Count -eq $vessels.Count) { "Green" } else { "Yellow"})
+Write-Host "   DONE: $($created.Count)/$($vessels.Count) vessels seeded" -ForegroundColor $(if ($created.Count -eq $vessels.Count) { "Green" } else { "Yellow" })
 $created | ForEach-Object { Write-Host "   id=$($_.Id)  $($_.Name)" -ForegroundColor White }
 Write-Host "===========================================" -ForegroundColor Cyan
