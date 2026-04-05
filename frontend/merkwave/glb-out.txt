@@ -1,0 +1,5 @@
+✓  survey-vessel.glb  (20.7 KB)
+✓  offshore-osv.glb  (28.7 KB)
+✓  supply-psv.glb  (31.9 KB)
+✓  ahts-tug.glb  (30.4 KB)
+All vessel GLB files generated.

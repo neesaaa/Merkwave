@@ -13,7 +13,7 @@ namespace BusinessLogiclayer
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddBusinessLogiclayerServices(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection AddBusinessLogiclayerServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IAuthService, AuthService>();
             services.AddAutoMapper(cfg => { }, typeof(ProjectMapper).Assembly);
@@ -22,6 +22,8 @@ namespace BusinessLogiclayer
             services.AddScoped<IBlogService, BlogService>();
             services.AddScoped<EmailService>();
             services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IFleetService, FleetService>();
+            services.AddScoped<IOdooModuleService, OdooModuleService>();
 
 
 

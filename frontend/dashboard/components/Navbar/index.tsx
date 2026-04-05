@@ -15,6 +15,8 @@ const NAV_ITEMS = [
   { name: "Projects", path: "/dashboard/projects" },
   { name: "Blogs", path: "/dashboard/blogs" },
   { name: "Clients", path: "/dashboard/clients" },
+  { name: "Fleet", path: "/dashboard/fleet" },
+  { name: "Odoo Modules", path: "/dashboard/odoo-modules" },
 ];
 
 const Navbar: React.FC = () => {

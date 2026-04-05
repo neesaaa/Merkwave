@@ -41,8 +41,8 @@ namespace Infrastructure.Data.Repos
             var insertValues = string.Join(",", typeof(T).GetProperties()
                                         .Where(p => p.Name.ToLower() != "id")
                                         .Select(p => "@" + p.Name));
-            var sql = $"INSERT INTO {_tableName} ({insertProps}) VALUES ({insertValues})";
-            return await connection.ExecuteAsync(sql, entity);
+            var sql = $"INSERT INTO {_tableName} ({insertProps}) VALUES ({insertValues}) RETURNING id";
+            return await connection.ExecuteScalarAsync<int>(sql, entity);
         }
 
         public async Task<int> UpdateAsync(T entity)

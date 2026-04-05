@@ -1,25 +1,27 @@
 "use client";
 import { useEffect } from "react";
 
+// Development-only debug component — not mounted in any layout.
+// To re-enable during debugging, temporarily add <MobileLogger /> back
+// into [lang]/layout.tsx and open the page on a mobile device.
 export default function MobileLogger() {
   useEffect(() => {
+    if (process.env.NODE_ENV !== "development") return;
+
     const handleError = (event: ErrorEvent) => {
-      alert(
-        `Global error caught:\n\nMessage: ${event.message}\nSource: ${event.filename}:${event.lineno}:${event.colno}\nStack: ${event.error?.stack}`
-      );
-      console.error("Global mobile error:", event);
+      console.error("[MobileLogger] Global error:", event);
+    };
+
+    const handleRejection = (event: PromiseRejectionEvent) => {
+      console.error("[MobileLogger] Unhandled rejection:", event.reason);
     };
 
     window.addEventListener("error", handleError);
-    window.addEventListener("unhandledrejection", (event) => {
-      alert(
-        `Unhandled Promise Rejection:\n\n${JSON.stringify(event.reason, null, 2)}`
-      );
-      console.error("Unhandled rejection:", event);
-    });
+    window.addEventListener("unhandledrejection", handleRejection);
 
     return () => {
       window.removeEventListener("error", handleError);
+      window.removeEventListener("unhandledrejection", handleRejection);
     };
   }, []);
 

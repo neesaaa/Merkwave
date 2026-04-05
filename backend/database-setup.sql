@@ -55,6 +55,42 @@ CREATE TABLE IF NOT EXISTS clients (
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Fleet table
+CREATE TABLE IF NOT EXISTS fleets (
+    id SERIAL PRIMARY KEY,
+    nameen VARCHAR(255) NOT NULL,
+    namear VARCHAR(255) NOT NULL,
+    descriptionen TEXT NOT NULL,
+    descriptionar TEXT NOT NULL,
+    detaileddescriptionen TEXT,
+    detaileddescriptionar TEXT,
+    imageurl VARCHAR(500),
+    model3durl VARCHAR(500),
+    createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Fleet features table
+CREATE TABLE IF NOT EXISTS fleetfeatures (
+    id SERIAL PRIMARY KEY,
+    titleen VARCHAR(255) NOT NULL,
+    titlear VARCHAR(255) NOT NULL,
+    descriptionen TEXT NOT NULL,
+    descriptionar TEXT NOT NULL,
+    fleetid INT NOT NULL REFERENCES fleets(id) ON DELETE CASCADE
+);
+
+-- Odoo Modules table
+CREATE TABLE IF NOT EXISTS odoomodules (
+    id SERIAL PRIMARY KEY,
+    namear VARCHAR(255) NOT NULL,
+    nameen VARCHAR(255) NOT NULL,
+    descriptionar TEXT NOT NULL DEFAULT '',
+    descriptionen TEXT NOT NULL DEFAULT '',
+    detaileddescriptionar TEXT NOT NULL DEFAULT '',
+    detaileddescriptionen TEXT NOT NULL DEFAULT '',
+    imageurl VARCHAR(500) NOT NULL DEFAULT ''
+);
+
 -- Create indexes
 CREATE INDEX IF NOT EXISTS idx_projects_slug ON projects(slug);
 CREATE INDEX IF NOT EXISTS idx_projects_category ON projects(category);

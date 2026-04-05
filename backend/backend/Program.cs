@@ -70,8 +70,12 @@ app.UseExceptionHandler(errorApp =>
 
 app.UseRouting();
 
-app.UseStaticFiles();
 app.UseCors("CorsPolicy");
+
+var contentTypeProvider = new Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider();
+contentTypeProvider.Mappings[".glb"] = "model/gltf-binary";
+contentTypeProvider.Mappings[".gltf"] = "model/gltf+json";
+app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = contentTypeProvider });
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -30,7 +30,7 @@ export const Modal: React.FC<ModalProps> = ({
       <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
         {/* Header */}
         <div
-          className={`sticky top-0 bg-gradient-to-r ${THEME_STYLES[theme]} text-white p-4 sm:p-6 rounded-t-2xl`}
+          className={`sticky top-0 z-10 bg-gradient-to-r ${THEME_STYLES[theme]} text-white p-4 sm:p-6 rounded-t-2xl`}
         >
           <div className="flex justify-between items-center">
             <h2 className="text-lg sm:text-xl md:text-2xl font-bold">

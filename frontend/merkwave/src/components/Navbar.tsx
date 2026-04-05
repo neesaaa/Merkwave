@@ -28,7 +28,8 @@ export default function Navbar({ lang = "en" }: { lang?: string }) {
   const switchLanguage = (newLang: string) => {
     setIsOpen(false);
     const newPath =
-      pathname?.replace(`/${lang}`, `/${newLang}`) || `/${newLang}`;
+      (pathname?.replace(`/${lang}`, `/${newLang}`) || `/${newLang}`) +
+      (typeof window !== "undefined" ? window.location.search : "");
     window.location.href = newPath;
   };
 

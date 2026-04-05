@@ -38,91 +38,91 @@ export default function SoftwareClient({
   const isArabic = lang === "ar";
 
   const services = [
-    {
-      icon: Boxes,
-      title: isArabic ? "تنفيذ نظام أودو ERP" : "Odoo ERP Integration",
-      description: isArabic
-        ? "تنفيذ نظام أودو الرسمي: إعداد متكامل للمحاسبة، المبيعات، والمخازن وكل تطبيقات أودو الأخرى لتبسيط عملياتك التشغيلية."
-        : "Official Odoo implementation including Accounting, CRM, Inventory, and all Odoo apps to streamline operations.",
-      color: "cyan",
-    },
-    {
-      icon: Code2,
-      title: isArabic ? "تطوير برمجيات مخصصة" : "Custom Software Development",
-      description: isArabic
-        ? "هندسة حلول برمجية فريدة وقابلة للتوسع مصممة خصيصاً لحل تحديات عملك."
-        : "Engineering bespoke, scalable software solutions tailored to your specific business challenges.",
-      color: "emerald",
-    },
-    {
-      icon: Cloud,
-      title: isArabic ? "الاستضافة السحابية المُدارة" : "Managed Cloud Hosting",
-      description: isArabic
-        ? "استضافة عالية الأداء لنظام أودو وتطبيقات الشركات مع ضمان تشغيل 99.9% ونسخ احتياطي دوري."
-        : "High-performance managed hosting for Odoo and enterprise apps with 99.9% uptime and daily backups.",
-      color: "purple",
-    },
-    {
-      icon: Smartphone,
-      title: isArabic ? "تطبيقات الموبايل" : "Mobile App Development",
-      description: isArabic
-        ? "تطوير تطبيقات جوال ذكية (iOS & Android) تعزز تفاعل المستخدمين وتدفع بالنمو."
-        : "Developing native and cross-platform mobile apps that boost engagement and drive growth.",
-      color: "orange",
-    },
-    {
-      icon: LayoutDashboard,
-      title: isArabic ? "بوابات الويب للمؤسسات" : "Enterprise Web Portals",
-      description: isArabic
-        ? "بناء منصات ويب آمنة ومحركات تجارة إلكترونية تتحمل ضغط الزيارات العالي."
-        : "Building secure, high-traffic web platforms and enterprise-grade e-commerce portals.",
-      color: "cyan",
-    },
-    {
-      icon: Workflow,
-      title: isArabic
-        ? "أتمتة العمليات الإدارية"
-        : "Business Process Automation",
-      description: isArabic
-        ? "تحويل مسارات العمل الداخلية المعقدة إلى أنظمة رقمية مؤتمتة تقلل الجهد اليدوي."
-        : "Automating complex internal workflows to reduce manual work and increase efficiency.",
-      color: "purple",
-    },
-    {
-      icon: Link2,
-      title: isArabic ? "الربط المتكامل للأنظمة" : "API Integration",
-      description: isArabic
-        ? "ربط نظام أودو بالأدوات الخارجية والـ APIs لخلق بيئة بيانات موحدة."
-        : "Seamless integration between Odoo ERP and third-party tools through secure APIs.",
-      color: "yellow",
-    },
-    {
-      icon: Palette,
-      title: isArabic ? "تصميم واجهة وتجربة المستخدم" : "UI / UX Design",
-      description: isArabic
-        ? "تصميم واجهات بديهية تركز على المستخدم وتجعل البرمجيات المعقدة سهلة الاستخدام."
-        : "User-centric UI/UX design that makes complex enterprise software intuitive and easy to use.",
-      color: "cyan",
-    },
-    {
-      icon: LifeBuoy,
-      title: isArabic ? "الصيانة والدعم الفني" : "Maintenance & Tech Support",
-      description: isArabic
-        ? "دعم فني مخصص ومستمر لضمان بقاء أنظمتك آمنة، محدثة، وفعالة دائماً."
-        : "Dedicated ongoing support to keep your systems secure, updated, and running smoothly.",
-      color: "pink",
-    },
-    {
-      icon: ShieldCheck,
-      title: isArabic
-        ? "الاستشارات والتدقيق التقني"
-        : "Technical Consulting & Auditing",
-      description: isArabic
-        ? "استشارات استراتيجية حول التحول الرقمي، أمن الأنظمة، وخرائط الطريق التقنية."
-        : "Strategic consulting on digital transformation, system security, and technology roadmaps.",
-      color: "pink",
-    },
-  ];
+  {
+    icon: Code2,
+    title: isArabic
+      ? "تطبيقات الويب والمنصات السحابية"
+      : "Web & SaaS Platforms",
+    description: isArabic
+      ? "بناء أنظمة ضخمة (Backend) قادرة على تحمل آلاف الزيارات المتزامنة باستخدام أحدث التقنيات."
+      : "Building large-scale backend systems capable of handling thousands of concurrent users using modern technologies.",
+    color: "cyan",
+  },
+  {
+    icon: Smartphone,
+    title: isArabic
+      ? "تطبيقات الهواتف الذكية"
+      : "Mobile Apps (iOS/Android)",
+    description: isArabic
+      ? "أداء Native فائق السرعة مع تركيز على أمن البيانات وتجربة المستخدم السلسة."
+      : "High-performance native apps with strong focus on security and seamless user experience.",
+    color: "orange",
+  },
+  {
+    icon: Link2,
+    title: isArabic
+      ? "تكامل الأنظمة (API)"
+      : "API & Systems Integration",
+    description: isArabic
+      ? "ربط أدواتك الحالية (محاسبة، مخازن) في نظام واحد موحد."
+      : "Connecting your existing tools (accounting, inventory, etc.) into one unified system.",
+    color: "yellow",
+  },
+  {
+    icon: ShieldCheck,
+    title: isArabic
+      ? "الأمن السيبراني"
+      : "Security First",
+    description: isArabic
+      ? "تشفير كامل واختبارات اختراق لضمان حماية بياناتك."
+      : "Full encryption and penetration testing to ensure your data is fully protected.",
+    color: "pink",
+  },
+
+  // keep remaining NON-duplicated services
+  {
+    icon: Boxes,
+    title: isArabic ? "تنفيذ نظام أودو ERP" : "Odoo ERP Integration",
+    description: isArabic
+      ? "تنفيذ نظام أودو الرسمي: إعداد متكامل للمحاسبة، المبيعات، والمخازن وكل تطبيقات أودو الأخرى لتبسيط عملياتك التشغيلية."
+      : "Official Odoo implementation including Accounting, CRM, Inventory, and all Odoo apps to streamline operations.",
+    color: "cyan",
+  },
+  {
+    icon: Cloud,
+    title: isArabic ? "الاستضافة السحابية المُدارة" : "Managed Cloud Hosting",
+    description: isArabic
+      ? "استضافة عالية الأداء لنظام أودو وتطبيقات الشركات مع ضمان تشغيل 99.9% ونسخ احتياطي دوري."
+      : "High-performance managed hosting with 99.9% uptime and backups.",
+    color: "purple",
+  },
+  {
+    icon: Workflow,
+    title: isArabic
+      ? "أتمتة العمليات الإدارية"
+      : "Business Process Automation",
+    description: isArabic
+      ? "تحويل مسارات العمل الداخلية المعقدة إلى أنظمة رقمية مؤتمتة تقلل الجهد اليدوي."
+      : "Automating complex workflows to reduce manual work.",
+    color: "purple",
+  },
+  {
+    icon: Palette,
+    title: isArabic ? "تصميم واجهة وتجربة المستخدم" : "UI / UX Design",
+    description: isArabic
+      ? "تصميم واجهات بديهية تركز على المستخدم وتجعل البرمجيات المعقدة سهلة الاستخدام."
+      : "User-centric UI/UX design for intuitive systems.",
+    color: "cyan",
+  },
+  {
+    icon: LifeBuoy,
+    title: isArabic ? "الصيانة والدعم الفني" : "Maintenance & Tech Support",
+    description: isArabic
+      ? "دعم فني مستمر لضمان بقاء أنظمتك آمنة ومحدثة."
+      : "Ongoing support to keep systems secure and updated.",
+    color: "pink",
+  },
+];
   const technologies = [
     {
       name: "React.js",
@@ -590,15 +590,15 @@ export default function SoftwareClient({
                 <br />
                 <span className="text-md md:text-3xl text-white">
                                     {isArabic
-                    ? "خلال البرمجيات المخصصة ونظام أودو"
-                    : "Custom Software & Odoo"}
+                    ? "حيث تلتقي الأكواد بالأعمال"
+                    : "Where Code Meets Commerce."}
                 </span>
               </h1>
 
               <p className="text-gray-300  max-w-[280px] sm:max-w-screen text-md sm:text-base  md:text-lg  mb-8 text-center break-words ">
                 {isArabic
-                  ? "نحن نصمم حلولاً برمجية ذكية، آمنة وقابلة للتوسع. بصفتنا شريك أودو الرسمي، نردم الفجوة بين احتياجات العمل المعقدة والتنفيذ الرقمي السلس"
-                  : "We engineer scalable, secure, and intelligent software solutions. As an Official Odoo Partner, we bridge the gap between complex business needs and seamless digital execution."}
+                  ? "نحن لا نكتب مجرد أكواد، بل نبني أصولاً رقمية قابلة للتوسع تمتلكها بالكامل."
+                  : "We don't just write code; we build scalable digital assets that you own entirely."}
               </p>
 
               <Link
@@ -652,8 +652,8 @@ export default function SoftwareClient({
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <span className="text-[#00FFFF] ">
                 {isArabic
-                  ? "التقنيات والأطر الأساسية"
-                  : "Our Core Technologies & Frameworks"}
+                  ? "ترسانتنا التقنية"
+                  : "Our Engineering Powerhouse"}
               </span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto">
@@ -794,8 +794,8 @@ export default function SoftwareClient({
             <div className="relative z-10 h-full">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
                 {isArabic
-                  ? "هل أنت مستعد للارتقاء ببنيتك التحتية الرقمية؟"
-                  : "Ready to Elevate Your Digital Infrastructure?"}
+                  ? "حوّل رؤيتك إلى واقع"
+                  : "Bring Your Vision to Life"}
               </h2>
               <p className="text-gray-300 text-md sm:text-lg mb-8 max-w-2xl mx-auto">
                 {isArabic
@@ -804,7 +804,7 @@ export default function SoftwareClient({
               </p>
               <Link href={`/${lang}/contact` as any}>
                 <button className="px-3 py-2 md:px-8 md:py-4 bg-gradient-to-r text-md md:text-2xl from-cyan-400 to-sky-500 text-black font-medium  rounded-lg hover:shadow-xl hover:shadow-purple-800 transition-all duration-300 hover:scale-110 active:scale-95">
-                  {isArabic ? "احجز عرضاً تجريبياً لأودو" : "Book an Odoo Demo"}
+                  {isArabic ? "اطلب استشارة تقنية" : "Request a Technical Consultation"}
                 </button>
               </Link>
             </div>

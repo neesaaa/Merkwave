@@ -5,9 +5,8 @@ import Navbar from "@/components/Navbar";
 import { getDictionary } from "@/content/dictionary";
 import { Locale, locales, isRTL } from "@/lib/i18n";
 import IntroLoader from "@/components/IntroLoader";
-import MobileLogger from "@/components/MobileLogger";
+// MobileLogger is dev-only — removed from production layout
 import ErrorBoundary from "@/components/ErrorBoundary ";
-
 
 export const dynamicParams = false;
 
@@ -34,15 +33,15 @@ export async function generateMetadata({
     description: dictionary.meta.description,
     keywords: dictionary.meta.keywords,
     alternates: {
-  canonical: `https://www.merkwave.com/${locale}/`,
+      canonical: `https://www.merkwave.com/${locale}/`,
       languages: Object.fromEntries(
-  locales.map((l) => [l, `https://www.merkwave.com/${l}/`])
+        locales.map((l) => [l, `https://www.merkwave.com/${l}/`]),
       ),
     },
     openGraph: {
       title: dictionary.meta.siteName,
       description: dictionary.meta.description,
-  url: `https://www.merkwave.com/${locale}/`,
+      url: `https://www.merkwave.com/${locale}/`,
       siteName: "Merkwave",
       locale: locale === "ar" ? "ar_AR" : "en_US",
       type: "website",
@@ -76,7 +75,6 @@ export default async function LocaleLayout({
         suppressHydrationWarning
       >
         <IntroLoader />
-        <MobileLogger />
         <div suppressHydrationWarning>
           <Navbar lang={locale} />
         </div>
@@ -86,6 +84,5 @@ export default async function LocaleLayout({
         <Footer lang={locale} />
       </div>
     </ErrorBoundary>
-    
   );
 }

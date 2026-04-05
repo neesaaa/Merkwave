@@ -1,7 +1,7 @@
 // API Configuration
 // All API endpoints in one place for easy management
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5070';
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5070';
 
 export const API_ENDPOINTS = {
   // Projects
@@ -14,6 +14,18 @@ export const API_ENDPOINTS = {
   BLOGS: {
     GET_ALL: `${API_BASE_URL}/api/blogs`,
     GET_BY_ID: (id: number) => `${API_BASE_URL}/api/blogs/${id}`,
+  },
+
+  // Fleet
+  FLEET: {
+    GET_ALL: `${API_BASE_URL}/api/fleet`,
+    GET_BY_ID: (id: number) => `${API_BASE_URL}/api/fleet/${id}`,
+  },
+
+  // Odoo Modules
+  ODOO_MODULES: {
+    GET_ALL: `${API_BASE_URL}/api/odoomodules`,
+    GET_BY_ID: (id: number) => `${API_BASE_URL}/api/odoomodules/${id}`,
   },
 
   // Clients (Contact Form)
@@ -47,4 +59,4 @@ export const handleApiError = (error: any): string => {
   return 'An unexpected error occurred';
 };
 
-export { API_BASE_URL };
+

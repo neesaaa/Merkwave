@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: true,
+    qualities: [85],
   },
   reactStrictMode: true,
   // Suppress hydration warnings caused by browser extensions

@@ -1,0 +1,720 @@
+{
+  "info": {
+    "_postman_id": "fleet-api-collection",
+    "name": "Merkwave – Fleet API",
+    "description": "Full test suite for the Fleet controller.\n\nWorkflow:\n1. Run **Login** first — the JWT token is stored automatically in the `token` variable.\n2. Run the remaining requests in order (Create → Get All → Get By Id → Update → Delete).\n\nVariables:\n- `baseUrl`  — API root (default: http://localhost:5070)\n- `token`    — populated automatically by the Login request\n- `fleetId`  — populated automatically by the Create request",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+
+  "variable": [
+    { "key": "baseUrl",  "value": "http://localhost:5070", "type": "string" },
+    { "key": "token",    "value": "",                      "type": "string" },
+    { "key": "fleetId",  "value": "1",                     "type": "string" }
+  ],
+
+  "item": [
+
+    {
+      "name": "0 – Auth: Login (get JWT token)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "",
+              "var body = pm.response.json();",
+              "pm.test('Response contains token', function () { pm.expect(body.token).to.be.a('string').and.not.empty; });",
+              "",
+              "// Store the token so all protected requests can use it automatically",
+              "pm.collectionVariables.set('token', body.token);",
+              "console.log('JWT token saved:', body.token.substring(0, 30) + '...');"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userName\": \"admin\",\n  \"password\": \"1?BMP\\\"1vv?7\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "auth", "login"]
+        },
+        "description": "Authenticates and stores the JWT in the `token` collection variable. Run this before any [Authorize] endpoint."
+      }
+    },
+
+    {
+      "name": "1 – Fleet: Create (POST) – with image + 3D model",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "",
+              "var body = pm.response.json();",
+              "pm.test('Response has id', function () { pm.expect(body.id).to.be.a('number').and.above(0); });",
+              "pm.test('Success message present', function () { pm.expect(body.message).to.include('created'); });",
+              "",
+              "// Save the new fleet id for subsequent requests",
+              "pm.collectionVariables.set('fleetId', body.id);",
+              "console.log('Created fleet id:', body.id);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "NameEn",
+              "value": "Merkwave Vessel Alpha",
+              "type": "text",
+              "description": "English name of the fleet unit"
+            },
+            {
+              "key": "NameAr",
+              "value": "سفينة ميركويف ألفا",
+              "type": "text",
+              "description": "Arabic name of the fleet unit"
+            },
+            {
+              "key": "DescriptionEn",
+              "value": "A state-of-the-art offshore support vessel designed for deep-water operations.",
+              "type": "text"
+            },
+            {
+              "key": "DescriptionAr",
+              "value": "سفينة دعم بحري متطورة مصممة للعمليات في المياه العميقة.",
+              "type": "text"
+            },
+            {
+              "key": "DetailedDescriptionEn",
+              "value": "The Merkwave Vessel Alpha is equipped with dynamic positioning, advanced sonar systems, and can support a crew of 50. It features 2000 m² of deck space and a 400-tonne crane.",
+              "type": "text"
+            },
+            {
+              "key": "DetailedDescriptionAr",
+              "value": "مجهزة بنظام تحديد المواقع الديناميكي وأنظمة السونار المتقدمة، وتستوعب طاقماً من 50 فرداً.",
+              "type": "text"
+            },
+            {
+              "key": "Image",
+              "type": "file",
+              "src": [],
+              "description": "⚠️ SELECT an image file here (jpg/png). Example: vessel_alpha.jpg"
+            },
+            {
+              "key": "Model3D",
+              "type": "file",
+              "src": [],
+              "description": "⚠️ SELECT a 3D model file here (glb/gltf/obj/fbx). Example: vessel_alpha.glb"
+            },
+            {
+              "key": "Features[0].TitleEn",
+              "value": "Dynamic Positioning",
+              "type": "text",
+              "description": "Feature 1 – English title"
+            },
+            {
+              "key": "Features[0].TitleAr",
+              "value": "تحديد الموقع الديناميكي",
+              "type": "text"
+            },
+            {
+              "key": "Features[0].DescriptionEn",
+              "value": "DP2-class dynamic positioning system for precise station-keeping.",
+              "type": "text"
+            },
+            {
+              "key": "Features[0].DescriptionAr",
+              "value": "نظام تحديد الموقع الديناميكي من الفئة DP2 للحفاظ الدقيق على الموضع.",
+              "type": "text"
+            },
+            {
+              "key": "Features[1].TitleEn",
+              "value": "400-Tonne Crane",
+              "type": "text",
+              "description": "Feature 2 – English title"
+            },
+            {
+              "key": "Features[1].TitleAr",
+              "value": "رافعة 400 طن",
+              "type": "text"
+            },
+            {
+              "key": "Features[1].DescriptionEn",
+              "value": "Heavy lift crane capable of handling subsea equipment up to 400 tonnes.",
+              "type": "text"
+            },
+            {
+              "key": "Features[1].DescriptionAr",
+              "value": "رافعة رفع ثقيل قادرة على التعامل مع المعدات تحت البحر حتى 400 طن.",
+              "type": "text"
+            },
+            {
+              "key": "Features[2].TitleEn",
+              "value": "Advanced Sonar",
+              "type": "text",
+              "description": "Feature 3 – English title"
+            },
+            {
+              "key": "Features[2].TitleAr",
+              "value": "سونار متطور",
+              "type": "text"
+            },
+            {
+              "key": "Features[2].DescriptionEn",
+              "value": "Multi-beam echo sounder with 0.5° resolution for seabed mapping.",
+              "type": "text"
+            },
+            {
+              "key": "Features[2].DescriptionAr",
+              "value": "صدى صوتي متعدد الأشعة بدقة 0.5 درجة لرسم خرائط قاع البحر.",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet"]
+        },
+        "description": "Creates a new fleet entry.\nAttach a real image file (jpg/png) to **Image** and a real 3D model file (glb/gltf/obj) to **Model3D**.\nThe new fleet `id` is automatically saved to the `fleetId` variable for the next requests."
+      }
+    },
+
+    {
+      "name": "2 – Fleet: Get All (GET)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "",
+              "var body = pm.response.json();",
+              "pm.test('Response is an array', function () { pm.expect(body).to.be.an('array'); });",
+              "pm.test('Array has at least one fleet', function () { pm.expect(body.length).to.be.above(0); });",
+              "",
+              "// Validate shape of the first fleet object",
+              "var first = body[0];",
+              "pm.test('Fleet has id', function () { pm.expect(first).to.have.property('id'); });",
+              "pm.test('Fleet has nameEn', function () { pm.expect(first).to.have.property('nameEn'); });",
+              "pm.test('Fleet has nameAr', function () { pm.expect(first).to.have.property('nameAr'); });",
+              "pm.test('Fleet has imageUrl', function () { pm.expect(first).to.have.property('imageUrl'); });",
+              "pm.test('Fleet has model3DUrl', function () { pm.expect(first).to.have.property('model3DUrl'); });",
+              "pm.test('Fleet has features array', function () { pm.expect(first.features).to.be.an('array'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet"]
+        },
+        "description": "Returns all fleet entries including their features. No auth required."
+      }
+    },
+
+    {
+      "name": "3 – Fleet: Get By Id (GET)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "",
+              "var body = pm.response.json();",
+              "pm.test('Returned fleet id matches requested id', function () {",
+              "  pm.expect(body.id).to.equal(parseInt(pm.collectionVariables.get('fleetId')));",
+              "});",
+              "pm.test('Has nameEn', function () { pm.expect(body.nameEn).to.be.a('string').and.not.empty; });",
+              "pm.test('Has imageUrl', function () { pm.expect(body.imageUrl).to.be.a('string'); });",
+              "pm.test('Has model3DUrl', function () { pm.expect(body.model3DUrl).to.be.a('string'); });",
+              "pm.test('Features is an array', function () { pm.expect(body.features).to.be.an('array'); });",
+              "pm.test('Has 3 features', function () { pm.expect(body.features.length).to.equal(3); });",
+              "",
+              "// Validate feature shape",
+              "if (body.features.length > 0) {",
+              "  var f = body.features[0];",
+              "  pm.test('Feature has titleEn', function () { pm.expect(f).to.have.property('titleEn'); });",
+              "  pm.test('Feature has titleAr', function () { pm.expect(f).to.have.property('titleAr'); });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/{{fleetId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "{{fleetId}}"]
+        },
+        "description": "Returns a single fleet by id (uses the `fleetId` variable set by the Create request)."
+      }
+    },
+
+    {
+      "name": "3b – Fleet: Get By Id 404 (GET, non-existent)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 404 for unknown id', function () { pm.response.to.have.status(404); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/999999",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "999999"]
+        },
+        "description": "Expects 404 for a fleet that does not exist."
+      }
+    },
+
+    {
+      "name": "4 – Fleet: Update (PUT) – text fields only (no new files)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "",
+              "var body = pm.response.json();",
+              "pm.test('Success message present', function () { pm.expect(body.message).to.include('updated'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "NameEn",
+              "value": "Merkwave Vessel Alpha – UPDATED",
+              "type": "text"
+            },
+            {
+              "key": "NameAr",
+              "value": "سفينة ميركويف ألفا – محدّثة",
+              "type": "text"
+            },
+            {
+              "key": "DescriptionEn",
+              "value": "Updated description: enhanced offshore support vessel with new upgrades.",
+              "type": "text"
+            },
+            {
+              "key": "DescriptionAr",
+              "value": "وصف محدّث: سفينة دعم بحري محسّنة مع ترقيات جديدة.",
+              "type": "text"
+            },
+            {
+              "key": "DetailedDescriptionEn",
+              "value": "Now supports a crew of 60 with an extended 2500 m² deck space after refit.",
+              "type": "text"
+            },
+            {
+              "key": "DetailedDescriptionAr",
+              "value": "تدعم الآن طاقماً من 60 فرداً مع مساحة سطح موسعة تبلغ 2500 م² بعد التجديد.",
+              "type": "text"
+            },
+            {
+              "key": "Features[0].TitleEn",
+              "value": "Dynamic Positioning DP3",
+              "type": "text",
+              "description": "Updated feature 1"
+            },
+            {
+              "key": "Features[0].TitleAr",
+              "value": "تحديد الموقع الديناميكي DP3",
+              "type": "text"
+            },
+            {
+              "key": "Features[0].DescriptionEn",
+              "value": "Upgraded to DP3 for redundant station-keeping.",
+              "type": "text"
+            },
+            {
+              "key": "Features[0].DescriptionAr",
+              "value": "تم الترقية إلى DP3 للحفاظ على الموضع بشكل مكرر.",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/{{fleetId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "{{fleetId}}"]
+        },
+        "description": "Updates text fields and replaces features. Image and 3D model files are omitted so existing files are preserved."
+      }
+    },
+
+    {
+      "name": "4b – Fleet: Update (PUT) – with new image + new 3D model",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "",
+              "var body = pm.response.json();",
+              "pm.test('Success message present', function () { pm.expect(body.message).to.include('updated'); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "NameEn",
+              "value": "Merkwave Vessel Alpha – New Files",
+              "type": "text"
+            },
+            {
+              "key": "NameAr",
+              "value": "سفينة ميركويف ألفا – ملفات جديدة",
+              "type": "text"
+            },
+            {
+              "key": "DescriptionEn",
+              "value": "Same vessel, refreshed media assets.",
+              "type": "text"
+            },
+            {
+              "key": "DescriptionAr",
+              "value": "نفس السفينة مع وسائط إعلامية محدّثة.",
+              "type": "text"
+            },
+            {
+              "key": "DetailedDescriptionEn",
+              "value": "Detailed description unchanged.",
+              "type": "text"
+            },
+            {
+              "key": "DetailedDescriptionAr",
+              "value": "الوصف التفصيلي لم يتغير.",
+              "type": "text"
+            },
+            {
+              "key": "Image",
+              "type": "file",
+              "src": [],
+              "description": "⚠️ SELECT a NEW image file here — replaces the old image"
+            },
+            {
+              "key": "Model3D",
+              "type": "file",
+              "src": [],
+              "description": "⚠️ SELECT a NEW 3D model file here — replaces the old model"
+            },
+            {
+              "key": "Features[0].TitleEn",
+              "value": "Dynamic Positioning DP3",
+              "type": "text"
+            },
+            {
+              "key": "Features[0].TitleAr",
+              "value": "تحديد الموقع الديناميكي DP3",
+              "type": "text"
+            },
+            {
+              "key": "Features[0].DescriptionEn",
+              "value": "DP3-class positioning — fully redundant.",
+              "type": "text"
+            },
+            {
+              "key": "Features[0].DescriptionAr",
+              "value": "تحديد موضع من الفئة DP3 — مكرر بالكامل.",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/{{fleetId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "{{fleetId}}"]
+        },
+        "description": "Same update but also sends new image and 3D model files. The old files on disk are deleted automatically."
+      }
+    },
+
+    {
+      "name": "4c – Fleet: Update 404 (PUT, non-existent)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 404 for unknown id', function () { pm.response.to.have.status(404); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "NameEn", "value": "Ghost Fleet", "type": "text" },
+            { "key": "NameAr",  "value": "أسطول الأشباح", "type": "text" },
+            { "key": "DescriptionEn", "value": "Does not exist.", "type": "text" },
+            { "key": "DescriptionAr", "value": "غير موجود.", "type": "text" },
+            { "key": "DetailedDescriptionEn", "value": "N/A", "type": "text" },
+            { "key": "DetailedDescriptionAr", "value": "غير متاح", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/999999",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "999999"]
+        },
+        "description": "Expects 404 when trying to update a fleet that does not exist."
+      }
+    },
+
+    {
+      "name": "5 – Fleet: Delete (DELETE)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "",
+              "var body = pm.response.json();",
+              "pm.test('Success message present', function () { pm.expect(body.message).to.include('deleted'); });",
+              "",
+              "console.log('Deleted fleet id:', pm.collectionVariables.get('fleetId'));"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/{{fleetId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "{{fleetId}}"]
+        },
+        "description": "Deletes the fleet created in step 1. Also removes all linked features and the physical image + 3D model files from disk."
+      }
+    },
+
+    {
+      "name": "5b – Fleet: Delete 404 (DELETE, non-existent)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 404 for unknown id', function () { pm.response.to.have.status(404); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/999999",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "999999"]
+        },
+        "description": "Expects 404 when trying to delete a fleet that does not exist."
+      }
+    },
+
+    {
+      "name": "5c – Fleet: Verify deleted (GET should 404)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Fleet is truly gone — status is 404', function () { pm.response.to.have.status(404); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/{{fleetId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "{{fleetId}}"]
+        },
+        "description": "Re-fetches the fleet that was just deleted — confirms it returns 404."
+      }
+    },
+
+    {
+      "name": "AUTH GUARD – Create without token (should 401)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 401 without token', function () { pm.response.to.have.status(401); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "NameEn", "value": "Unauthorized Fleet", "type": "text" },
+            { "key": "NameAr",  "value": "أسطول غير مصرح", "type": "text" },
+            { "key": "DescriptionEn", "value": "Should not be created.", "type": "text" },
+            { "key": "DescriptionAr", "value": "لا يجب إنشاؤه.", "type": "text" },
+            { "key": "DetailedDescriptionEn", "value": "N/A", "type": "text" },
+            { "key": "DetailedDescriptionAr", "value": "غير متاح", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet"]
+        },
+        "description": "Sends a POST with no Authorization header. Must return 401."
+      }
+    },
+
+    {
+      "name": "AUTH GUARD – Update without token (should 401)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 401 without token', function () { pm.response.to.have.status(401); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "NameEn", "value": "Unchanged", "type": "text" },
+            { "key": "NameAr",  "value": "غير متغير", "type": "text" },
+            { "key": "DescriptionEn", "value": "Blocked.", "type": "text" },
+            { "key": "DescriptionAr", "value": "محظور.", "type": "text" },
+            { "key": "DetailedDescriptionEn", "value": "N/A", "type": "text" },
+            { "key": "DetailedDescriptionAr", "value": "غير متاح", "type": "text" }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "1"]
+        },
+        "description": "Sends a PUT with no Authorization header. Must return 401."
+      }
+    },
+
+    {
+      "name": "AUTH GUARD – Delete without token (should 401)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status is 401 without token', function () { pm.response.to.have.status(401); });"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/fleet/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "fleet", "1"]
+        },
+        "description": "Sends a DELETE with no Authorization header. Must return 401."
+      }
+    }
+
+  ]
+}
