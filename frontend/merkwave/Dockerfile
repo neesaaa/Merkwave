@@ -12,6 +12,7 @@ COPY . .
 # Build arg for API URL (baked into client JS at build time)
 ARG NEXT_PUBLIC_API_BASE_URL=http://localhost:5070
 ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+ENV NODE_OPTIONS=--max-old-space-size=512
 
 # Build static export (output: "export" → generates /app/out)
 RUN npm run build

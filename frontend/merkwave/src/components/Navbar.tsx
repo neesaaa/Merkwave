@@ -36,7 +36,7 @@ export default function Navbar({ lang = "en" }: { lang?: string }) {
   const navigation = [
     { name: isArabic ? "الرئيسية" : "HOME", href: `/${lang}` },
     { name: isArabic ? "الخدمات" : "SERVICES", href: `/${lang}/services` },
-    { name: isArabic ? "الأعمال" : "PORTFOLIO", href: `/${lang}/portfolio` },
+    { name: isArabic ? "المتجر" : "Store", href: `/${lang}/portfolio` },
     { name: isArabic ? "من نحن" : "ABOUT US", href: `/${lang}/about` },
     { name: isArabic ? "المدونة" : "BLOG", href: `/${lang}/blogs` },
   ];

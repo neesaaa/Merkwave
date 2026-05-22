@@ -1,0 +1,13 @@
+Merkwave Live URLs (Last Updated: 2026-04-19)
+================================================
+
+Website (Frontend):   https://nassar-merkwave.o1force.com
+Dashboard (Admin):    https://nassar-merkwave-dashboard.o1force.com
+API Backend:          https://nassar-merkwave-api.o1force.com
+
+Dashboard Login:
+  Username: admin
+  Password: 1?BMP"1vv?7
+
+Note: These are permanent Caddy subdomains (no longer Cloudflare quick tunnels).
+Caddy configs: /etc/caddy/users/nassar/merkwave*.caddy

@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5441:5432"
+      - "127.0.0.1:5441:5432"
     volumes:
       - merkwave_pgdata:/var/lib/postgresql/data
       - ./init-db:/docker-entrypoint-initdb.d
@@ -29,7 +29,7 @@ services:
     container_name: merkwave-api
     restart: unless-stopped
     ports:
-      - "5070:8080"
+      - "127.0.0.1:5070:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - ASPNETCORE_URLS=http://+:8080
@@ -56,7 +56,7 @@ services:
     container_name: merkwave-frontend
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "127.0.0.1:8080:80"
     depends_on:
       - api
     networks:
@@ -72,7 +72,7 @@ services:
     container_name: merkwave-dashboard
     restart: unless-stopped
     ports:
-      - "3003:3000"
+      - "127.0.0.1:3003:3000"
     environment:
       - NODE_ENV=production
     depends_on:

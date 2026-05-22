@@ -69,9 +69,10 @@ export default function PortfolioClient({
       try {
         const res = await fetch(API_ENDPOINTS.FLEET.GET_ALL);
         const data = await res.json();
-        setFleet(data);
+        setFleet(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error fetching fleet:", err);
+        setFleet([]);
       } finally {
         setFleetLoading(false);
       }
@@ -80,9 +81,10 @@ export default function PortfolioClient({
       try {
         const res = await fetch(API_ENDPOINTS.ODOO_MODULES.GET_ALL);
         const data = await res.json();
-        setOdooModules(data);
+        setOdooModules(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Error fetching odoo modules:", err);
+        setOdooModules([]);
       } finally {
         setOdooLoading(false);
       }
