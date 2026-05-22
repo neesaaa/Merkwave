@@ -80,7 +80,7 @@ const DashboardHome: React.FC = () => {
 
         <button
           onClick={() => router.push("/dashboard/clients")}
-          className="group relative p-6 sm:p-8 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden sm:col-span-2 lg:col-span-1"
+          className="group relative p-6 sm:p-8 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-white/10 rounded-full blur-2xl group-hover:w-32 group-hover:h-32 sm:group-hover:w-40 sm:group-hover:h-40 transition-all"></div>
           <div className="relative">
@@ -104,6 +104,126 @@ const DashboardHome: React.FC = () => {
             </h2>
             <p className="text-teal-100 text-sm sm:text-base">
               View client inquiries
+            </p>
+          </div>
+        </button>
+
+        <button
+          onClick={() => router.push("/dashboard/fleet")}
+          className="group relative p-6 sm:p-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-white/10 rounded-full blur-2xl group-hover:w-32 group-hover:h-32 sm:group-hover:w-40 sm:group-hover:h-40 transition-all"></div>
+          <div className="relative">
+            <div className="mb-3 sm:mb-4 inline-block p-3 sm:p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
+              <svg
+                className="w-10 h-10 sm:w-12 sm:h-12 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+                />
+              </svg>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-3">
+              Fleet
+            </h2>
+            <p className="text-orange-100 text-sm sm:text-base">
+              Manage fleet vessels
+            </p>
+          </div>
+        </button>
+
+        <button
+          onClick={() => router.push("/dashboard/odoo-modules")}
+          className="group relative p-6 sm:p-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-white/10 rounded-full blur-2xl group-hover:w-32 group-hover:h-32 sm:group-hover:w-40 sm:group-hover:h-40 transition-all"></div>
+          <div className="relative">
+            <div className="mb-3 sm:mb-4 inline-block p-3 sm:p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
+              <svg
+                className="w-10 h-10 sm:w-12 sm:h-12 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                />
+              </svg>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-3">
+              Odoo Modules
+            </h2>
+            <p className="text-violet-100 text-sm sm:text-base">
+              Manage Odoo modules
+            </p>
+          </div>
+        </button>
+
+        <button
+          onClick={() => router.push("/dashboard/testimonials")}
+          className="group relative p-6 sm:p-8 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-white/10 rounded-full blur-2xl group-hover:w-32 group-hover:h-32 sm:group-hover:w-40 sm:group-hover:h-40 transition-all"></div>
+          <div className="relative">
+            <div className="mb-3 sm:mb-4 inline-block p-3 sm:p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
+              <svg
+                className="w-10 h-10 sm:w-12 sm:h-12 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                />
+              </svg>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-3">
+              Testimonials
+            </h2>
+            <p className="text-yellow-100 text-sm sm:text-base">
+              Manage client testimonials
+            </p>
+          </div>
+        </button>
+
+        <button
+          onClick={() => router.push("/dashboard/brand-logos")}
+          className="group relative p-6 sm:p-8 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-white/10 rounded-full blur-2xl group-hover:w-32 group-hover:h-32 sm:group-hover:w-40 sm:group-hover:h-40 transition-all"></div>
+          <div className="relative">
+            <div className="mb-3 sm:mb-4 inline-block p-3 sm:p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
+              <svg
+                className="w-10 h-10 sm:w-12 sm:h-12 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-3">
+              Brand Logos
+            </h2>
+            <p className="text-pink-100 text-sm sm:text-base">
+              Manage brand partner logos
             </p>
           </div>
         </button>

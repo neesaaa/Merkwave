@@ -84,6 +84,27 @@ CREATE TABLE IF NOT EXISTS fleetfeatures (
     fleetid INT NOT NULL REFERENCES fleets(id) ON DELETE CASCADE
 );
 
+-- Testimonials table
+CREATE TABLE IF NOT EXISTS testimonials (
+    id SERIAL PRIMARY KEY,
+    rating INT NOT NULL DEFAULT 5,
+    texten TEXT NOT NULL,
+    textar TEXT NOT NULL,
+    clientnameen VARCHAR(255) NOT NULL,
+    clientnamear VARCHAR(255) NOT NULL,
+    clientpositionen VARCHAR(255) NOT NULL,
+    clientpositionar VARCHAR(255) NOT NULL,
+    avatar VARCHAR(10) NOT NULL DEFAULT ''
+);
+
+-- Brand Logos table
+CREATE TABLE IF NOT EXISTS brandlogos (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    alttext VARCHAR(500) NOT NULL DEFAULT '',
+    imageurl VARCHAR(500) NOT NULL DEFAULT ''
+);
+
 -- Indexes
 CREATE INDEX IF NOT EXISTS idx_projects_slug ON projects(slug);
 CREATE INDEX IF NOT EXISTS idx_projects_category ON projects(category);

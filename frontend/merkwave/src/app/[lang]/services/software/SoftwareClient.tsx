@@ -38,91 +38,85 @@ export default function SoftwareClient({
   const isArabic = lang === "ar";
 
   const services = [
-  {
-    icon: Code2,
-    title: isArabic
-      ? "تطبيقات الويب والمنصات السحابية"
-      : "Web & SaaS Platforms",
-    description: isArabic
-      ? "بناء أنظمة ضخمة (Backend) قادرة على تحمل آلاف الزيارات المتزامنة باستخدام أحدث التقنيات."
-      : "Building large-scale backend systems capable of handling thousands of concurrent users using modern technologies.",
-    color: "cyan",
-  },
-  {
-    icon: Smartphone,
-    title: isArabic
-      ? "تطبيقات الهواتف الذكية"
-      : "Mobile Apps (iOS/Android)",
-    description: isArabic
-      ? "أداء Native فائق السرعة مع تركيز على أمن البيانات وتجربة المستخدم السلسة."
-      : "High-performance native apps with strong focus on security and seamless user experience.",
-    color: "orange",
-  },
-  {
-    icon: Link2,
-    title: isArabic
-      ? "تكامل الأنظمة (API)"
-      : "API & Systems Integration",
-    description: isArabic
-      ? "ربط أدواتك الحالية (محاسبة، مخازن) في نظام واحد موحد."
-      : "Connecting your existing tools (accounting, inventory, etc.) into one unified system.",
-    color: "yellow",
-  },
-  {
-    icon: ShieldCheck,
-    title: isArabic
-      ? "الأمن السيبراني"
-      : "Security First",
-    description: isArabic
-      ? "تشفير كامل واختبارات اختراق لضمان حماية بياناتك."
-      : "Full encryption and penetration testing to ensure your data is fully protected.",
-    color: "pink",
-  },
+    {
+      icon: Code2,
+      title: isArabic
+        ? "تطبيقات الويب والمنصات السحابية"
+        : "Web & SaaS Platforms",
+      description: isArabic
+        ? "بناء أنظمة ضخمة (Backend) قادرة على تحمل آلاف الزيارات المتزامنة باستخدام أحدث التقنيات."
+        : "Building large-scale backend systems capable of handling thousands of concurrent users using modern technologies.",
+      color: "cyan",
+    },
+    {
+      icon: Smartphone,
+      title: isArabic ? "تطبيقات الهواتف الذكية" : "Mobile Apps (iOS/Android)",
+      description: isArabic
+        ? "أداء Native فائق السرعة مع تركيز على أمن البيانات وتجربة المستخدم السلسة."
+        : "High-performance native apps with strong focus on security and seamless user experience.",
+      color: "orange",
+    },
+    {
+      icon: Link2,
+      title: isArabic ? "تكامل الأنظمة (API)" : "API & Systems Integration",
+      description: isArabic
+        ? "ربط أدواتك الحالية (محاسبة، مخازن) في نظام واحد موحد."
+        : "Connecting your existing tools (accounting, inventory, etc.) into one unified system.",
+      color: "yellow",
+    },
+    {
+      icon: ShieldCheck,
+      title: isArabic ? "الأمن السيبراني" : "Security First",
+      description: isArabic
+        ? "تشفير كامل واختبارات اختراق لضمان حماية بياناتك."
+        : "Full encryption and penetration testing to ensure your data is fully protected.",
+      color: "pink",
+    },
 
-  // keep remaining NON-duplicated services
-  {
-    icon: Boxes,
-    title: isArabic ? "تنفيذ نظام أودو ERP" : "Odoo ERP Integration",
-    description: isArabic
-      ? "تنفيذ نظام أودو الرسمي: إعداد متكامل للمحاسبة، المبيعات، والمخازن وكل تطبيقات أودو الأخرى لتبسيط عملياتك التشغيلية."
-      : "Official Odoo implementation including Accounting, CRM, Inventory, and all Odoo apps to streamline operations.",
-    color: "cyan",
-  },
-  {
-    icon: Cloud,
-    title: isArabic ? "الاستضافة السحابية المُدارة" : "Managed Cloud Hosting",
-    description: isArabic
-      ? "استضافة عالية الأداء لنظام أودو وتطبيقات الشركات مع ضمان تشغيل 99.9% ونسخ احتياطي دوري."
-      : "High-performance managed hosting with 99.9% uptime and backups.",
-    color: "purple",
-  },
-  {
-    icon: Workflow,
-    title: isArabic
-      ? "أتمتة العمليات الإدارية"
-      : "Business Process Automation",
-    description: isArabic
-      ? "تحويل مسارات العمل الداخلية المعقدة إلى أنظمة رقمية مؤتمتة تقلل الجهد اليدوي."
-      : "Automating complex workflows to reduce manual work.",
-    color: "purple",
-  },
-  {
-    icon: Palette,
-    title: isArabic ? "تصميم واجهة وتجربة المستخدم" : "UI / UX Design",
-    description: isArabic
-      ? "تصميم واجهات بديهية تركز على المستخدم وتجعل البرمجيات المعقدة سهلة الاستخدام."
-      : "User-centric UI/UX design for intuitive systems.",
-    color: "cyan",
-  },
-  {
-    icon: LifeBuoy,
-    title: isArabic ? "الصيانة والدعم الفني" : "Maintenance & Tech Support",
-    description: isArabic
-      ? "دعم فني مستمر لضمان بقاء أنظمتك آمنة ومحدثة."
-      : "Ongoing support to keep systems secure and updated.",
-    color: "pink",
-  },
-];
+    // keep remaining NON-duplicated services
+    {
+      icon: Boxes,
+      title: isArabic ? "تنفيذ نظام أودو ERP" : "Odoo ERP Integration",
+      description: isArabic
+        ? "تنفيذ نظام أودو الرسمي: إعداد متكامل للمحاسبة، المبيعات، والمخازن وكل تطبيقات أودو الأخرى لتبسيط عملياتك التشغيلية."
+        : "Official Odoo implementation including Accounting, CRM, Inventory, and all Odoo apps to streamline operations.",
+      color: "cyan",
+    },
+    {
+      icon: Cloud,
+      title: isArabic ? "الاستضافة السحابية المُدارة" : "Managed Cloud Hosting",
+      description: isArabic
+        ? "استضافة عالية الأداء لنظام أودو وتطبيقات الشركات مع ضمان تشغيل 99.9% ونسخ احتياطي دوري."
+        : "High-performance managed hosting with 99.9% uptime and backups.",
+      color: "purple",
+    },
+    {
+      icon: Workflow,
+      title: isArabic
+        ? "أتمتة العمليات الإدارية"
+        : "Business Process Automation",
+      description: isArabic
+        ? "تحويل مسارات العمل الداخلية المعقدة إلى أنظمة رقمية مؤتمتة تقلل الجهد اليدوي."
+        : "Automating complex workflows to reduce manual work.",
+      color: "purple",
+    },
+    {
+      icon: Palette,
+      title: isArabic ? "تصميم واجهة وتجربة المستخدم" : "UI / UX Design",
+      description: isArabic
+        ? "تصميم واجهات بديهية تركز على المستخدم وتجعل البرمجيات المعقدة سهلة الاستخدام."
+        : "User-centric UI/UX design for intuitive systems.",
+      color: "cyan",
+    },
+    {
+      icon: LifeBuoy,
+      title: isArabic ? "الصيانة والدعم الفني" : "Maintenance & Tech Support",
+      description: isArabic
+        ? "دعم فني مستمر لضمان بقاء أنظمتك آمنة ومحدثة."
+        : "Ongoing support to keep systems secure and updated.",
+      color: "pink",
+    },
+  ];
   const technologies = [
     {
       name: "React.js",
@@ -557,7 +551,9 @@ export default function SoftwareClient({
             />
             {isArabic ? "العودة إلى الخدمات" : "Back to Services"}
           </Link>
-          <div className={`flex self-center items-center justify-center mb-4 md:mb-24`}>
+          <div
+            className={`flex self-center items-center justify-center mb-4 md:mb-24`}
+          >
             {/* Left Content */}
             {/* Back Link */}
 
@@ -589,7 +585,7 @@ export default function SoftwareClient({
                 </span>
                 <br />
                 <span className="text-md md:text-3xl text-white">
-                                    {isArabic
+                  {isArabic
                     ? "حيث تلتقي الأكواد بالأعمال"
                     : "Where Code Meets Commerce."}
                 </span>
@@ -651,9 +647,7 @@ export default function SoftwareClient({
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <span className="text-[#00FFFF] ">
-                {isArabic
-                  ? "ترسانتنا التقنية"
-                  : "Our Engineering Powerhouse"}
+                {isArabic ? "ترسانتنا التقنية" : "Our Engineering Powerhouse"}
               </span>
             </h2>
             <p className="text-gray-400 max-w-3xl mx-auto">
@@ -733,7 +727,7 @@ export default function SoftwareClient({
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.02 }}
                   whileHover={{ y: -8, scale: 1.05 }}
-                  className={`group relative p-4 md:p-6 rounded-xl border ${colors.border}  bg-gradient-to-br from-[#0f1729]/60 via-[#0a0f1e]/40 to-[#050812]/20 backdrop-blur-lg hover:from-[#0d1220]/85 hover:via-[#070b15]/60 hover:to-[#030509]/35 transition-all duration-200 cursor-pointer`}
+                  className={`group relative p-4 md:p-6 rounded-xl border ${colors.border}  bg-gradient-to-br from-[#0f1729]/60 via-[#0a0f1e]/40 to-[#050812]/20 backdrop-blur-lg hover:from-[#0d1220]/85 hover:via-[#070b15]/60 hover:to-[#030509]/35 transition-all duration-200 cursor-default`}
                 >
                   {/* Animated shine effect */}
                   <div
@@ -793,9 +787,7 @@ export default function SoftwareClient({
           >
             <div className="relative z-10 h-full">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                {isArabic
-                  ? "حوّل رؤيتك إلى واقع"
-                  : "Bring Your Vision to Life"}
+                {isArabic ? "حوّل رؤيتك إلى واقع" : "Bring Your Vision to Life"}
               </h2>
               <p className="text-gray-300 text-md sm:text-lg mb-8 max-w-2xl mx-auto">
                 {isArabic
@@ -804,7 +796,9 @@ export default function SoftwareClient({
               </p>
               <Link href={`/${lang}/contact` as any}>
                 <button className="px-3 py-2 md:px-8 md:py-4 bg-gradient-to-r text-md md:text-2xl from-cyan-400 to-sky-500 text-black font-medium  rounded-lg hover:shadow-xl hover:shadow-purple-800 transition-all duration-300 hover:scale-110 active:scale-95">
-                  {isArabic ? "اطلب استشارة تقنية" : "Request a Technical Consultation"}
+                  {isArabic
+                    ? "اطلب استشارة تقنية"
+                    : "Request a Technical Consultation"}
                 </button>
               </Link>
             </div>

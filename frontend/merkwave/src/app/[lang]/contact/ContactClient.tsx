@@ -111,7 +111,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
           bg-[#0B162C]
         "
       >
-        <div className="py-4 lg:py-8 px-4 lg:px-[20%] max-w-7xl  self-start ">
+        <div className="relative z-20 py-4 lg:py-8 px-4 lg:px-[20%] max-w-7xl  self-start ">
           <Link
             href={`/${lang}` as any}
             className="inline-flex items-center gap-2 text-white hover:text-cyan-400 transition-colors duration-300"
@@ -133,7 +133,7 @@ export default function ContactClient({ dict, lang }: LocalizedComponentProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
           >
-            <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(34,211,238,0.35)]">
+            <span className="bg-gradient-to-r py-4 from-cyan-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(34,211,238,0.35)]">
               {dict.contact.heroTitle}
             </span>
           </motion.h1>

@@ -50,3 +50,23 @@ export const UPDATE_ODOO_MODULE_ENDPOINT = (id: number) =>
   `${API_BASE_URL}/api/odoomodules/${id}`;
 export const DELETE_ODOO_MODULE_ENDPOINT = (id: number) =>
   `${API_BASE_URL}/api/odoomodules/${id}`;
+
+// Testimonials Endpoints
+export const TESTIMONIALS_ENDPOINT = `${API_BASE_URL}/api/testimonials`;
+export const TESTIMONIAL_BY_ID_ENDPOINT = (id: number) =>
+  `${API_BASE_URL}/api/testimonials/${id}`;
+export const CREATE_TESTIMONIAL_ENDPOINT = `${API_BASE_URL}/api/testimonials`;
+export const UPDATE_TESTIMONIAL_ENDPOINT = (id: number) =>
+  `${API_BASE_URL}/api/testimonials/${id}`;
+export const DELETE_TESTIMONIAL_ENDPOINT = (id: number) =>
+  `${API_BASE_URL}/api/testimonials/${id}`;
+
+// Brand Logos Endpoints
+export const BRAND_LOGOS_ENDPOINT = `${API_BASE_URL}/api/brandlogos`;
+export const BRAND_LOGO_BY_ID_ENDPOINT = (id: number) =>
+  `${API_BASE_URL}/api/brandlogos/${id}`;
+export const CREATE_BRAND_LOGO_ENDPOINT = `${API_BASE_URL}/api/brandlogos`;
+export const UPDATE_BRAND_LOGO_ENDPOINT = (id: number) =>
+  `${API_BASE_URL}/api/brandlogos/${id}`;
+export const DELETE_BRAND_LOGO_ENDPOINT = (id: number) =>
+  `${API_BASE_URL}/api/brandlogos/${id}`;

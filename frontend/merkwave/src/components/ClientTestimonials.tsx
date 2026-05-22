@@ -1,154 +1,259 @@
-'use client'
+"use client";
+
+import { useEffect, useState } from "react";
 
 interface ClientTestimonialsProps {
   lang: string;
   dict?: any;
 }
 
-export default function ClientTestimonials({ lang, dict }: ClientTestimonialsProps) {
-  const isArabic = lang === 'ar';
+interface Testimonial {
+  id: number;
+  rating: number;
+  textEn: string;
+  textAr: string;
+  clientNameEn: string;
+  clientNameAr: string;
+  clientPositionEn: string;
+  clientPositionAr: string;
+  avatar: string;
+}
 
-  const testimonials = [
-    {
-      id: 1,
-      rating: 5,
-      text: isArabic 
-        ? 'عملت مع ميرك ويف على مشروع تطوير موقعنا الإلكتروني وكانت النتيجة رائعة. فريق محترف ومبدع يفهم احتياجاتنا تمامًا.'
-        : 'Working with Merkwave on our website development was exceptional. Professional and creative team that truly understands our needs.',
-      clientName: isArabic ? 'أحمد محمد' : 'Ahmed Mohammed',
-      clientPosition: isArabic ? 'المدير التنفيذي، 1ON CORE' : 'CEO, 1ON CORE',
-      avatar: "AM"
-    },
-    {
-      id: 2,
-      rating: 5,
-      text: isArabic 
-        ? 'استراتيجية التسويق الرقمي التي قدمها فريق ميرك ويف ساعدتنا على مضاعفة مبيعاتنا عبر الإنترنت في ستة أشهر فقط.'
-        : 'The digital marketing strategy from Merkwave helped us double our online sales in just six months. Highly recommended!',
-      clientName: isArabic ? 'سارة أحمد' : 'Sarah Ahmed',
-      clientPosition: isArabic ? 'مديرة التسويق، Boslat' : 'Marketing Manager, Boslat',
-      avatar: "SA"
-    },
-    {
-      id: 3,
-      rating: 4,
-      text: isArabic 
-        ? 'فريق محترف جدًا وملتزم بالمواعيد. ساعدونا في بناء هوية بصرية قوية لعلامتنا التجارية.'
-        : 'Very professional team that delivered on time. They helped us build a strong visual identity for our brand.',
-      clientName: isArabic ? 'خالد العلي' : 'Khalid Al-Ali',
-      clientPosition: isArabic ? 'المالك، Makdouz' : 'Owner, Makdouz',
-      avatar: "KA"
-    }
-  ]
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5070";
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
+// Fallback testimonials shown when the API is unreachable
+const FALLBACK: Testimonial[] = [
+  {
+    id: 1,
+    rating: 5,
+    textEn:
+      "Working with Merkwave on our website development was exceptional. Professional and creative team that truly understands our needs.",
+    textAr:
+      "عملت مع ميرك ويف على مشروع تطوير موقعنا الإلكتروني وكانت النتيجة رائعة. فريق محترف ومبدع يفهم احتياجاتنا تمامًا.",
+    clientNameEn: "Ahmed Mohammed",
+    clientNameAr: "أحمد محمد",
+    clientPositionEn: "CEO, 1ON CORE",
+    clientPositionAr: "المدير التنفيذي، 1ON CORE",
+    avatar: "AM",
+  },
+  {
+    id: 2,
+    rating: 5,
+    textEn:
+      "The digital marketing strategy from Merkwave helped us double our online sales in just six months. Highly recommended!",
+    textAr:
+      "استراتيجية التسويق الرقمي التي قدمها فريق ميرك ويف ساعدتنا على مضاعفة مبيعاتنا عبر الإنترنت في ستة أشهر فقط.",
+    clientNameEn: "Sarah Ahmed",
+    clientNameAr: "سارة أحمد",
+    clientPositionEn: "Marketing Manager, Boslat",
+    clientPositionAr: "مديرة التسويق، Boslat",
+    avatar: "SA",
+  },
+  {
+    id: 3,
+    rating: 4,
+    textEn:
+      "Very professional team that delivered on time. They helped us build a strong visual identity for our brand.",
+    textAr:
+      "فريق محترف جدًا وملتزم بالمواعيد. ساعدونا في بناء هوية بصرية قوية لعلامتنا التجارية.",
+    clientNameEn: "Khalid Al-Ali",
+    clientNameAr: "خالد العلي",
+    clientPositionEn: "Owner, Makdouz",
+    clientPositionAr: "المالك، Makdouz",
+    avatar: "KA",
+  },
+];
+
+const SkeletonCard = () => (
+  <div className="relative bg-[#0a1628]/85 backdrop-blur-lg border border-white/10 rounded-3xl p-8 flex flex-col gap-4 animate-pulse min-w-[280px] max-w-[500px]">
+    <div className="flex gap-1 mb-2">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div key={i} className="w-6 h-6 rounded bg-white/10" />
+      ))}
+    </div>
+    <div className="w-10 h-10 rounded bg-white/10" />
+    <div className="space-y-2">
+      <div className="h-3 rounded bg-white/10 w-full" />
+      <div className="h-3 rounded bg-white/10 w-5/6" />
+      <div className="h-3 rounded bg-white/10 w-4/6" />
+    </div>
+    <div className="flex items-center gap-4 pt-6 mt-auto">
+      <div className="w-12 h-12 rounded-full bg-white/10" />
+      <div className="space-y-1.5 flex-1">
+        <div className="h-3 rounded bg-white/10 w-32" />
+        <div className="h-3 rounded bg-white/10 w-24" />
+      </div>
+    </div>
+  </div>
+);
+
+export default function ClientTestimonials({ lang }: ClientTestimonialsProps) {
+  const isArabic = lang === "ar";
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`${API_URL}/api/testimonials`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.json() as Promise<Testimonial[]>;
+      })
+      .then((data) => {
+        if (!cancelled) setTestimonials(data.length > 0 ? data : FALLBACK);
+      })
+      .catch(() => {
+        if (!cancelled) setTestimonials(FALLBACK);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const renderStars = (rating: number) =>
+    Array.from({ length: 5 }, (_, index) => (
       <span
         key={index}
-        className={`text-2xl ${
-          index < rating ? 'text-yellow-400' : 'text-gray-600'
-        }`}
+        className={`text-2xl ${index < rating ? "text-yellow-400" : "text-gray-600"}`}
       >
         ★
       </span>
-    ))
-  }
+    ));
+
+  const displayItems = loading ? Array.from({ length: 3 }) : testimonials;
 
   return (
     <section className="py-20 relative">
-      <div className={`container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
+      <div
+        className={`container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 ${isArabic ? "text-right" : "text-left"}`}
+        dir={isArabic ? "rtl" : "ltr"}
+      >
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-6xl font-bold mb-6">
+          <h2 className="text-3xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-400 p-3 bg-clip-text text-transparent">
-                {isArabic ? 'قصص نجاحنا ' : 'Stories of Success '}
+              {isArabic ? "قصص نجاحنا " : "Stories of Success "}
             </span>
           </h2>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-            {isArabic 
-              ? 'اكتشف ما يقوله عملاؤنا عن رحلتهم الرقمية التحويلية'
-              : 'Discover what our clients say about their transformative digital journey.'}
+            {isArabic
+              ? "اكتشف ما يقوله عملاؤنا عن رحلتهم الرقمية التحويلية"
+              : "Discover what our clients say about their transformative digital journey."}
           </p>
         </div>
 
-        
-        <div className={`w-full mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? 'text-right' : 'text-left'}`} dir={isArabic ? 'rtl' : 'ltr'}>
+        <div
+          className={`w-full mx-auto px-4 sm:px-6 lg:px-8 ${isArabic ? "text-right" : "text-left"}`}
+          dir={isArabic ? "rtl" : "ltr"}
+        >
           <div className="text-center">
+            {/* Loading bar */}
+            {loading && (
+              <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden mb-8">
+                <div className="h-full bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full animate-loading-bar" />
+              </div>
+            )}
+
             {/* Infinite Loop Slider */}
             <div className="overflow-hidden relative">
               <div className="flex gap-12 animate-infinite-scroll">
-                {/* First set of logos */}
-                {testimonials.map((testimonial) => (
-                  <div key={`first-${testimonial.id}`}
-                  className="relative bg-[#0a1628]/85  backdrop-blur-lg border border-white/25 rounded-3xl p-8 shadow-[0_10px_50px_rgba(0,0,0,0.7)] hover:border-cyan-400/50 transition-all duration-300 h-full flex flex-col hover:bg-[#0a1628]/95 hover:shadow-[0_15px_60px_rgba(0,0,0,0.8)]">
-                    {/* Rating Stars */}
-                    <div className={`flex ${isArabic ? 'justify-end' : 'justify-start'} mb-4`}>
-                      {renderStars(testimonial.rating)}
-                    </div>
-
-                    {/* Quote Icon */}
-                    <div className="mb-6">
-                      <svg className="w-10 h-10 text-cyan-300" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                      </svg>
-                    </div>
-
-                    {/* Testimonial Text */}
-                    <p className="text-white  text-base leading-relaxed max-w-[250px] lg:max-w-[500px] mb-6 h-[6em] lg:h-[3.25em]  drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-medium">
-                      {testimonial.text}
-                    </p>
-
-                    {/* Client Info */}
-                    <div className="flex items-center gap-4 pt-8 mt-auto">
-                      <div className="w-12 h-12  bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-black font-bold text-sm">{testimonial.avatar}</span>
+                {/* First set */}
+                {loading
+                  ? displayItems.map((_, i) => (
+                      <SkeletonCard key={`sk-first-${i}`} />
+                    ))
+                  : testimonials.map((t) => (
+                      <div
+                        key={`first-${t.id}`}
+                        className="relative bg-[#0a1628]/85 backdrop-blur-lg border border-white/25 rounded-3xl p-8 shadow-[0_10px_50px_rgba(0,0,0,0.7)] hover:border-cyan-400/50 transition-all duration-300 h-full flex flex-col hover:bg-[#0a1628]/95 hover:shadow-[0_15px_60px_rgba(0,0,0,0.8)]"
+                      >
+                        <div
+                          className={`flex ${isArabic ? "justify-end" : "justify-start"} mb-4`}
+                        >
+                          {renderStars(t.rating)}
+                        </div>
+                        <div className="mb-6">
+                          <svg
+                            className="w-10 h-10 text-cyan-300"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
+                          </svg>
+                        </div>
+                        <p className="text-white text-base leading-relaxed max-w-[250px] lg:max-w-[500px] mb-6 h-[6em] lg:h-[3.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-medium">
+                          {isArabic ? t.textAr : t.textEn}
+                        </p>
+                        <div className="flex items-center gap-4 pt-8 mt-auto">
+                          <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-black font-bold text-sm">
+                              {t.avatar}
+                            </span>
+                          </div>
+                          <div>
+                            <h4 className="text-white font-semibold">
+                              {isArabic ? t.clientNameAr : t.clientNameEn}
+                            </h4>
+                            <p className="text-cyan-300 text-sm">
+                              {isArabic
+                                ? t.clientPositionAr
+                                : t.clientPositionEn}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="text-white font-semibold">{testimonial.clientName}</h4>
-                        <p className="text-cyan-300 text-sm">{testimonial.clientPosition}</p>
-                      </div>
-                    </div>
-                  </div>  
-                ))}
+                    ))}
+
                 {/* Duplicate set for seamless loop */}
-                {testimonials.map((testimonial) => (
-                  <div key={`second-${testimonial.id}`}
-                  className="relative bg-[#0a1628]/85 backdrop-blur-lg border border-white/25 rounded-3xl p-8 shadow-[0_10px_50px_rgba(0,0,0,0.7)] hover:border-cyan-400/50 transition-all duration-300 h-full flex flex-col hover:bg-[#0a1628]/95 hover:shadow-[0_15px_60px_rgba(0,0,0,0.8)]">
-                    {/* Rating Stars */}
-                    <div className={`flex ${isArabic ? 'justify-end' : 'justify-start'} mb-4`}>
-                      {renderStars(testimonial.rating)}
-                    </div>
-
-                    {/* Quote Icon */}
-                    <div className="mb-6">
-                      <svg className="w-10 h-10 text-cyan-300" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-                      </svg>
-                    </div>
-
-                    {/* Testimonial Text */}
-                    <p className="text-white h-[6em] lg:h-[3.25em]  max-w-[250px] lg:max-w-[500px] text-base leading-relaxed mb-6 flex-grow drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-medium">
-                      {testimonial.text}
-                    </p>
-
-                    {/* Client Info */}
-                    <div className="flex items-center gap-4 pt-8 mt-auto">
-                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-black font-bold text-sm">{testimonial.avatar}</span>
+                {!loading &&
+                  testimonials.map((t) => (
+                    <div
+                      key={`second-${t.id}`}
+                      className="relative bg-[#0a1628]/85 backdrop-blur-lg border border-white/25 rounded-3xl p-8 shadow-[0_10px_50px_rgba(0,0,0,0.7)] hover:border-cyan-400/50 transition-all duration-300 h-full flex flex-col hover:bg-[#0a1628]/95 hover:shadow-[0_15px_60px_rgba(0,0,0,0.8)]"
+                    >
+                      <div
+                        className={`flex ${isArabic ? "justify-end" : "justify-start"} mb-4`}
+                      >
+                        {renderStars(t.rating)}
                       </div>
-                      <div>
-                        <h4 className="text-white font-semibold">{testimonial.clientName}</h4>
-                        <p className="text-cyan-300 text-sm">{testimonial.clientPosition}</p>
+                      <div className="mb-6">
+                        <svg
+                          className="w-10 h-10 text-cyan-300"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z" />
+                        </svg>
+                      </div>
+                      <p className="text-white h-[6em] lg:h-[3.25em] max-w-[250px] lg:max-w-[500px] text-base leading-relaxed mb-6 flex-grow drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] font-medium">
+                        {isArabic ? t.textAr : t.textEn}
+                      </p>
+                      <div className="flex items-center gap-4 pt-8 mt-auto">
+                        <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-black font-bold text-sm">
+                            {t.avatar}
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="text-white font-semibold">
+                            {isArabic ? t.clientNameAr : t.clientNameEn}
+                          </h4>
+                          <p className="text-cyan-300 text-sm">
+                            {isArabic ? t.clientPositionAr : t.clientPositionEn}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* CSS for infinite scroll animation */}
+        {/* CSS for infinite scroll animation + loading bar */}
         <style jsx global>{`
           @keyframes infinite-scroll {
             0% {
@@ -158,7 +263,6 @@ export default function ClientTestimonials({ lang, dict }: ClientTestimonialsPro
               transform: translateX(-50%);
             }
           }
-          
           @keyframes infinite-scroll-rtl {
             0% {
               transform: translateX(0);
@@ -167,19 +271,30 @@ export default function ClientTestimonials({ lang, dict }: ClientTestimonialsPro
               transform: translateX(50%);
             }
           }
-          
+          @keyframes loading-bar {
+            0% {
+              width: 0%;
+            }
+            80% {
+              width: 90%;
+            }
+            100% {
+              width: 100%;
+            }
+          }
           .animate-infinite-scroll {
-            animation: ${isArabic ? 'infinite-scroll-rtl' : 'infinite-scroll'} 30s linear infinite;
+            animation: ${isArabic ? "infinite-scroll-rtl" : "infinite-scroll"}
+              30s linear infinite;
             width: max-content;
           }
-          
           .animate-infinite-scroll:hover {
             animation-play-state: paused;
           }
+          .animate-loading-bar {
+            animation: loading-bar 1.5s ease-out forwards;
+          }
         `}</style>
-
-        
       </div>
     </section>
-  )
+  );
 }

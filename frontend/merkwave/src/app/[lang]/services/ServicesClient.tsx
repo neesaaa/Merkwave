@@ -61,7 +61,7 @@ const services = [
   {
     id: "commerce",
 
-    logo: "/Business.png",
+    logo: "/Marketing.png",
     titleEn: "MARKETING SERVICES",
     titleAr: "خدمات التسويق",
     descriptionEn:
@@ -84,7 +84,7 @@ const services = [
   {
     id: "business",
 
-    logo: "/Marketing.png",
+    logo: "/Business.png",
     titleEn: "BUSINESS DEVELOPMENT",
     titleAr: "تطوير الأعمال",
     descriptionEn:

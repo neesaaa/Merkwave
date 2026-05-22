@@ -3,23 +3,44 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Mail } from "lucide-react";
+import dynamic from "next/dynamic";
 import HeroSection from "../../components/HeroSection";
-import WaveServicesSection from "../../components/WaveServicesSection";
-import WhyMerkwaveSection from "../../components/WhyMerkwaveSection";
-import BrandPartnersSection from "../../components/BrandPartnersSection";
-import ClientTestimonials from "../../components/ClientTestimonials";
-import StackCardsSection from "@/components/StackCardsSection";
+
+// Below-fold sections are lazy-loaded so they don't block the initial bundle.
+// Each chunk is only downloaded when the browser is ready to render it.
+const WaveServicesSection = dynamic(
+  () => import("../../components/WaveServicesSection"),
+  { ssr: false },
+);
+const WhyMerkwaveSection = dynamic(
+  () => import("../../components/WhyMerkwaveSection"),
+  { ssr: false },
+);
+const BrandPartnersSection = dynamic(
+  () => import("../../components/BrandPartnersSection"),
+  { ssr: false },
+);
+const ClientTestimonials = dynamic(
+  () => import("../../components/ClientTestimonials"),
+  { ssr: false },
+);
+const StackCardsSection = dynamic(
+  () => import("@/components/StackCardsSection"),
+  { ssr: false },
+);
 
 // --- TYPE DECLARATIONS ---
 interface LocalizedComponentProps {
-  dict: any; 
+  dict: any;
   lang: string;
 }
 
-export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentProps) {
-  
-  const isArabic = lang === 'ar';
-  const textDirClass = isArabic ? 'text-right' : 'text-left';
+export default function LocalizedHomeContent({
+  dict,
+  lang,
+}: LocalizedComponentProps) {
+  const isArabic = lang === "ar";
+  const textDirClass = isArabic ? "text-right" : "text-left";
 
   return (
     <div className={`bg-black `}>
@@ -37,31 +58,31 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
 
       <StackCardsSection isArabic={lang === "ar"} />
 
-
-
       {/* Testimonials (Localized) */}
-      <section 
-        className="py-20 relative overflow-hidden bg-cover bg-center bg-[#0B192A]"
-      >
+      <section className="py-20 relative overflow-hidden bg-cover bg-center bg-[#0B192A]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           <div className="absolute -top-10 -left-10 w-60 h-60 bg-cyan-500/40 rounded-full blur-3xl"></div>
           <div className="absolute top-32 -right-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 left-1/3 w-64 h-64 bg-teal-400/25 rounded-full blur-3xl"></div>
         </div>
-              {/* Light overlay for better text readability while keeping background clear */}
+        {/* Light overlay for better text readability while keeping background clear */}
         <div className="absolute inset-0 bg-black/30 z-10" />
-        
-        <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${textDirClass} relative z-10`} dir={isArabic ? 'rtl' : 'ltr'}>
+
+        <div
+          className={`container mx-auto px-4 sm:px-6 lg:px-8 ${textDirClass} relative z-10`}
+          dir={isArabic ? "rtl" : "ltr"}
+        >
           <ClientTestimonials lang={lang} dict={dict} />
         </div>
       </section>
 
       {/* Newsletter (Localized) */}
       <section className="py-20 bg-gradient-to-r max-w-screen from-gray-900 via-black to-gray-900">
-        
-        <div className={`container mx-auto  px-4 sm:px-6 lg:px-8 ${textDirClass}`} dir={isArabic ? 'rtl' : 'ltr'}>
-          
-          <motion.div 
+        <div
+          className={`container mx-auto  px-4 sm:px-6 lg:px-8 ${textDirClass}`}
+          dir={isArabic ? "rtl" : "ltr"}
+        >
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -87,11 +108,9 @@ export default function LocalizedHomeContent({ dict, lang }: LocalizedComponentP
                 {dict.home.activateButton}
               </button>
             </div>
-
           </motion.div>
         </div>
       </section>
-     
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default function IntroLoader() {
 
     // Scroll to top and auto-hide loader
     window.scrollTo(0, 0);
-    const timer = setTimeout(() => setLoading(false), 3000);
+    const timer = setTimeout(() => setLoading(false), 1800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -23,7 +23,7 @@ export default function IntroLoader() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: [0, 1, 1, 0] }}
-      transition={{ duration: 3, ease: "easeInOut" }}
+      transition={{ duration: 1.8, ease: "easeInOut" }}
       className="fixed inset-0 w-full h-full z-[9999] flex items-center justify-center overflow-hidden bg-[#0B192A]"
     >
       <div className="fixed inset-0 overflow-hidden z-0">

@@ -367,10 +367,10 @@ export default function AboutClient({ dict, lang }: LocalizedComponentProps) {
               className="text-center mb-8 sm:mb-12 md:mb-16"
             >
               <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl text-[#00FFFF] mb-2 sm:mb-4">
-                {isArabic ? "سجلات عملائنا:" : "Our Client Chronicles:"}
+                {isArabic ? "فريقنا:" : "Our Team:"}
               </h2>
               <p className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl">
-                {isArabic ? "قصص تجعلنا نبتسم!" : "Stories that Make Us Smile!"}
+                {isArabic ? "فريقنا يصنع الفرق دائمًا!" : "Our Team Makes the Difference!"}
               </p>
             </motion.div>
 

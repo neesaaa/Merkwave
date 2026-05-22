@@ -24,6 +24,8 @@ namespace BusinessLogiclayer
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IFleetService, FleetService>();
             services.AddScoped<IOdooModuleService, OdooModuleService>();
+            services.AddScoped<ITestimonialService, TestimonialService>();
+            services.AddScoped<IBrandLogoService, BrandLogoService>();
 
 
 
